@@ -7,19 +7,19 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: OpenERP Administrators <Unknown>\n"
+"PO-Revision-Date: 2012-11-13 01:59+0000\n"
+"Last-Translator: gobi <Unknown>\n"
 "Language-Team: Mongolian <mn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:37+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:00+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: hr_attendance
 #: model:ir.ui.menu,name:hr_attendance.menu_hr_time_tracking
 msgid "Time Tracking"
-msgstr "Ирц, цагийн хяналт"
+msgstr "Цагийн хяналт"
 
 #. module: hr_attendance
 #: view:hr.attendance:0
@@ -78,6 +78,9 @@ msgid ""
 "Sign in/Sign out actions. You can also link this feature to an attendance "
 "device using OpenERP's web service features."
 msgstr ""
+"Цаг хөтлөх функциональ нь ажилчны орох, гарах үйлдлээс ирцийг хөтлөх явдлыг "
+"менеж хийхийг зорьдог. Түүнчлэн та үүнийг OpenERP-н веб сервисийг ашиглан "
+"цаг бүртгэлийн төхөөрөмжтэй холбох боломжтой."
 
 #. module: hr_attendance
 #: view:hr.action.reason:0
@@ -117,9 +120,7 @@ msgid "Define attendance reason"
 msgstr "Ирцийн үйлдлийг тодорхойлох"
 
 #. module: hr_attendance
-#: code:addons/hr_attendance/report/attendance_by_month.py:184
 #: model:ir.actions.act_window,name:hr_attendance.action_hr_attendance_month
-#, python-format
 msgid "Attendances By Month"
 msgstr "Сарын ирц"
 
@@ -151,7 +152,7 @@ msgid "Ending Date"
 msgstr "Дуусах огноо"
 
 #. module: hr_attendance
-#: code:addons/hr_attendance/hr_attendance.py:140
+#: code:addons/hr_attendance/hr_attendance.py:161
 #, python-format
 msgid "Warning"
 msgstr "Анхааруулга"
@@ -169,6 +170,7 @@ msgid "A sign-in must be right after a sign-out !"
 msgstr "Системд нэвтэрсэн үйлдэл системээс гарсны яг ард нь байна."
 
 #. module: hr_attendance
+#: view:hr.attendance:0
 #: field:hr.employee,state:0
 #: model:ir.model,name:hr_attendance.model_hr_attendance
 msgid "Attendance"
@@ -194,7 +196,7 @@ msgstr "Ирцээс хайх"
 #. module: hr_attendance
 #: model:ir.actions.act_window,name:hr_attendance.action_hr_attendance_week
 msgid "Attendances By Week"
-msgstr ""
+msgstr "7 хоногийн ирц"
 
 #. module: hr_attendance
 #: constraint:hr.attendance:0
@@ -226,10 +228,12 @@ msgid "Min Delay"
 msgstr "Хамгийн бага саатал"
 
 #. module: hr_attendance
+#: code:addons/hr_attendance/hr_attendance.py:154
 #: selection:hr.attendance,action:0
 #: view:hr.employee:0
+#, python-format
 msgid "Sign In"
-msgstr "Нэвтрэх"
+msgstr "Орох"
 
 #. module: hr_attendance
 #: report:report.hr.timesheet.attendance.error:0
@@ -260,7 +264,7 @@ msgstr "Сар"
 #. module: hr_attendance
 #: field:hr.action.reason,action_type:0
 msgid "Action Type"
-msgstr ""
+msgstr "Үйлдлийн төрөл"
 
 #. module: hr_attendance
 #: report:report.hr.timesheet.attendance.error:0
@@ -271,7 +275,7 @@ msgstr "Сөрөг саатал нь ажилтан бүртгэсэнээсээ
 #. module: hr_attendance
 #: view:hr.attendance:0
 msgid "My Attendance"
-msgstr ""
+msgstr "Өөрийн ирц"
 
 #. module: hr_attendance
 #: help:hr.attendance,action_desc:0
@@ -287,7 +291,7 @@ msgstr "Сарын ирцийн тайланг хэвлэх"
 #. module: hr_attendance
 #: model:ir.model,name:hr_attendance.model_hr_sign_in_out
 msgid "Sign In Sign Out"
-msgstr "Нэвтрэх Гарах"
+msgstr "Орох Гарах"
 
 #. module: hr_attendance
 #: code:addons/hr_attendance/wizard/hr_attendance_sign_in_out.py:105
@@ -298,7 +302,7 @@ msgstr "Нэвтрэх Гарах"
 #: model:ir.ui.menu,name:hr_attendance.menu_hr_attendance_sigh_in_out
 #, python-format
 msgid "Sign in / Sign out"
-msgstr "Нэвтрэх / Гарах"
+msgstr "Орох / Гарах"
 
 #. module: hr_attendance
 #: view:hr.sign.in.out.ask:0
@@ -308,7 +312,7 @@ msgstr "Системээс гарах хүсэлт"
 #. module: hr_attendance
 #: view:hr.attendance.week:0
 msgid "Print Attendance Report Weekly"
-msgstr ""
+msgstr "Ирц 7 хоногоор хэвлэх"
 
 #. module: hr_attendance
 #: selection:hr.attendance.month,month:0
@@ -358,10 +362,8 @@ msgstr "1 сар"
 
 #. module: hr_attendance
 #: selection:hr.action.reason,action_type:0
-#: view:hr.sign.in.out:0
-#: view:hr.sign.in.out.ask:0
 msgid "Sign in"
-msgstr "Нэвтрэх"
+msgstr "Орох"
 
 #. module: hr_attendance
 #: view:hr.attendance.error:0
@@ -400,7 +402,7 @@ msgstr ""
 #. module: hr_attendance
 #: model:ir.model,name:hr_attendance.model_hr_attendance_week
 msgid "Print Week Attendance Report"
-msgstr "Долоо хоногийн ирцийн тайлан"
+msgstr "Долоо хоногийн ирцийн тайланг хэвлэх"
 
 #. module: hr_attendance
 #: field:hr.sign.in.out,emp_id:0
@@ -412,8 +414,6 @@ msgstr "Ажилтны дугаар"
 #: view:hr.attendance.error:0
 #: view:hr.attendance.month:0
 #: view:hr.attendance.week:0
-#: view:hr.sign.in.out:0
-#: view:hr.sign.in.out.ask:0
 msgid "Cancel"
 msgstr "Цуцлах"
 
@@ -436,8 +436,6 @@ msgstr "Сар бүрийн ирцийн тайланг хэвлэх"
 
 #. module: hr_attendance
 #: selection:hr.action.reason,action_type:0
-#: view:hr.sign.in.out:0
-#: view:hr.sign.in.out.ask:0
 msgid "Sign out"
 msgstr "Гарах"
 
@@ -448,6 +446,7 @@ msgstr "Саатал"
 
 #. module: hr_attendance
 #: view:hr.attendance:0
+#: field:hr.attendance,employee_id:0
 #: model:ir.model,name:hr_attendance.model_hr_employee
 msgid "Employee"
 msgstr "Ажилтан"
@@ -491,8 +490,10 @@ msgid "Your last sign in"
 msgstr "Таны сүүлийн нэвтрэлт"
 
 #. module: hr_attendance
+#: code:addons/hr_attendance/hr_attendance.py:154
 #: selection:hr.attendance,action:0
 #: view:hr.employee:0
+#, python-format
 msgid "Sign Out"
 msgstr "Гарах"
 
@@ -567,4 +568,4 @@ msgstr "Жил"
 #. module: hr_attendance
 #: view:hr.sign.in.out.ask:0
 msgid "hr.sign.in.out.ask"
-msgstr "Нэвтрэх, гарахыг хүсэх"
+msgstr "hr.sign.in.out.ask"

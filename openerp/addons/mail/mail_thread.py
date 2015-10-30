@@ -340,7 +340,6 @@ class mail_thread(osv.osv):
             context.update({'thread_model': model})
 
         mail_message = self.pool.get('mail.message')
-        res_id = False
 
         # Parse Message
         # Warning: message_from_string doesn't always work correctly on unicode,
@@ -353,38 +352,26 @@ class mail_thread(osv.osv):
         if strip_attachments and 'attachments' in msg:
             del msg['attachments']
 
-        # Create New Record into particular model
-        def create_record(msg):
-            if hasattr(model_pool, 'message_new'):
-                return model_pool.message_new(cr, uid, msg,
-                                              custom_values,
-                                              context=context)
         res_id = False
         if msg.get('references') or msg.get('in-reply-to'):
             references = msg.get('references') or msg.get('in-reply-to')
-            if '\r\n' in references:
-                references = references.split('\r\n')
-            else:
-                references = references.split(' ')
-            for ref in references:
-                ref = ref.strip()
-                res_id = tools.reference_re.search(ref)
-                if res_id:
-                    res_id = res_id.group(1)
-                else:
-                    res_id = tools.res_re.search(msg['subject'])
-                    if res_id:
-                        res_id = res_id.group(1)
-                if res_id:
-                    res_id = int(res_id)
-                    if model_pool.exists(cr, uid, res_id):
-                        if hasattr(model_pool, 'message_update'):
-                            model_pool.message_update(cr, uid, [res_id], msg, {}, context=context)
-                    else:
-                        # referenced thread was not found, we'll have to create a new one
-                        res_id = False
+            match = tools.reference_re.search(references)
+            if match: res_id = match.group(1)
         if not res_id:
-            res_id = create_record(msg)
+            match = tools.res_re.search(msg['subject'])
+            if match: res_id = match.group(1)
+        if res_id:
+            res_id = int(res_id)
+            if model_pool.exists(cr, uid, res_id) and hasattr(model_pool, 'message_update'):
+                    model_pool.message_update(cr, uid, [res_id], msg, {}, context=context)
+            else:
+                # referenced thread was not found, we'll have to create a new one
+                res_id = False
+        if not res_id:
+            if hasattr(model_pool, 'message_new'):
+                res_id = model_pool.message_new(cr, uid, msg, custom_values, context=context)
+            else:
+                raise Exception('No message_new() method on target model %s, cannot deliver mail!' % model)
         #To forward the email to other followers
         self.message_forward(cr, uid, model, [res_id], msg_txt, context=context)
         return res_id
@@ -406,7 +393,6 @@ class mail_thread(osv.osv):
         """
         model_pool = self.pool.get(model)
         smtp_server_obj = self.pool.get('ir.mail_server')
-        mail_message = self.pool.get('mail.message')
         for res in model_pool.browse(cr, uid, thread_ids, context=context):
             if hasattr(model_pool, 'message_thread_followers'):
                 followers = model_pool.message_thread_followers(cr, uid, [res.id])[res.id]
@@ -414,25 +400,26 @@ class mail_thread(osv.osv):
                 followers = self.message_thread_followers(cr, uid, [res.id])[res.id]
             message_followers_emails = to_email(','.join(filter(None, followers)))
             message_recipients = to_email(','.join(filter(None,
-                                                                       [decode(msg['from']),
-                                                                        decode(msg['to']),
-                                                                        decode(msg['cc'])])))
+                                                                       [decode(msg['From']),
+                                                                        decode(msg['To']),
+                                                                        decode(msg['Cc'])])))
             forward_to = [i for i in message_followers_emails if (i and (i not in message_recipients))]
             if forward_to:
                 # TODO: we need an interface for this for all types of objects, not just leads
                 if hasattr(res, 'section_id'):
-                    del msg['reply-to']
-                    msg['reply-to'] = res.section_id.reply_to
+                    del msg['Reply-To']
+                    msg['Reply-To'] = res.section_id.reply_to
 
-                smtp_from, = to_email(msg['from'])
-                msg['from'] = smtp_from
-                msg['to'] =  ", ".join(forward_to)
-                msg['message-id'] = tools.generate_tracking_message_id(res.id)
+                smtp_from, = to_email(msg['From'])
+                del msg['From'], msg['To'], msg['Cc'], msg['Message-Id']
+                msg['From'] = smtp_from
+                msg['To'] =  ", ".join(forward_to)
+                msg['Message-Id'] = tools.generate_tracking_message_id(res.id)
                 if not smtp_server_obj.send_email(cr, uid, msg) and email_error:
-                    subj = msg['subject']
-                    del msg['subject'], msg['to'], msg['cc'], msg['bcc']
-                    msg['subject'] = _('[OpenERP-Forward-Failed] %s') % subj
-                    msg['to'] = email_error
+                    subj = msg['Subject']
+                    del msg['Subject'], msg['To'], msg['Cc']
+                    msg['Subject'] = _('[OpenERP-Forward-Failed] %s') % subj
+                    msg['To'] = email_error
                     smtp_server_obj.send_email(cr, uid, msg)
         return True
 
@@ -461,7 +448,8 @@ class mail_thread(osv.osv):
             'partner_id': False
         }
         if email:
-            email = to_email(email)[0]
+            email = to_email(email) and to_email(email)[0]
+        if email:
             address_ids = address_pool.search(cr, uid, [('email', '=', email)])
             if address_ids:
                 address = address_pool.browse(cr, uid, address_ids[0])

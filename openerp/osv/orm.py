@@ -377,18 +377,26 @@ class browse_record(object):
             # if the field is a classic one or a many2one, we'll fetch all classic and many2one fields
             if col._prefetch:
                 # gen the list of "local" (ie not inherited) fields which are classic or many2one
-                fields_to_fetch = filter(lambda x: x[1]._classic_write, self._table._columns.items())
+                fields_to_fetch = filter(lambda x: x[1]._classic_write and x[1]._prefetch, self._table._columns.items())
                 # gen the list of inherited fields
                 inherits = map(lambda x: (x[0], x[1][2]), self._table._inherit_fields.items())
                 # complete the field list with the inherited fields which are classic or many2one
-                fields_to_fetch += filter(lambda x: x[1]._classic_write, inherits)
+                fields_to_fetch += filter(lambda x: x[1]._classic_write and x[1]._prefetch, inherits)
             # otherwise we fetch only that field
             else:
                 fields_to_fetch = [(name, col)]
             ids = filter(lambda id: name not in self._data[id], self._data.keys())
             # read the results
             field_names = map(lambda x: x[0], fields_to_fetch)
-            field_values = self._table.read(self._cr, self._uid, ids, field_names, context=self._context, load="_classic_write")
+            try:
+                field_values = self._table.read(self._cr, self._uid, ids, field_names, context=self._context, load="_classic_write")
+            except (openerp.exceptions.AccessError, except_orm):
+                if len(ids) == 1:
+                    raise
+                # prefetching attempt failed, perhaps we're violating ACL restrictions involuntarily
+                _logger.info('Prefetching attempt for fields %s on %s failed for ids %s, re-trying just for id %s', field_names, self._model._name, ids, self._id)
+                ids = [self._id]
+                field_values = self._table.read(self._cr, self._uid, ids, field_names, context=self._context, load="_classic_write")
 
             # TODO: improve this, very slow for reports
             if self._fields_process:
@@ -872,11 +880,11 @@ class BaseModel(object):
 
             for parent_name in ((type(parent_names)==list) and parent_names or [parent_names]):
                 parent_model = pool.get(parent_name)
-                if not getattr(cls, '_original_module', None) and name == parent_model._name:
-                    cls._original_module = parent_model._original_module
                 if not parent_model:
                     raise TypeError('The model "%s" specifies an unexisting parent class "%s"\n'
                         'You may need to add a dependency on the parent class\' module.' % (name, parent_name))
+                if not getattr(cls, '_original_module', None) and name == parent_model._name:
+                    cls._original_module = parent_model._original_module
                 parent_class = parent_model.__class__
                 nattr = {}
                 for s in attributes:
@@ -1100,7 +1108,7 @@ class BaseModel(object):
                     if not model_data.search(cr, uid, [('name', '=', n)]):
                         break
                     postfix += 1
-                model_data.create(cr, uid, {
+                model_data.create(cr, SUPERUSER_ID, {
                     'name': n,
                     'model': self._name,
                     'res_id': r['id'],
@@ -1677,7 +1685,7 @@ class BaseModel(object):
                         dom = []
                         if column._domain and not isinstance(column._domain, basestring):
                             dom = column._domain
-                        dom += eval(node.get('domain', '[]'), {'uid': user, 'time': time})
+                        dom = dom + eval(node.get('domain', '[]'), {'uid': user, 'time': time})
                         search_context = dict(context)
                         if column._context and not isinstance(column._context, basestring):
                             search_context.update(column._context)
@@ -1728,6 +1736,10 @@ class BaseModel(object):
                 trans = self.pool.get('ir.translation')._get_source(cr, user, self._name, 'view', context['lang'], node.get('sum'))
                 if trans:
                     node.set('sum', trans)
+            if node.get('avg'):
+                trans = self.pool.get('ir.translation')._get_source(cr, user, self._name, 'view', context['lang'], node.get('avg'))
+                if trans:
+                    node.set('avg', trans)
             if node.get('help'):
                 trans = self.pool.get('ir.translation')._get_source(cr, user, self._name, 'view', context['lang'], node.get('help'))
                 if trans:
@@ -2389,6 +2401,7 @@ class BaseModel(object):
         try:
             getattr(self, '_ormcache')
             self._ormcache = {}
+            self.pool._any_cache_cleared = True
         except AttributeError:
             pass
 
@@ -2559,13 +2572,19 @@ class BaseModel(object):
 
         order = orderby or groupby
         data_ids = self.search(cr, uid, [('id', 'in', alldata.keys())], order=order, context=context)
-        # the IDS of records that have groupby field value = False or '' should be sorted too
-        data_ids += filter(lambda x:x not in data_ids, alldata.keys())
-        data = self.read(cr, uid, data_ids, groupby and [groupby] or ['id'], context=context)
-        # restore order of the search as read() uses the default _order (this is only for groups, so the size of data_read shoud be small):
-        data.sort(lambda x,y: cmp(data_ids.index(x['id']), data_ids.index(y['id'])))
+        
+        # the IDs of records that have groupby field value = False or '' should be included too
+        data_ids += set(alldata.keys()).difference(data_ids)
+        
+        if groupby:   
+            data = self.read(cr, uid, data_ids, [groupby], context=context)
+            # restore order of the search as read() uses the default _order (this is only for groups, so the footprint of data should be small):
+            data_dict = dict((d['id'], d[groupby] ) for d in data)
+            result = [{'id': i, groupby: data_dict[i]} for i in data_ids]
+        else:
+            result = [{'id': i} for i in data_ids] 
 
-        for d in data:
+        for d in result:
             if groupby:
                 d['__domain'] = [(groupby, '=', alldata[d['id']][groupby] or False)] + domain
                 if not isinstance(groupby_list, (str, unicode)):
@@ -2584,11 +2603,11 @@ class BaseModel(object):
             del d['id']
 
         if groupby and groupby in self._group_by_full:
-            data = self._read_group_fill_results(cr, uid, domain, groupby, groupby_list,
-                                                 aggregated_fields, data, read_group_order=order,
-                                                 context=context)
+            result = self._read_group_fill_results(cr, uid, domain, groupby, groupby_list,
+                                                   aggregated_fields, result, read_group_order=order,
+                                                   context=context)
 
-        return data
+        return result
 
     def _inherits_join_add(self, current_table, parent_model_name, query):
         """
@@ -2690,7 +2709,7 @@ class BaseModel(object):
         elif val in dict(self._columns[field].selection(self, cr, uid, context=context)):
             return
         raise except_orm(_('ValidateError'),
-			_('The value "%s" for the field "%s.%s" is not in the selection') % (value, self._table, field))
+            _('The value "%s" for the field "%s.%s" is not in the selection') % (value, self._table, field))
 
     def _check_removed_columns(self, cr, log=False):
         # iterate on the database columns to drop the NOT NULL constraints
@@ -2732,6 +2751,50 @@ class BaseModel(object):
         self._foreign_keys.append((source_table, source_field, dest_model._table, ondelete or 'set null'))
         _schema.debug("Table '%s': added foreign key '%s' with definition=REFERENCES \"%s\" ON DELETE %s",
             source_table, source_field, dest_model._table, ondelete)
+
+    def _drop_constraint(self, cr, source_table, constraint_name):
+        cr.execute("ALTER TABLE %s DROP CONSTRAINT %s" % (source_table,constraint_name))
+
+    def _m2o_fix_foreign_key(self, cr, source_table, source_field, dest_model, ondelete):
+        # Find FK constraint(s) currently established for the m2o field,
+        # and see whether they are stale or not 
+        cr.execute("""SELECT confdeltype as ondelete_rule, conname as constraint_name,
+                             cl2.relname as foreign_table
+                      FROM pg_constraint as con, pg_class as cl1, pg_class as cl2,
+                           pg_attribute as att1, pg_attribute as att2
+                      WHERE con.conrelid = cl1.oid 
+                        AND cl1.relname = %s 
+                        AND con.confrelid = cl2.oid 
+                        AND array_lower(con.conkey, 1) = 1 
+                        AND con.conkey[1] = att1.attnum 
+                        AND att1.attrelid = cl1.oid 
+                        AND att1.attname = %s 
+                        AND array_lower(con.confkey, 1) = 1 
+                        AND con.confkey[1] = att2.attnum 
+                        AND att2.attrelid = cl2.oid 
+                        AND att2.attname = %s 
+                        AND con.contype = 'f'""", (source_table, source_field, 'id'))
+        constraints = cr.dictfetchall()
+        if constraints:
+            if len(constraints) == 1:
+                # Is it the right constraint?
+                cons, = constraints 
+                if cons['ondelete_rule'] != POSTGRES_CONFDELTYPES.get((ondelete or 'set null').upper(), 'a')\
+                    or cons['foreign_table'] != dest_model._table:
+                    _schema.debug("Table '%s': dropping obsolete FK constraint: '%s'",
+                                  source_table, cons['constraint_name'])
+                    self._drop_constraint(cr, source_table, cons['constraint_name'])
+                    self._m2o_add_foreign_key_checked(source_field, dest_model, ondelete)
+                # else it's all good, nothing to do!
+            else:
+                # Multiple FKs found for the same field, drop them all, and re-create
+                for cons in constraints:
+                    _schema.debug("Table '%s': dropping duplicate FK constraints: '%s'",
+                                  source_table, cons['constraint_name'])
+                    self._drop_constraint(cr, source_table, cons['constraint_name'])
+                self._m2o_add_foreign_key_checked(source_field, dest_model, ondelete)
+
+
 
     def _auto_init(self, cr, context=None):
         """
@@ -2932,31 +2995,8 @@ class BaseModel(object):
 
                             if isinstance(f, fields.many2one):
                                 dest_model = self.pool.get(f._obj)
-                                ref = dest_model._table
-                                if ref != 'ir_actions':
-                                    cr.execute('SELECT confdeltype, conname FROM pg_constraint as con, pg_class as cl1, pg_class as cl2, '
-                                                'pg_attribute as att1, pg_attribute as att2 '
-                                            'WHERE con.conrelid = cl1.oid '
-                                                'AND cl1.relname = %s '
-                                                'AND con.confrelid = cl2.oid '
-                                                'AND cl2.relname = %s '
-                                                'AND array_lower(con.conkey, 1) = 1 '
-                                                'AND con.conkey[1] = att1.attnum '
-                                                'AND att1.attrelid = cl1.oid '
-                                                'AND att1.attname = %s '
-                                                'AND array_lower(con.confkey, 1) = 1 '
-                                                'AND con.confkey[1] = att2.attnum '
-                                                'AND att2.attrelid = cl2.oid '
-                                                'AND att2.attname = %s '
-                                                "AND con.contype = 'f'", (self._table, ref, k, 'id'))
-                                    res2 = cr.dictfetchall()
-                                    if res2:
-                                        if res2[0]['confdeltype'] != POSTGRES_CONFDELTYPES.get((f.ondelete or 'set null').upper(), 'a'):
-                                            cr.execute('ALTER TABLE "' + self._table + '" DROP CONSTRAINT "' + res2[0]['conname'] + '"')
-                                            self._m2o_add_foreign_key_checked(k, dest_model, f.ondelete)
-                                            cr.commit()
-                                            _schema.debug("Table '%s': column '%s': XXX",
-                                                self._table, k)
+                                if dest_model._table != 'ir_actions':
+                                    self._m2o_fix_foreign_key(cr, self._table, k, dest_model, f.ondelete)
 
                     # The field doesn't exist in database. Create it if necessary.
                     else:
@@ -3152,6 +3192,9 @@ class BaseModel(object):
         _sql_constraints.
 
         """
+        def unify_cons_text(txt):
+            return txt.lower().replace(', ',',').replace(' (','(')
+
         for (key, con, _) in self._sql_constraints:
             conname = '%s_%s' % (self._table, key)
 
@@ -3181,7 +3224,7 @@ class BaseModel(object):
                 # constraint does not exists:
                 sql_actions['add']['execute'] = True
                 sql_actions['add']['msg_err'] = sql_actions['add']['msg_err'] % (sql_actions['add']['query'], )
-            elif con.lower() not in [item['condef'].lower() for item in existing_constraints]:
+            elif unify_cons_text(con) not in [unify_cons_text(item['condef']) for item in existing_constraints]:
                 # constraint exists but its definition has changed:
                 sql_actions['drop']['execute'] = True
                 sql_actions['drop']['msg_ok'] = sql_actions['drop']['msg_ok'] % (existing_constraints[0]['condef'].lower(), )
@@ -3688,7 +3731,7 @@ class BaseModel(object):
         if isinstance(ids, (int, long)):
             ids = [ids]
 
-        result_store = self._store_get_values(cr, uid, ids, None, context)
+        result_store = self._store_get_values(cr, uid, ids, self._all_columns.keys(), context)
 
         self._check_concurrency(cr, ids, context)
 
@@ -4091,11 +4134,16 @@ class BaseModel(object):
                 del vals[self._inherits[table]]
 
             record_id = tocreate[table].pop('id', None)
-
+            
+            # When linking/creating parent records, force context without 'no_store_function' key that
+            # defers stored functions computing, as these won't be computed in batch at the end of create(). 
+            parent_context = dict(context)
+            parent_context.pop('no_store_function', None)
+            
             if record_id is None or not record_id:
-                record_id = self.pool.get(table).create(cr, user, tocreate[table], context=context)
+                record_id = self.pool.get(table).create(cr, user, tocreate[table], context=parent_context)
             else:
-                self.pool.get(table).write(cr, user, [record_id], tocreate[table], context=context)
+                self.pool.get(table).write(cr, user, [record_id], tocreate[table], context=parent_context)
 
             upd0 += ',' + self._inherits[table]
             upd1 += ',%s'
@@ -4382,13 +4430,11 @@ class BaseModel(object):
         domain = domain[:]
         # if the object has a field named 'active', filter out all inactive
         # records unless they were explicitely asked for
-        if 'active' in self._columns and (active_test and context.get('active_test', True)):
+        if 'active' in self._all_columns and (active_test and context.get('active_test', True)):
             if domain:
-                active_in_args = False
-                for a in domain:
-                    if a[0] == 'active':
-                        active_in_args = True
-                if not active_in_args:
+                # the item[0] trick below works for domain items and '&'/'|'/'!'
+                # operators too
+                if not any(item[0] == 'active' for item in domain):
                     domain.insert(0, ('active', '=', 1))
             else:
                 domain = [('active', '=', 1)]
@@ -4498,7 +4544,7 @@ class BaseModel(object):
                 order_direction = order_split[1].strip() if len(order_split) == 2 else ''
                 inner_clause = None
                 if order_field == 'id':
-                    order_by_clause = '"%s"."%s"' % (self._table, order_field)
+                    inner_clause = '"%s"."%s"' % (self._table, order_field)
                 elif order_field in self._columns:
                     order_column = self._columns[order_field]
                     if order_column._classic_read:
@@ -4966,6 +5012,7 @@ class Model(BaseModel):
     The system will later instantiate the class once per database (on
     which the class' module is installed).
     """
+    _auto = True
     _register = False # not visible in ORM registry, meant to be python-inherited only
     _transient = False # True in a TransientModel
 
@@ -4978,6 +5025,7 @@ class TransientModel(BaseModel):
        records they created. The super-user has unrestricted access
        to all TransientModel records.
     """
+    _auto = True
     _register = False # not visible in ORM registry, meant to be python-inherited only
     _transient = True
 
@@ -4993,6 +5041,7 @@ class AbstractModel(BaseModel):
        """
     _auto = False # don't create any database backend for AbstractModels
     _register = False # not visible in ORM registry, meant to be python-inherited only
+    _transient = False
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

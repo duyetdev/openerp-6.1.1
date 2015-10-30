@@ -34,6 +34,9 @@ from service import security
 from tools.translate import _
 import openerp
 import openerp.exceptions
+from lxml import etree
+from lxml.builder import E
+
 
 _logger = logging.getLogger(__name__)
 
@@ -51,6 +54,18 @@ class groups(osv.osv):
                 res[g.id] = g.name
         return res
 
+    def _search_group(self, cr, uid, obj, name, args, context=None):
+        operand = args[0][2]
+        operator = args[0][1]
+        values = operand.split('/')
+        group_name = values[0]
+        where = [('name', operator, group_name)]
+        if len(values) > 1:
+            application_name = values[0]
+            group_name = values[1]
+            where = ['|',('category_id.name', operator, application_name)] + where
+        return where
+
     _columns = {
         'name': fields.char('Name', size=64, required=True, translate=True),
         'users': fields.many2many('res.users', 'res_groups_users_rel', 'gid', 'uid', 'Users'),
@@ -60,7 +75,7 @@ class groups(osv.osv):
         'menu_access': fields.many2many('ir.ui.menu', 'ir_ui_menu_group_rel', 'gid', 'menu_id', 'Access Menu'),
         'comment' : fields.text('Comment', size=250, translate=True),
         'category_id': fields.many2one('ir.module.category', 'Application', select=True),
-        'full_name': fields.function(_get_full_name, type='char', string='Group Name'),
+        'full_name': fields.function(_get_full_name, type='char', string='Group Name', fnct_search=_search_group),
     }
 
     _sql_constraints = [
@@ -240,7 +255,7 @@ class users(osv.osv):
                                 string='Set password', help="Specify a value only when creating a user or if you're changing the user's password, "
                                                             "otherwise leave empty. After a change of password, the user has to login again."),
         'user_email': fields.char('Email', size=64),
-        'signature': fields.text('Signature', size=64),
+        'signature': fields.text('Signature'),
         'active': fields.boolean('Active'),
         'action_id': fields.many2one('ir.actions.actions', 'Home Action', help="If specified, this action will be opened at logon for this user, in addition to the standard menu."),
         'menu_id': fields.many2one('ir.actions.actions', 'Menu Action', help="If specified, the action will replace the standard menu for this user."),
@@ -487,7 +502,7 @@ class users(osv.osv):
             cr.execute("""SELECT id from res_users
                           WHERE login=%s AND password=%s
                                 AND active FOR UPDATE NOWAIT""",
-                       (tools.ustr(login), tools.ustr(password)))
+                       (tools.ustr(login), tools.ustr(password)), log_exceptions=False)
             cr.execute("""UPDATE res_users
                             SET date = now() AT TIME ZONE 'UTC'
                             WHERE login=%s AND password=%s AND active
@@ -495,9 +510,9 @@ class users(osv.osv):
                        (tools.ustr(login), tools.ustr(password)))
         except Exception:
             # Failing to acquire the lock on the res_users row probably means
-            # another request is holding it. No big deal, we don't want to
-            # prevent/delay login in that case. It will also have been logged
-            # as a SQL error, if anyone cares.
+            # another request is holding it - no big deal, we skip the update
+            # for this time, and let the user login anyway.
+            cr.rollback()
             cr.execute("""SELECT id from res_users
                           WHERE login=%s AND password=%s
                                 AND active""",
@@ -743,29 +758,27 @@ class groups_view(osv.osv):
         # and introduces the reified group fields
         view = self.get_user_groups_view(cr, uid, context)
         if view:
-            xml = u"""<?xml version="1.0" encoding="utf-8"?>
-<!-- GENERATED AUTOMATICALLY BY GROUPS -->
-<field name="groups_id" position="replace">
-%s
-%s
-</field>
-"""
+
             xml1, xml2 = [], []
-            xml1.append('<separator string="%s" colspan="4"/>' % _('Applications'))
+            xml1.append(E.separator(string=_('Application'), colspan="4"))
             for app, kind, gs in self.get_groups_by_application(cr, uid, context):
                 if kind == 'selection':
                     # application name with a selection field
                     field_name = name_selection_groups(map(int, gs))
-                    xml1.append('<field name="%s"/>' % field_name)
-                    xml1.append('<newline/>')
+                    xml1.append(E.field(name=field_name))
+                    xml1.append(E.newline())
                 else:
                     # application separator with boolean fields
                     app_name = app and app.name or _('Other')
-                    xml2.append('<separator string="%s" colspan="4"/>' % app_name)
+                    xml2.append(E.separator(string=app_name, colspan="4"))
                     for g in gs:
                         field_name = name_boolean_group(g.id)
-                        xml2.append('<field name="%s"/>' % field_name)
-            view.write({'arch': xml % ('\n'.join(xml1), '\n'.join(xml2))})
+                        xml2.append(E.field(name=field_name))
+
+            xml = E.field(*(xml1 + xml2), name="groups_id", position="replace")
+            xml.addprevious(etree.Comment("GENERATED AUTOMATICALLY BY GROUPS"))
+            xml_content = etree.tostring(xml, pretty_print=True, xml_declaration=True, encoding="utf-8")
+            view.write({'arch': xml_content})
         return True
 
     def get_user_groups_view(self, cr, uid, context=None):

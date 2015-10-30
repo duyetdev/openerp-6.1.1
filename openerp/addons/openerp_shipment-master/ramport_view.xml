@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    <!--******************************** Form view  ************************************** -->
+        <record model="ir.ui.view" id="view_ramport_form">
+            <field name="name">shipment.ramport.form</field>
+            <field name="model">shipment.ramport</field>
+            <field name="arch" type="xml">
+                <form string="shipment.ramport" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="table_name" select="1"/>
+                                <field name="status" select="1"/>
+                            </group>
+                            <group>
+                                <field name="line" select="2"/>
+                            </group>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+
+    <!--******************************** Tree view / Listing View  ************************************** -->
+        <record model="ir.ui.view" id="view_ramport_tree">
+            <field name="name">shipment.ramport.tree</field>
+            <field name="model">shipment.ramport</field>
+            <field name="arch" type="xml">
+                <tree string="shipment.ramport">
+                    <field name="table_name"/>
+                    <field name="rid"/>
+                    <field name="line"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+
+    <!--******************************** View Actions  ************************************** -->
+        <record model="ir.actions.act_window" id="action_ramport">
+            <field name="name">Ramport</field>
+            <field name="res_model">shipment.ramport</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to Define a New Ramport.
+              </p><p>
+                Description goes Here.
+              </p>
+            </field>
+        </record>
+
+
+    <!--******************************** Search View  ************************************** -->
+        <record model="ir.ui.view" id="view_ramport_filter">
+            <field name="name">shipment.ramport.select</field>
+            <field name="model">shipment.ramport</field>
+            <field name="arch" type="xml">
+                <search string="Search Ramport">
+                    <field string="Table" name="table_name" filter_domain="[('table_name','ilike',self)]"/>
+                    <field string="Record Id" name="rid" filter_domain="[('rid','ilike',self)]"/>
+                    <field string="Line" name="line" filter_domain="[('line','ilike',self)]"/>
+                    <field string="Status" name="status" filter_domain="[('status','ilike',self)]"/>
+                    <separator/>
+
+
+               </search>
+            </field>
+        </record>
+
+    <!--******************************** Menu Item Defined  ************************************** -->
+    <menuitem id="menu_item_ramport" parent="menu_section_ramport" name="Ramport" action="action_ramport"
+            icon="terp-product"/>
+
+</data>
+</openerp>
+
+

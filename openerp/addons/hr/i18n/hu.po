@@ -7,15 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 01:37+0100\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: NOVOTRADE RENDSZERHÁZ ( novotrade.hu ) "
-"<openerp@novotrade.hu>\n"
+"PO-Revision-Date: 2012-09-10 18:00+0000\n"
+"Last-Translator: Herczeg Péter <hp@erp-cloud.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:36+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:00+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: hr
 #: model:process.node,name:hr.process_node_openerpuser0
@@ -23,7 +22,7 @@ msgid "Openerp user"
 msgstr "OpenERP felhasználó"
 
 #. module: hr
-#: view:hr.job:0 field:hr.job,requirements:0
+#: field:hr.job,requirements:0
 msgid "Requirements"
 msgstr "Követelmények"
 
@@ -43,21 +42,25 @@ msgid "SIN No"
 msgstr "TAJ szám"
 
 #. module: hr
+#: model:ir.actions.act_window,name:hr.open_board_hr
+#: model:ir.ui.menu,name:hr.menu_hr_dashboard
 #: model:ir.ui.menu,name:hr.menu_hr_main
-#: model:ir.ui.menu,name:hr.menu_hr_management
+#: model:ir.ui.menu,name:hr.menu_hr_reporting
 #: model:ir.ui.menu,name:hr.menu_hr_root
+#: model:ir.ui.menu,name:hr.menu_human_resources_configuration
 msgid "Human Resources"
 msgstr "Humán erőforrás"
 
 #. module: hr
-#: view:hr.employee:0 view:hr.job:0
+#: view:hr.employee:0
+#: view:hr.job:0
 msgid "Group By..."
 msgstr "Csoportosítás..."
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.view_department_form_installer
 msgid "Create Your Departments"
-msgstr ""
+msgstr "Saját osztály létrehozása"
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.action_hr_job
@@ -70,8 +73,12 @@ msgid ""
 msgstr ""
 
 #. module: hr
-#: view:hr.employee:0 field:hr.employee,department_id:0 view:hr.job:0
-#: field:hr.job,department_id:0 view:res.users:0
+#: view:hr.department:0
+#: view:hr.employee:0
+#: field:hr.employee,department_id:0
+#: view:hr.job:0
+#: field:hr.job,department_id:0
+#: model:ir.model,name:hr.model_hr_department
 msgid "Department"
 msgstr "Osztály, részleg"
 
@@ -91,7 +98,9 @@ msgid "In Recruitment"
 msgstr "Toborzás folyamatban"
 
 #. module: hr
-#: field:hr.department,company_id:0 view:hr.employee:0 view:hr.job:0
+#: field:hr.department,company_id:0
+#: view:hr.employee:0
+#: view:hr.job:0
 #: field:hr.job,company_id:0
 msgid "Company"
 msgstr "Vállalat"
@@ -126,7 +135,7 @@ msgid "Parent Department"
 msgstr "Főrészleg"
 
 #. module: hr
-#: view:hr.employee:0 field:hr.employee,notes:0
+#: field:hr.employee,notes:0
 msgid "Notes"
 msgstr "Megjegyzések"
 
@@ -159,7 +168,7 @@ msgstr ""
 #. module: hr
 #: field:hr.employee,color:0
 msgid "Color Index"
-msgstr ""
+msgstr "Szín meghatározó"
 
 #. module: hr
 #: model:process.transition,note:hr.process_transition_employeeuser0
@@ -167,6 +176,8 @@ msgid ""
 "The Related user field on the Employee form allows to link the OpenERP user "
 "(and her rights) to the employee."
 msgstr ""
+"Az alkalmazott űrlapján ide vonatkozó felhasználó mező lehetővé teszi az "
+"OpenERP felhasználó (és jogosultságai) hozzárendelését az alkalmazottakhoz."
 
 #. module: hr
 #: view:hr.job:0 selection:hr.job,state:0
@@ -191,7 +202,7 @@ msgstr ""
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_open_view_attendance_reason_new_config
 msgid "Attendance"
-msgstr ""
+msgstr "Jelenlét"
 
 #. module: hr
 #: view:hr.employee:0
@@ -209,7 +220,7 @@ msgid "Child Categories"
 msgstr "Alkategóriák"
 
 #. module: hr
-#: view:hr.job:0 field:hr.job,description:0
+#: field:hr.job,description:0
 #: model:ir.model,name:hr.model_hr_job
 msgid "Job Description"
 msgstr "Munkaköri leírás"
@@ -225,7 +236,8 @@ msgid "My Departments Employee"
 msgstr "Részlegem alkalmazottai"
 
 #. module: hr
-#: view:hr.employee:0 model:ir.model,name:hr.model_hr_employee
+#: view:hr.employee:0
+#: model:ir.model,name:hr.model_hr_employee
 #: model:process.node,name:hr.process_node_employee0
 msgid "Employee"
 msgstr "Alkalmazott"
@@ -251,13 +263,14 @@ msgid "Reporting"
 msgstr "Jelentés"
 
 #. module: hr
-#: model:ir.actions.act_window,name:hr.open_board_hr
-#: model:ir.ui.menu,name:hr.menu_hr_dashboard_user
+#: view:board.board:0
 msgid "Human Resources Dashboard"
 msgstr "HR vezérlőpult"
 
 #. module: hr
-#: view:hr.employee:0 field:hr.employee,job_id:0 view:hr.job:0
+#: view:hr.employee:0
+#: field:hr.employee,job_id:0
+#: view:hr.job:0
 msgid "Job"
 msgstr "Munka"
 
@@ -300,7 +313,6 @@ msgstr "Hiba ! Nem hozhat lérte rekurzív kategóriákat."
 #: view:hr.department:0
 #: model:ir.actions.act_window,name:hr.open_module_tree_department
 #: model:ir.ui.menu,name:hr.menu_hr_department_tree
-#: field:res.users,context_department_id:0
 msgid "Departments"
 msgstr "Osztályok/Részlegek"
 
@@ -312,7 +324,7 @@ msgstr "Alkalmazotti kapcsolat"
 #. module: hr
 #: view:board.board:0
 msgid "My Board"
-msgstr ""
+msgstr "Saját vezérlőpult"
 
 #. module: hr
 #: selection:hr.employee,gender:0
@@ -410,6 +422,8 @@ msgstr "Alrészlegek"
 
 #. module: hr
 #: view:hr.employee:0
+#: view:hr.job:0
+#: field:hr.job,state:0
 msgid "Status"
 msgstr "Státusz"
 
@@ -460,7 +474,7 @@ msgstr ""
 #. module: hr
 #: field:hr.employee,bank_account_id:0
 msgid "Bank Account Number"
-msgstr ""
+msgstr "Bankszámla szám"
 
 #. module: hr
 #: view:hr.department:0
@@ -479,7 +493,7 @@ msgstr ""
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_hr_dashboard
 msgid "Dashboard"
-msgstr ""
+msgstr "Vezérlőpult"
 
 #. module: hr
 #: selection:hr.job,state:0
@@ -512,7 +526,7 @@ msgid "Employee form and structure"
 msgstr "Alkalmazotti űrlap és struktúra"
 
 #. module: hr
-#: field:hr.employee,photo:0
+#: field:hr.employee,image:0
 msgid "Photo"
 msgstr "Fénykép"
 
@@ -529,7 +543,7 @@ msgstr "Személyes információk"
 #. module: hr
 #: field:hr.employee,city:0
 msgid "City"
-msgstr ""
+msgstr "Város"
 
 #. module: hr
 #: field:hr.employee,passport_id:0
@@ -539,7 +553,7 @@ msgstr "Útlevélszám"
 #. module: hr
 #: field:hr.employee,mobile_phone:0
 msgid "Work Mobile"
-msgstr ""
+msgstr "Munkahelyi mobil"
 
 #. module: hr
 #: view:hr.employee.category:0
@@ -567,7 +581,7 @@ msgid "Job Name"
 msgstr "Munka megnevezése"
 
 #. module: hr
-#: view:hr.job:0 selection:hr.job,state:0
+#: view:hr.job:0
 msgid "In Position"
 msgstr "Pozícióban"
 
@@ -584,7 +598,7 @@ msgstr "Nemzetiség"
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_open_view_attendance_reason_config
 msgid "Leaves"
-msgstr ""
+msgstr "eltávozások"
 
 #. module: hr
 #: view:board.board:0
@@ -598,6 +612,7 @@ msgstr "Erőforrás"
 
 #. module: hr
 #: field:hr.department,complete_name:0
+#: field:hr.employee,name_related:0
 #: field:hr.employee.category,complete_name:0
 msgid "Name"
 msgstr "Név"
@@ -608,14 +623,13 @@ msgid "Gender"
 msgstr "Neme"
 
 #. module: hr
-#: view:hr.employee:0 view:hr.employee.category:0
-#: field:hr.employee.category,employee_ids:0 view:hr.job:0
+#: view:hr.employee:0
+#: field:hr.employee.category,employee_ids:0
 #: field:hr.job,employee_ids:0
 #: model:ir.actions.act_window,name:hr.hr_employee_normal_action_tree
 #: model:ir.actions.act_window,name:hr.open_view_employee_list
 #: model:ir.actions.act_window,name:hr.open_view_employee_list_my
 #: model:ir.ui.menu,name:hr.menu_open_view_employee_list_my
-#: model:ir.ui.menu,name:hr.menu_view_employee_category_configuration_form
 msgid "Employees"
 msgstr "Alkalmazottak"
 
@@ -642,7 +656,7 @@ msgstr "OpenERP felhasználó létrehozása"
 #. module: hr
 #: field:hr.employee,login:0
 msgid "Login"
-msgstr ""
+msgstr "Bejelentkezés"
 
 #. module: hr
 #: view:hr.employee:0
@@ -658,17 +672,18 @@ msgstr "Álláspozíciók"
 #. module: hr
 #: field:hr.employee,otherid:0
 msgid "Other Id"
-msgstr ""
+msgstr "Egyéb azonosító"
 
 #. module: hr
-#: view:hr.employee:0 field:hr.employee,coach_id:0
+#: view:hr.employee:0
+#: field:hr.employee,coach_id:0
 msgid "Coach"
 msgstr "Tréner"
 
 #. module: hr
 #: sql_constraint:hr.job:0
 msgid "The name of the job position must be unique per company!"
-msgstr ""
+msgstr "A munkahely nevének egyedinek kell lenneie vállalatonként!"
 
 #. module: hr
 #: view:hr.job:0
@@ -676,7 +691,8 @@ msgid "My Departments Jobs"
 msgstr ""
 
 #. module: hr
-#: field:hr.department,manager_id:0 view:hr.employee:0
+#: field:hr.department,manager_id:0
+#: view:hr.employee:0
 #: field:hr.employee,parent_id:0
 msgid "Manager"
 msgstr "Vezető"

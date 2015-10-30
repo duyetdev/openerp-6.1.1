@@ -7,18 +7,17 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Fabien (Open ERP) <fp@tinyerp.com>\n"
+"PO-Revision-Date: 2012-08-30 14:12+0000\n"
+"Last-Translator: Ayhan KIZILTAN <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:50+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:09+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: mrp_operations
 #: model:ir.actions.act_window,name:mrp_operations.mrp_production_wc_action_form
-#: model:ir.ui.menu,name:mrp_operations.menu_mrp_production_wc_action_planning
 #: model:ir.ui.menu,name:mrp_operations.menu_mrp_production_wc_order
 #: view:mrp.production.workcenter.line:0
 #: view:mrp.workorder:0
@@ -26,10 +25,10 @@ msgid "Work Orders"
 msgstr "İş Emirleri"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:489
+#: code:addons/mrp_operations/mrp_operations.py:484
 #, python-format
 msgid "Operation is already finished!"
-msgstr ""
+msgstr "İşlem zaten bitmiş!"
 
 #. module: mrp_operations
 #: model:process.node,note:mrp_operations.process_node_canceloperation0
@@ -45,12 +44,12 @@ msgstr "mrp_operations.operation.code"
 #: view:mrp.production.workcenter.line:0
 #: view:mrp.workorder:0
 msgid "Group By..."
-msgstr "Şuna göre grupla"
+msgstr "Gruplandır..."
 
 #. module: mrp_operations
 #: model:process.node,note:mrp_operations.process_node_workorder0
 msgid "Information from the routing definition."
-msgstr "Yönlendirme tanımlamasından gelen bilgiler."
+msgstr "Rota tanımlamasından gelen bilgiler."
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -59,7 +58,6 @@ msgstr "Mart"
 
 #. module: mrp_operations
 #: model:ir.actions.act_window,name:mrp_operations.mrp_production_wc_resource_planning
-#: model:ir.ui.menu,name:mrp_operations.menu_mrp_production_wc_resource_planning
 msgid "Work Centers"
 msgstr "İş Merkezleri"
 
@@ -68,7 +66,7 @@ msgstr "İş Merkezleri"
 #: view:mrp.production.workcenter.line:0
 #: selection:mrp_operations.operation.code,start_stop:0
 msgid "Resume"
-msgstr "Devam et"
+msgstr "Sürdür"
 
 #. module: mrp_operations
 #: report:mrp.code.barcode:0
@@ -83,12 +81,12 @@ msgstr "Üretilecek Ürün"
 #. module: mrp_operations
 #: view:mrp_operations.operation:0
 msgid "Production Operation"
-msgstr "Üretim Operasyonu"
+msgstr "Üretim İşlemi"
 
 #. module: mrp_operations
 #: view:mrp.production:0
 msgid "Set to Draft"
-msgstr ""
+msgstr "Taslağa  Ayarla"
 
 #. module: mrp_operations
 #: field:mrp.production,allow_reorder:0
@@ -103,7 +101,7 @@ msgstr "Üretim Emri"
 #. module: mrp_operations
 #: model:process.process,name:mrp_operations.process_process_mrpoperationprocess0
 msgid "Mrp Operations"
-msgstr "Mrp Operasyonları"
+msgstr "Ürt İşlemleri"
 
 #. module: mrp_operations
 #: view:mrp.workorder:0
@@ -114,7 +112,7 @@ msgstr "Gün"
 #. module: mrp_operations
 #: view:mrp.production:0
 msgid "Cancel Order"
-msgstr ""
+msgstr "Sipariş İptali"
 
 #. module: mrp_operations
 #: model:process.node,name:mrp_operations.process_node_productionorder0
@@ -142,18 +140,25 @@ msgid ""
 "* When the user cancels the work order it will be set in 'Canceled' state.\n"
 "* When order is completely processed that time it is set in 'Finished' state."
 msgstr ""
+"* Bir iş emri oluşturulduğunda'Taslak' durumundadır.\n"
+"* Kullanıcı iş emrini başlama durumuna ayarlarsa o zaman 'İşlemde' durumuna "
+"ayarlanacaktır.\n"
+"* İş emri yürütüyor durumunda ise, bu süre içinde kullanıcı durdurmak "
+"isterse ya da değişiklikle yapmak isterse 'Bekliyor' durumuna alınmalıdır.\n"
+"* Kullanıcı iş emrini iptal ederse 'İptal edildi' durumuna ayarlanacaktır.\n"
+"* İş emri tamamen işlenmişse o zaman 'Bitti' durumuna ayarlanır."
 
 #. module: mrp_operations
 #: model:process.transition,note:mrp_operations.process_transition_productionstart0
 msgid "The work orders are created on the basis of the production order."
-msgstr "İş emirleri ürün siparişi bazında oluşturulur."
+msgstr "İş emirleri ürün siparişine göre oluşturulur."
 
 #. module: mrp_operations
 #: code:addons/mrp_operations/mrp_operations.py:134
-#: code:addons/mrp_operations/mrp_operations.py:470
-#: code:addons/mrp_operations/mrp_operations.py:474
-#: code:addons/mrp_operations/mrp_operations.py:486
-#: code:addons/mrp_operations/mrp_operations.py:489
+#: code:addons/mrp_operations/mrp_operations.py:465
+#: code:addons/mrp_operations/mrp_operations.py:469
+#: code:addons/mrp_operations/mrp_operations.py:481
+#: code:addons/mrp_operations/mrp_operations.py:484
 #, python-format
 msgid "Error!"
 msgstr "Hata!"
@@ -169,19 +174,19 @@ msgstr "İptal edildi"
 #: code:addons/mrp_operations/mrp_operations.py:486
 #, python-format
 msgid "There is no Operation to be cancelled!"
-msgstr ""
+msgstr "İptal edilecek hiç İşlem yok!"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:482
+#: code:addons/mrp_operations/mrp_operations.py:477
 #, python-format
 msgid "Operation is Already Cancelled!"
-msgstr ""
+msgstr "İşlem Zaten İptal edilmiş!"
 
 #. module: mrp_operations
 #: model:ir.actions.act_window,name:mrp_operations.mrp_production_operation_action
 #: view:mrp.production.workcenter.line:0
 msgid "Operations"
-msgstr "Operasyonlar"
+msgstr "İşlemler"
 
 #. module: mrp_operations
 #: model:ir.model,name:mrp_operations.model_stock_move
@@ -189,22 +194,21 @@ msgid "Stock Move"
 msgstr "Stok Hareketi"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:479
+#: code:addons/mrp_operations/mrp_operations.py:474
 #, python-format
 msgid ""
 "In order to Finish the operation, it must be in the Start or Resume state!"
-msgstr ""
+msgstr "İşlemi Bitirmek için Başlama ya da Sürdürme durumunda olmalı!"
 
 #. module: mrp_operations
 #: field:mrp.workorder,nbr:0
 msgid "# of Lines"
-msgstr "# / Satır"
+msgstr "Satır Sayısı"
 
 #. module: mrp_operations
 #: view:mrp.production:0
-#: view:mrp.production.workcenter.line:0
 msgid "Finish Order"
-msgstr ""
+msgstr "Emri Bitir"
 
 #. module: mrp_operations
 #: field:mrp.production.workcenter.line,date_finished:0
@@ -262,7 +266,7 @@ msgstr "Birim"
 #. module: mrp_operations
 #: constraint:stock.move:0
 msgid "You can not move products from or to a location of the type view."
-msgstr ""
+msgstr "Görünüm tipindeki bir konuma ürün giriş çıkışı yapamazsınız."
 
 #. module: mrp_operations
 #: view:mrp.production.workcenter.line:0
@@ -273,13 +277,13 @@ msgstr "Planlama Tarihi"
 #: view:mrp.workorder:0
 #: field:mrp.workorder,product_qty:0
 msgid "Product Qty"
-msgstr "Ürün Mik."
+msgstr "Ürün Mik"
 
 #. module: mrp_operations
 #: code:addons/mrp_operations/mrp_operations.py:134
 #, python-format
 msgid "Manufacturing order cannot start in state \"%s\"!"
-msgstr ""
+msgstr "Üretim siparişi \"%s\" durumunda başlatılamaz!"
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -289,9 +293,13 @@ msgstr "Temmuz"
 #. module: mrp_operations
 #: field:mrp_operations.operation.code,name:0
 msgid "Operation Name"
-msgstr "Operasyon Adı"
+msgstr "İşlem Adı"
 
 #. module: mrp_operations
+#: view:mrp.production.workcenter.line:0
+#: field:mrp.production.workcenter.line,state:0
+#: view:mrp.workorder:0
+#: field:mrp.workorder,state:0
 #: field:mrp_operations.operation.code,start_stop:0
 msgid "Status"
 msgstr "Durum"
@@ -314,7 +322,7 @@ msgstr ""
 #. module: mrp_operations
 #: view:mrp.workorder:0
 msgid "Planned Year"
-msgstr ""
+msgstr "Planlanan Yıl"
 
 #. module: mrp_operations
 #: field:mrp_operations.operation,order_date:0
@@ -329,23 +337,22 @@ msgstr "Gelecekteki İş Emirleri"
 #. module: mrp_operations
 #: view:mrp.workorder:0
 msgid "Work orders during last month"
-msgstr ""
+msgstr "Geçen aydaki iş emirleri"
 
 #. module: mrp_operations
 #: help:mrp.production.workcenter.line,delay:0
 msgid "The elapsed time between operation start and stop in this Work Center"
-msgstr ""
+msgstr "Bu İş Merkezindeki işlemin başlangıç ve bitiş arasındaki geçen süre"
 
 #. module: mrp_operations
 #: model:process.node,name:mrp_operations.process_node_canceloperation0
 msgid "Operation Cancelled"
-msgstr "Operasyon İptal Edildi"
+msgstr "İşlem İptal Edildi"
 
 #. module: mrp_operations
 #: view:mrp.production:0
-#: view:mrp.production.workcenter.line:0
 msgid "Pause Work Order"
-msgstr ""
+msgstr "İş Emrini Duraklat"
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -381,14 +388,13 @@ msgstr "İş Emri Raporu"
 #. module: mrp_operations
 #: constraint:mrp.production:0
 msgid "Order quantity cannot be negative or zero!"
-msgstr ""
+msgstr "Sipariş adedi eksi ya da sıfır olamaz!"
 
 #. module: mrp_operations
 #: field:mrp.production.workcenter.line,date_start:0
-#: field:mrp.production.workcenter.line,date_start_date:0
 #: field:mrp_operations.operation,date_start:0
 msgid "Start Date"
-msgstr "Baş. Tarihi"
+msgstr "Başlama Tarihi"
 
 #. module: mrp_operations
 #: selection:mrp.production.workcenter.line,production_state:0
@@ -398,7 +404,7 @@ msgstr "Malzeme Bekleniyor"
 #. module: mrp_operations
 #: view:mrp.workorder:0
 msgid "Work orders made during current year"
-msgstr ""
+msgstr "Geçerli yıl içinde yapılan iş emirleri"
 
 #. module: mrp_operations
 #: selection:mrp.workorder,state:0
@@ -414,17 +420,17 @@ msgid "In Progress"
 msgstr "İşlemde"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:470
+#: code:addons/mrp_operations/mrp_operations.py:465
 #, python-format
 msgid ""
 "In order to Pause the operation, it must be in the Start or Resume state!"
-msgstr ""
+msgstr "İşlemi duraklatmak için Başlama ya da Devam durumunda olmalı!"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:474
+#: code:addons/mrp_operations/mrp_operations.py:469
 #, python-format
 msgid "In order to Resume the operation, it must be in the Pause state!"
-msgstr ""
+msgstr "İşlemi Devam ettirmek için Duraklatma durumunda olmalı!"
 
 #. module: mrp_operations
 #: view:mrp.production:0
@@ -463,7 +469,7 @@ msgstr "Beklemede"
 #. module: mrp_operations
 #: view:mrp_operations.operation.code:0
 msgid "Production Operation Code"
-msgstr "Üretim Operasyon Kodu"
+msgstr "Üretim İşlem Kodu"
 
 #. module: mrp_operations
 #: code:addons/mrp_operations/mrp_operations.py:466
@@ -472,6 +478,8 @@ msgid ""
 "Operation has already started !Youcan either Pause/Finish/Cancel the "
 "operation"
 msgstr ""
+"İşlem zaten başlamış! İşleme Duraklat/Bitir/İptal işlemlerinden birini "
+"uygulayabilirsiniz"
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -486,12 +494,12 @@ msgstr "Başlatıldı"
 #. module: mrp_operations
 #: view:mrp.production.workcenter.line:0
 msgid "Production started late"
-msgstr ""
+msgstr "Üretim Geç Başladı"
 
 #. module: mrp_operations
 #: view:mrp.workorder:0
 msgid "Planned Day"
-msgstr ""
+msgstr "Planlanan Gün"
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -547,20 +555,19 @@ msgstr "Ocak"
 
 #. module: mrp_operations
 #: view:mrp.production:0
-#: view:mrp.production.workcenter.line:0
 msgid "Resume Work Order"
-msgstr ""
+msgstr "İş Emrini Sürdür"
 
 #. module: mrp_operations
 #: model:process.node,note:mrp_operations.process_node_doneoperation0
 msgid "Finish the operation."
-msgstr "Operasyonu tamamlayın."
+msgstr "İşlemi tamamlayın."
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:459
+#: code:addons/mrp_operations/mrp_operations.py:454
 #, python-format
 msgid "Operation is not started yet !"
-msgstr "Operasyon henüz başlatılmadı!"
+msgstr "İşlem henüz başlatılmadı!"
 
 #. module: mrp_operations
 #: model:process.node,note:mrp_operations.process_node_productionorder0
@@ -570,13 +577,13 @@ msgstr "Üretim emrinden bilgiler."
 #. module: mrp_operations
 #: sql_constraint:mrp.production:0
 msgid "Reference must be unique per Company!"
-msgstr ""
+msgstr "Referans her şirket için benzersiz olmalı!"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:459
-#: code:addons/mrp_operations/mrp_operations.py:466
-#: code:addons/mrp_operations/mrp_operations.py:479
-#: code:addons/mrp_operations/mrp_operations.py:482
+#: code:addons/mrp_operations/mrp_operations.py:454
+#: code:addons/mrp_operations/mrp_operations.py:461
+#: code:addons/mrp_operations/mrp_operations.py:474
+#: code:addons/mrp_operations/mrp_operations.py:477
 #, python-format
 msgid "Sorry!"
 msgstr "Üzgünüz!"
@@ -600,7 +607,7 @@ msgstr "Onaylanan İş Emirleri"
 #. module: mrp_operations
 #: model:ir.actions.act_window,name:mrp_operations.mrp_production_code_action
 msgid "Operation Codes"
-msgstr "Operasyon Kodları"
+msgstr "İşlem Kodları"
 
 #. module: mrp_operations
 #: field:mrp.production.workcenter.line,qty:0
@@ -610,14 +617,14 @@ msgstr "Mik."
 #. module: mrp_operations
 #: model:process.node,name:mrp_operations.process_node_doneoperation0
 msgid "Operation Done"
-msgstr "Operasyon Yapıldı"
+msgstr "İşlem Yapıldı"
 
 #. module: mrp_operations
 #: selection:mrp.production.workcenter.line,production_state:0
 #: view:mrp.workorder:0
 #: selection:mrp_operations.operation.code,start_stop:0
 msgid "Done"
-msgstr "Bitti"
+msgstr "Yapıldı"
 
 #. module: mrp_operations
 #: model:ir.actions.report.xml,name:mrp_operations.report_code_barcode
@@ -625,7 +632,6 @@ msgid "Start/Stop Barcode"
 msgstr "Başlatma/Durdurma Barkodu"
 
 #. module: mrp_operations
-#: view:mrp.production:0
 #: view:mrp.production.workcenter.line:0
 msgid "Cancel"
 msgstr "İptal"
@@ -648,7 +654,7 @@ msgstr ""
 #. module: mrp_operations
 #: model:process.node,name:mrp_operations.process_node_startoperation0
 msgid "Start Operation"
-msgstr "Operasyonu Başlat"
+msgstr "İşlemi Başlat"
 
 #. module: mrp_operations
 #: view:mrp.production.workcenter.line:0
@@ -745,7 +751,7 @@ msgstr "İş Emri Analizi"
 #: selection:mrp.production.workcenter.line,state:0
 #: selection:mrp.workorder,state:0
 msgid "Finished"
-msgstr "Tamamlandı"
+msgstr "Bitirildi"
 
 #. module: mrp_operations
 #: view:mrp.production.workcenter.line:0
@@ -755,12 +761,12 @@ msgstr "İş Merkezi Saatleri"
 #. module: mrp_operations
 #: field:mrp.production.workcenter.line,delay:0
 msgid "Working Hours"
-msgstr "Çalışma Saati"
+msgstr "Çalışma Saatleri"
 
 #. module: mrp_operations
 #: view:mrp.workorder:0
 msgid "Planned Month"
-msgstr ""
+msgstr "Planlanan Ay"
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -770,17 +776,17 @@ msgstr "Şubat"
 #. module: mrp_operations
 #: view:mrp.workorder:0
 msgid "Work orders made during current month"
-msgstr ""
+msgstr "Geçerli ayda yapılan iş emirleri"
 
 #. module: mrp_operations
 #: model:process.transition,name:mrp_operations.process_transition_startcanceloperation0
 msgid "Operation cancelled"
-msgstr "Operasyon iptal edildi"
+msgstr "İşlem iptal edildi"
 
 #. module: mrp_operations
 #: model:process.node,note:mrp_operations.process_node_startoperation0
 msgid "Start the operation."
-msgstr "Operasyonu başlatın."
+msgstr "İşlemi başlatın."
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -790,7 +796,7 @@ msgstr "Nisan"
 #. module: mrp_operations
 #: model:process.transition,name:mrp_operations.process_transition_startdoneoperation0
 msgid "Operation done"
-msgstr "Operasyon yapıldı"
+msgstr "İşlem yapıldı"
 
 #. module: mrp_operations
 #: view:mrp.workorder:0
@@ -799,9 +805,8 @@ msgstr "#Line Emir"
 
 #. module: mrp_operations
 #: view:mrp.production:0
-#: view:mrp.production.workcenter.line:0
 msgid "Start Working"
-msgstr ""
+msgstr "Çalışmayı Başlat"
 
 #. module: mrp_operations
 #: model:process.transition,note:mrp_operations.process_transition_startdoneoperation0
@@ -809,7 +814,7 @@ msgid ""
 "When the operation is finished, the operator updates the system by finishing "
 "the work order."
 msgstr ""
-"Operasyon tamamlandığında, operatör iş emrini tamamlayarak sistemi günceller."
+"İşlem tamamlandığında, operatör iş emrini tamamlayarak sistemi günceller."
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0

@@ -57,6 +57,8 @@ class email_template(osv.osv):
            :param int res_id: id of the document record this mail is related to.
         """
         if not template: return u""
+        if context is None:
+            context = {}
         try:
             template = tools.ustr(template)
             record = None
@@ -75,6 +77,11 @@ class email_template(osv.osv):
         except Exception:
             logging.exception("failed to render mako template value %r", template)
             return u""
+
+    def _prepare_render_template_context(self, cr, uid, model, res_id, context=None):
+        if context is None:
+            return {}
+        return context.copy()
 
     def get_email_template(self, cr, uid, template_id=False, record_id=None, context=None):
         if context is None:
@@ -145,7 +152,7 @@ class email_template(osv.osv):
                                           help="Optional preferred server for outgoing mails. If not set, the highest "
                                                "priority one will be used."),
         'body_text': fields.text('Text contents', translate=True, help="Plaintext version of the message (placeholders may be used here)"),
-        'body_html': fields.text('Rich-text contents', help="Rich-text/HTML version of the message (placeholders may be used here)"),
+        'body_html': fields.text('Rich-text contents', translate=True, help="Rich-text/HTML version of the message (placeholders may be used here)"),
         'message_id': fields.char('Message-Id', size=256, help="Message-ID SMTP header to use in outgoing messages based on this template. "
                                                                "Please note that this overrides the 'Resource Tracking' option, "
                                                                "so if you simply need to track replies to outgoing emails, enable "
@@ -315,12 +322,13 @@ class email_template(osv.osv):
 
         report_xml_pool = self.pool.get('ir.actions.report.xml')
         template = self.get_email_template(cr, uid, template_id, res_id, context)
+        template_context = self._prepare_render_template_context(cr, uid, template.model, res_id, context)
 
         for field in ['subject', 'body_text', 'body_html', 'email_from',
                       'email_to', 'email_cc', 'email_bcc', 'reply_to',
                       'message_id']:
             values[field] = self.render_template(cr, uid, getattr(template, field),
-                                                 template.model, res_id, context=context) \
+                                                 template.model, res_id, context=template_context) \
                                                  or False
 
         if values['body_html']:
@@ -338,7 +346,7 @@ class email_template(osv.osv):
         attachments = {}
         # Add report as a Document
         if template.report_template:
-            report_name = template.report_name
+            report_name = self.render_template(cr, uid, template.report_name, template.model, res_id, context=context)
             report_service = 'report.' + report_xml_pool.browse(cr, uid, template.report_template.id, context).report_name
             # Ensure report is rendered using template's language
             ctx = context.copy()
@@ -374,6 +382,7 @@ class email_template(osv.osv):
                 was executed for this message only.
            :returns: id of the mail.message that was created 
         """
+        if context is None: context = {}
         mail_message = self.pool.get('mail.message')
         ir_attachment = self.pool.get('ir.attachment')
         values = self.generate_email(cr, uid, template_id, res_id, context=context)
@@ -390,9 +399,10 @@ class email_template(osv.osv):
                     'res_model': mail_message._name,
                     'res_id': msg_id,
             }
-            if context.has_key('default_type'):
-                del context['default_type']
+            context.pop('default_type', None)
             attachment_ids.append(ir_attachment.create(cr, uid, attachment_data, context=context))
+        if attachment_ids:
+            mail_message.write(cr, uid, msg_id, {'attachment_ids': [(6, 0, attachment_ids)]}, context=context)
         if force_send:
             mail_message.send(cr, uid, [msg_id], context=context)
         return msg_id

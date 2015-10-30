@@ -165,7 +165,10 @@ class partner_vat_intra(osv.osv_memory):
                         'comments': comments,
                         'issued_by': issued_by,
                         })
-        
+        #tax code 44: services
+        #tax code 46L: normal good deliveries
+        #tax code 46T: ABC good deliveries
+        #tax code 48xxx: credite note on tax code xxx
         codes = ('44', '46L', '46T', '48s44', '48s46L', '48s46T')
         cr.execute('''SELECT p.name As partner_name, l.partner_id AS partner_id, p.vat AS vat, 
                       (CASE WHEN t.code = '48s44' THEN '44'
@@ -200,11 +203,11 @@ class partner_vat_intra(osv.osv_memory):
                                         'vatnum': row['vat'][2:].replace(' ','').upper(), 
                                         'vat': row['vat'],
                                         'country': row['vat'][:2],
-                                        'amount': amt,
+                                        'amount': '%.2f' % amt,
                                         'intra_code': row['intra_code'],
                                         'code': intra_code})
 
-        xmldict.update({'dnum': dnum, 'clientnbr': str(seq), 'amountsum': amount_sum, 'partner_wo_vat': p_count})
+        xmldict.update({'dnum': dnum, 'clientnbr': str(seq), 'amountsum': '%.2f' % amount_sum, 'partner_wo_vat': p_count})
         return xmldict
 
     def create_xml(self, cursor, user, ids, context=None):

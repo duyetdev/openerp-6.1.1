@@ -35,12 +35,14 @@ import pooler
 _logger = logging.getLogger(__name__)
 
 def _get_fields_type(self, cr, uid, context=None):
+    # Avoid too many nested `if`s below, as RedHat's Python 2.6
+    # break on it. See bug 939653.  
     return sorted([(k,k) for k,v in fields.__dict__.iteritems()
-                      if type(v) == types.TypeType
-                      if issubclass(v, fields._column)
-                      if v != fields._column
-                      if not v._deprecated
-                      if not issubclass(v, fields.function)])
+                      if type(v) == types.TypeType and \
+                         issubclass(v, fields._column) and \
+                         v != fields._column and \
+                         not v._deprecated and \
+                         not issubclass(v, fields.function)])
 
 def _in_modules(self, cr, uid, ids, field_name, arg, context=None):
     #pseudo-method used by fields.function in ir.model/ir.model.fields
@@ -65,7 +67,10 @@ class ir_model(osv.osv):
         models = self.browse(cr, uid, ids, context=context)
         res = dict.fromkeys(ids)
         for model in models:
-            res[model.id] = self.pool.get(model.model).is_transient()
+            if self.pool.get(model.model):
+                res[model.id] = self.pool.get(model.model).is_transient()
+            else:
+                _logger.error('Missing model %s' % (model.model, ))
         return res
 
     def _search_osv_memory(self, cr, uid, model, name, domain, context=None):
@@ -506,7 +511,9 @@ class ir_model_access(osv.osv):
             model_name = model
 
         # TransientModel records have no access rights, only an implicit access rule
-        if self.pool.get(model_name).is_transient():
+        if not (self.pool.get(model_name)):
+            _logger.error('Missing model %s' % (model_name, ))
+        elif self.pool.get(model_name).is_transient():
             return True
 
         # We check if a specific rule exists

@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Borja López Soilán (NeoPolus) <borjalopezsoilan@gmail.com>\n"
+"PO-Revision-Date: 2012-02-28 20:36+0000\n"
+"Last-Translator: Carlos Ch. <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:37+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:01+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: hr_contract
 #: field:hr.contract,wage:0
@@ -24,7 +24,7 @@ msgstr "Salario"
 #. module: hr_contract
 #: view:hr.contract:0
 msgid "Information"
-msgstr ""
+msgstr "Información"
 
 #. module: hr_contract
 #: view:hr.contract:0
@@ -86,7 +86,7 @@ msgstr "Buscar contrato"
 #. module: hr_contract
 #: view:hr.contract:0
 msgid "Contracts in progress"
-msgstr ""
+msgstr "Contratos en progreso"
 
 #. module: hr_contract
 #: field:hr.employee,vehicle_distance:0
@@ -95,6 +95,7 @@ msgstr "Distancia de casa al trabajo"
 
 #. module: hr_contract
 #: view:hr.contract:0
+#: view:hr.employee:0
 #: field:hr.employee,contract_ids:0
 #: model:ir.actions.act_window,name:hr_contract.act_hr_employee_2_hr_contract
 #: model:ir.actions.act_window,name:hr_contract.action_hr_contract
@@ -110,7 +111,7 @@ msgstr "Información personal"
 #. module: hr_contract
 #: view:hr.contract:0
 msgid "Contracts whose end date already passed"
-msgstr ""
+msgstr "Contratos confecha de fin pasada"
 
 #. module: hr_contract
 #: help:hr.employee,contract_id:0
@@ -123,7 +124,6 @@ msgid "Job"
 msgstr "Trabajo"
 
 #. module: hr_contract
-#: view:hr.contract:0
 #: field:hr.contract,advantages:0
 msgid "Advantages"
 msgstr "Ventajas"
@@ -162,9 +162,10 @@ msgstr "Fecha de finalización"
 #. module: hr_contract
 #: help:hr.contract,wage:0
 msgid "Basic Salary of the employee"
-msgstr ""
+msgstr "Salario base del empleado"
 
 #. module: hr_contract
+#: view:hr.contract:0
 #: field:hr.contract,name:0
 msgid "Contract Reference"
 msgstr "Referencia contrato"
@@ -183,10 +184,11 @@ msgstr "Notas"
 #. module: hr_contract
 #: field:hr.contract,permit_no:0
 msgid "Work Permit No"
-msgstr ""
+msgstr "Número de permiso de trabajo"
 
 #. module: hr_contract
 #: view:hr.contract:0
+#: view:hr.employee:0
 #: field:hr.employee,contract_id:0
 #: model:ir.model,name:hr_contract.model_hr_contract
 #: model:ir.ui.menu,name:hr_contract.next_id_56
@@ -216,7 +218,7 @@ msgstr "Información del trabajo"
 #. module: hr_contract
 #: field:hr.contract,visa_expire:0
 msgid "Visa Expire Date"
-msgstr ""
+msgstr "Fecha expiración visado"
 
 #. module: hr_contract
 #: field:hr.contract,job_id:0
@@ -243,7 +245,7 @@ msgstr ""
 #. module: hr_contract
 #: field:hr.contract,visa_no:0
 msgid "Visa No"
-msgstr ""
+msgstr "Número de Visado"
 
 #. module: hr_contract
 #: field:hr.employee,place_of_birth:0

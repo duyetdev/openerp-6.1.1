@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev_rc3\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2012-02-08 00:37+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Carlos @ smile-iberia <Unknown>\n"
+"POT-Creation-Date: 2012-10-08 12:29+0000\n"
+"PO-Revision-Date: 2012-10-30 11:12+0000\n"
+"Last-Translator: Pedro Manuel Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:55+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:14+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: product
 #: model:product.template,name:product.product_product_ram512_product_template
@@ -41,8 +41,8 @@ msgid ""
 "Set a template if this rule only apply to a template of product. Keep empty "
 "for all products"
 msgstr ""
-"Indicar una plantilla si esta regla sólo se aplica a una plantilla de "
-"producto. Dejarlo vacío para todos los productos"
+"Establezca una plantilla si esta regla aplica a una plantilla de producto. "
+"Déjelo vacío para todos los productos."
 
 #. module: product
 #: help:product.product,virtual_available:0
@@ -57,9 +57,20 @@ msgid ""
 "Otherwise, this includes goods stored in any Stock Location typed as "
 "'internal'."
 msgstr ""
+"Stock virtual (calculado como Stock Real - salidas + entradas)\n"
+"En un contexto con una única ubicación de almacén, el cálculo incluye los "
+"productos almacenados en esta ubicación, así como cualquiera de sus hijos.\n"
+"En un contexto de un único almacén, el cálculo  incluye los productos "
+"almacenados en la ubicación de este almacén, así como cualquiera de sus "
+"hijos.\n"
+"En un contexto con una única tienda, el cálculo incluye los productos "
+"almacenados en la ubicación del almacén de la tienda, así como cualquiera de "
+"sus hijos.\n"
+"En otros contexto, el cálculo incluye los productos almacenados en cualquier "
+"ubicación de tipo \"interna\""
 
 #. module: product
-#: model:product.category,name:product.cat1
+#: model:product.category,name:product.product_category_1
 msgid "Sellable"
 msgstr "Vendible"
 
@@ -69,12 +80,12 @@ msgid "Mainboard ASUStek A7V8X-X"
 msgstr "Placa madre ASUStek A7V8X-X"
 
 #. module: product
-#: help:product.template,seller_qty:0
+#: help:product.product,seller_qty:0
 msgid "This is minimum quantity to purchase from Main Supplier."
 msgstr "Esta es la mínima cantidad a comprar al proveedor principal."
 
 #. module: product
-#: model:product.uom,name:product.uom_day
+#: model:product.uom,name:product.product_uom_day
 msgid "Day"
 msgstr "Día"
 
@@ -103,7 +114,7 @@ msgstr ""
 "empresa actual."
 
 #. module: product
-#: field:product.template,seller_qty:0
+#: field:product.product,seller_qty:0
 msgid "Supplier Quantity"
 msgstr "Cantidad proveedor"
 
@@ -121,14 +132,12 @@ msgstr "¡Atención!"
 #. module: product
 #: model:ir.actions.report.xml,name:product.report_product_pricelist
 #: model:ir.model,name:product.model_product_pricelist
-#: field:product.product,price:0
 #: field:product.product,pricelist_id:0
 #: view:product.supplierinfo:0
 msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: product
-#: view:product.product:0
 #: view:product.template:0
 msgid "Base Prices"
 msgstr "Precios base"
@@ -164,7 +173,7 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: product
-#: code:addons/product/product.py:143
+#: code:addons/product/product.py:176
 #, python-format
 msgid ""
 "Conversion from Product UoM %s to Default UoM %s is not possible as they "
@@ -269,7 +278,7 @@ msgid "  e.g: 1 * (this unit) = ratio * (reference unit)"
 msgstr "  por ej.: 1 * (esta unidad) = ratio * (unidad referencia)"
 
 #. module: product
-#: code:addons/product/product.py:418
+#: code:addons/product/product.py:412
 #, python-format
 msgid "Products: "
 msgstr "Productos: "
@@ -306,7 +315,7 @@ msgid "EAN13"
 msgstr "EAN13"
 
 #. module: product
-#: field:product.template,seller_id:0
+#: field:product.product,seller_id:0
 msgid "Main Supplier"
 msgstr "Proveedor principal"
 
@@ -323,6 +332,7 @@ msgstr "Empaquetado"
 #. module: product
 #: view:product.product:0
 #: field:product.template,categ_id:0
+#: field:product.uom,category_id:0
 msgid "Category"
 msgstr "Categoría"
 
@@ -433,6 +443,17 @@ msgid ""
 "Otherwise, this includes goods stored in any Stock Location typed as "
 "'internal'."
 msgstr ""
+"Cantidad actual de productos\n"
+"En un contexto con una única ubicación de almacén, el cálculo incluye los "
+"productos almacenados en esta ubicación, así como cualquiera de sus hijos.\n"
+"En un contexto de un único almacén, el cálculo incluye los productos "
+"almacenados en la ubicación de este almacén, así como cualquiera de sus "
+"hijos.\n"
+"En un contexto con una única tienda, el cálculo incluye los productos "
+"almacenados en la ubicación del almacén de la tienda, así como cualquiera de "
+"sus hijos.\n"
+"En otros contexto, el cálculo incluye los productos almacenados en cualquier "
+"ubicación de tipo \"interna\""
 
 #. module: product
 #: view:product.pricelist:0
@@ -440,7 +461,6 @@ msgid "Products Price Search"
 msgstr "Buscar precio productos"
 
 #. module: product
-#: view:product.product:0
 #: view:product.template:0
 #: field:product.template,description_sale:0
 msgid "Sale Description"
@@ -484,7 +504,7 @@ msgid "Ending date for this pricelist version to be valid."
 msgstr "Fecha de fin de validez de esta versión de tarifa."
 
 #. module: product
-#: model:product.category,name:product.cat0
+#: model:product.category,name:product.product_category_all
 msgid "All products"
 msgstr "Todos los productos"
 
@@ -632,7 +652,6 @@ msgstr "El número total de productos que puede poner por palet o caja."
 
 #. module: product
 #: constraint:product.packaging:0
-#: constraint:product.product:0
 msgid "Error: Invalid ean code"
 msgstr "Error: Código EAN erróneo"
 
@@ -654,6 +673,10 @@ msgid ""
 "you need to change the unit of measure, you may desactivate this product "
 "from the 'Procurement & Locations' tab and create a new one."
 msgstr ""
+"La nueva UdM '%s' debe pertenecer a la misma categoría de UdM '%s' como la "
+"antigua UdM '%s'. Si necesita cambiar la unidad de medida, debe desactivar "
+"este producto desde la pestaña \"Abastecimiento y localizaciones\" y crear "
+"uno nuevo."
 
 #. module: product
 #: view:product.pricelist.item:0
@@ -668,7 +691,7 @@ msgstr "Precio base"
 #. module: product
 #: model:product.template,name:product.product_consultant_product_template
 msgid "Service on Timesheet"
-msgstr ""
+msgstr "Servicio en parte de horas"
 
 #. module: product
 #: model:product.template,name:product.product_product_fan2_product_template
@@ -698,13 +721,14 @@ msgstr "KIT estante de 100cm"
 
 #. module: product
 #: field:product.supplierinfo,name:0
+#: field:product.template,seller_ids:0
 msgid "Supplier"
 msgstr "Proveedor"
 
 #. module: product
 #: field:product.product,qty_available:0
 msgid "Quantity On Hand"
-msgstr "Cantidad Disponible"
+msgstr "Stock real"
 
 #. module: product
 #: model:product.template,name:product.product_product_26_product_template
@@ -719,7 +743,7 @@ msgstr "Nombre precio"
 #. module: product
 #: model:product.template,name:product.product_product_arm_product_template
 msgid "Cabinet"
-msgstr ""
+msgstr "Gabinete"
 
 #. module: product
 #: help:product.product,incoming_qty:0
@@ -734,6 +758,17 @@ msgid ""
 "Otherwise, this includes goods arriving to any Stock Location typed as "
 "'internal'."
 msgstr ""
+"Cantidad de productos que se prevee que lleguen.\n"
+"En un contexto con una única ubicación de almacén, el cálculo incluye los "
+"productos almacenados en esta ubicación, así como cualquiera de sus hijos.\n"
+"En un contexto de un único almacén, el cálculo incluye los productos "
+"almacenados en la ubicación de este almacén, así como cualquiera de sus "
+"hijos.\n"
+"En un contexto con una única tienda, el cálculo incluye los productos "
+"almacenados en la ubicación del almacén de la tienda, así como cualquiera de "
+"sus hijos.\n"
+"En otros contexto, el cálculo incluye los productos almacenados en cualquier "
+"ubicación de tipo \"interna\""
 
 #. module: product
 #: model:product.template,name:product.product_product_woodentable0_product_template
@@ -755,7 +790,6 @@ msgid "Price List"
 msgstr "Lista de precios"
 
 #. module: product
-#: view:product.product:0
 #: view:product.template:0
 msgid "Suppliers"
 msgstr "Proveedores"
@@ -790,7 +824,7 @@ msgstr ""
 "existe o en la UdM por defecto del producto en caso contrario."
 
 #. module: product
-#: model:product.category,name:product.product_category_accessories
+#: model:product.category,name:product.product_category_7
 msgid "Accessories"
 msgstr "Accesorios"
 
@@ -839,6 +873,7 @@ msgstr "Imprimir"
 #. module: product
 #: view:product.product:0
 #: field:product.ul,type:0
+#: field:product.uom,uom_type:0
 msgid "Type"
 msgstr "Tipo"
 
@@ -880,7 +915,6 @@ msgstr ""
 "vacío para todos los productos"
 
 #. module: product
-#: view:product.product:0
 #: view:product.template:0
 msgid "Procurement & Locations"
 msgstr "Abastecimiento-Ubicación"
@@ -891,7 +925,7 @@ msgid "Kitchen Design Project"
 msgstr "Proyecto diseño cocina"
 
 #. module: product
-#: model:product.uom,name:product.uom_hour
+#: model:product.uom,name:product.product_uom_hour
 msgid "Hour"
 msgstr "Hora"
 
@@ -939,6 +973,7 @@ msgid "Supplier Information"
 msgstr "Información del proveedor"
 
 #. module: product
+#: model:ir.model,name:product.model_res_currency
 #: field:product.price.type,currency_id:0
 #: report:product.pricelist:0
 #: field:product.pricelist,currency_id:0
@@ -979,7 +1014,7 @@ msgid "Total Package Weight"
 msgstr "Total peso paquete"
 
 #. module: product
-#: field:product.template,seller_info_id:0
+#: field:product.product,seller_info_id:0
 msgid "unknown"
 msgstr "desconocido"
 
@@ -1018,7 +1053,6 @@ msgid "Information about a product supplier"
 msgstr "Información de un proveedor de producto"
 
 #. module: product
-#: view:product.product:0
 #: view:product.template:0
 #: field:product.template,description_purchase:0
 msgid "Purchase Description"
@@ -1138,6 +1172,11 @@ msgid "To Sell"
 msgstr "A vender"
 
 #. module: product
+#: help:product.product,ean13:0
+msgid "Barcode"
+msgstr "Código de barras"
+
+#. module: product
 #: help:product.product,outgoing_qty:0
 msgid ""
 "Quantity of products that are planned to leave.\n"
@@ -1150,6 +1189,17 @@ msgid ""
 "Otherwise, this includes goods leaving from any Stock Location typed as "
 "'internal'."
 msgstr ""
+"Cantidad de productos que se prevee que salgan.\n"
+"En un contexto con una única ubicación de almacén, el cálculo incluye los "
+"productos almacenados en esta ubicación, así como cualquiera de sus hijos.\n"
+"En un contexto de un único almacén, el cálculo incluye los productos "
+"almacenados en la ubicación de este almacén, así como cualquiera de sus "
+"hijos.\n"
+"En un contexto con una única tienda, el cálculo incluye los productos "
+"almacenados en la ubicación del almacén de la tienda, así como cualquiera de "
+"sus hijos.\n"
+"En otros contexto, el cálculo incluye los productos almacenados en cualquier "
+"ubicación de tipo \"interna\""
 
 #. module: product
 #: model:product.category,name:product.product_category_services0
@@ -1176,11 +1226,8 @@ msgstr "Unidades de logística"
 #: field:product.category,name:0
 #: field:product.pricelist.type,name:0
 #: field:product.pricelist.version,name:0
-#: view:product.product:0
-#: field:product.product,name_template:0
 #: field:product.template,name:0
 #: field:product.ul,name:0
-#: field:product.uom,name:0
 #: field:product.uom.categ,name:0
 msgid "Name"
 msgstr "Nombre"
@@ -1276,6 +1323,9 @@ msgstr "Campo asociado en el formulario de producto."
 
 #. module: product
 #: view:product.product:0
+#: view:product.template:0
+#: field:product.template,uom_id:0
+#: field:product.uom,name:0
 msgid "Unit of Measure"
 msgstr "Unidad de medida"
 
@@ -1295,7 +1345,7 @@ msgid "Unit of Sale"
 msgstr "Unidad de venta"
 
 #. module: product
-#: help:product.template,seller_delay:0
+#: help:product.product,seller_delay:0
 msgid ""
 "This is the average delay in days between the purchase order confirmation "
 "and the reception of goods for this product and for the default supplier. It "
@@ -1307,14 +1357,14 @@ msgstr ""
 "plazos de los pedidos."
 
 #. module: product
-#: help:product.template,seller_id:0
+#: help:product.product,seller_id:0
 msgid "Main Supplier who has highest priority in Supplier List."
 msgstr ""
 "Proveedor principal que tenga la prioridad más alta en la lista de "
 "proveedores."
 
 #. module: product
-#: model:product.category,name:product.product_category_services
+#: model:product.category,name:product.product_category_5
 #: view:product.product:0
 msgid "Services"
 msgstr "Servicios"
@@ -1355,12 +1405,6 @@ msgstr "El modo de calcular el precio para esta regla."
 #: view:product.product:0
 msgid "Pallet Dimension"
 msgstr "Dimensión del palet"
-
-#. module: product
-#: code:addons/product/product.py:668
-#, python-format
-msgid " (copy)"
-msgstr " (copia)"
 
 #. module: product
 #: field:product.template,seller_ids:0
@@ -1404,7 +1448,7 @@ msgid "Minimal Quantity"
 msgstr "Cantidad mínima"
 
 #. module: product
-#: model:product.category,name:product.product_category_pc
+#: model:product.category,name:product.product_category_9
 msgid "PC"
 msgstr "PC"
 
@@ -1430,7 +1474,7 @@ msgstr "Versión de tarifa"
 #. module: product
 #: field:product.product,virtual_available:0
 msgid "Quantity Available"
-msgstr "Cantidad disponible"
+msgstr "Stock virtual"
 
 #. module: product
 #: help:product.pricelist.item,sequence:0
@@ -1444,6 +1488,7 @@ msgstr ""
 "pronto como se encuentra un elemento coincidente."
 
 #. module: product
+#: view:product.product:0
 #: selection:product.template,type:0
 msgid "Consumable"
 msgstr "Consumible"
@@ -1464,7 +1509,6 @@ msgid "Side Panel"
 msgstr "Panel lateral"
 
 #. module: product
-#: view:product.product:0
 #: view:product.template:0
 msgid "Procurement"
 msgstr "Abastecimiento"
@@ -1768,11 +1812,19 @@ msgid "Make to Order"
 msgstr "Obtener bajo pedido"
 
 #. module: product
+#: code:addons/product/report/product_pricelist.py:49
+#, python-format
+msgid "units"
+msgstr "unidades"
+
+#. module: product
 #: help:product.template,supply_method:0
 msgid ""
 "Produce will generate production order or tasks, according to the product "
 "type. Buy will trigger purchase orders when requested."
 msgstr ""
+"\"Fabricar\" generará las ordenes de fabricación o tareas, acorde al tipo de "
+"producto. \"Comprar\" generará ordenes de compra cuando sea requerido."
 
 #. module: product
 #: field:product.product,variants:0
@@ -1813,7 +1865,7 @@ msgstr "Método redondeo"
 #. module: product
 #: model:product.category,name:product.product_category_assembly
 msgid "Assembly Service"
-msgstr ""
+msgstr "Servicio de ensamblaje"
 
 #. module: product
 #: model:ir.actions.report.xml,name:product.report_product_label
@@ -1826,6 +1878,7 @@ msgid "Box 30x40x60"
 msgstr "Caja 30x40x60"
 
 #. module: product
+#: model:product.template,name:product.product_product_consultant_product_template
 #: selection:product.template,type:0
 msgid "Service"
 msgstr "Servicio"
@@ -1860,7 +1913,7 @@ msgstr ""
 "catálogo."
 
 #. module: product
-#: code:addons/product/pricelist.py:376
+#: code:addons/product/pricelist.py:377
 #, python-format
 msgid "Partner section of the product form"
 msgstr "Sección empresa del formulario de producto"
@@ -1890,7 +1943,7 @@ msgstr ""
 "estar en la misma categoría que la unidad de medida por defecto."
 
 #. module: product
-#: model:product.template,description:product.product_product_cpu1_product_template
+#: model:product.template,description:product.product_product_9_product_template
 msgid "This product is configured with example of push/pull flows"
 msgstr ""
 "Este producto está configurado con ejemplo de flujos empujar/estirar."
@@ -1917,7 +1970,7 @@ msgid "Pricelist Type"
 msgstr "Tipo de tarifa"
 
 #. module: product
-#: model:product.category,name:product.product_category_otherproducts0
+#: model:product.category,name:product.product_category_3
 msgid "Other Products"
 msgstr "Otros productos"
 
@@ -1932,6 +1985,7 @@ msgid "Characteristics"
 msgstr "Características"
 
 #. module: product
+#: view:product.product:0
 #: field:product.template,sale_ok:0
 msgid "Can be Sold"
 msgstr "Puede ser vendido"
@@ -1950,7 +2004,7 @@ msgstr "Tarifa de proveedor"
 #: code:addons/product/product.py:175
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #. module: product
 #: field:product.pricelist.item,base:0
@@ -1963,7 +2017,7 @@ msgid "t"
 msgstr "t"
 
 #. module: product
-#: model:product.category,name:product.product_category_rawmaterial0
+#: model:product.category,name:product.product_category_10
 msgid "Raw Materials"
 msgstr "Materias primas"
 
@@ -2041,7 +2095,7 @@ msgid "UoM Categories"
 msgstr "Categorías UdM"
 
 #. module: product
-#: field:product.template,seller_delay:0
+#: field:product.product,seller_delay:0
 msgid "Supplier Lead Time"
 msgstr "Plazo de entrega del proveedor"
 
@@ -2119,9 +2173,9 @@ msgid "Supplier of the product"
 msgstr "Proveedor del producto"
 
 #. module: product
-#: field:product.product,product_image:0
+#: field:product.product,image:0
 msgid "Image"
-msgstr ""
+msgstr "Imagen"
 
 #. module: product
 #: field:product.uom,uom_type:0
@@ -2146,7 +2200,6 @@ msgstr ""
 "Unidad de Medida que no pueda dividirse aún más, como una pieza."
 
 #. module: product
-#: view:product.product:0
 #: view:product.template:0
 msgid "Descriptions"
 msgstr "Descripciones"
@@ -2198,12 +2251,14 @@ msgid "Price Rounding"
 msgstr "Redondeo precio"
 
 #. module: product
-#: code:addons/product/pricelist.py:178
+#: code:addons/product/pricelist.py:179
 #, python-format
 msgid ""
 "At least one pricelist has no active version !\n"
 "Please create or activate one."
 msgstr ""
+"¡Al menos una lista de precios no tiene una versión activa!\n"
+"Por favor, cree o active una."
 
 #. module: product
 #: field:product.pricelist.item,price_max_margin:0
@@ -2231,7 +2286,6 @@ msgstr "Puede ser alquilado"
 
 #. module: product
 #: model:product.price.type,name:product.standard_price
-#: field:product.template,standard_price:0
 msgid "Cost Price"
 msgstr "Precio de coste"
 
@@ -2271,7 +2325,7 @@ msgstr "Secuencia"
 #. module: product
 #: model:product.template,name:product.product_assembly_product_template
 msgid "Assembly Service Cost"
-msgstr ""
+msgstr "Coste servicio ensamblaje"
 
 #. module: product
 #: view:product.price_list:0
@@ -2294,7 +2348,6 @@ msgid "Sales Properties"
 msgstr "Propiedades de venta"
 
 #. module: product
-#: view:product.product:0
 #: view:product.template:0
 msgid "Delays"
 msgstr "Plazos"
@@ -2302,7 +2355,7 @@ msgstr "Plazos"
 #. module: product
 #: view:product.product:0
 msgid "Both stockable and consumable products"
-msgstr ""
+msgstr "Ambos productos estocables y consumibles."
 
 #. module: product
 #: model:process.node,note:product.process_node_product0
@@ -2314,7 +2367,6 @@ msgstr "Creación del producto"
 #: field:product.packaging,name:0
 #: report:product.pricelist:0
 #: view:product.product:0
-#: view:product.template:0
 #: field:product.template,description:0
 msgid "Description"
 msgstr "Descripción"
@@ -2336,6 +2388,7 @@ msgstr " ) + "
 
 #. module: product
 #: field:product.template,volume:0
+#: model:product.uom.categ,name:product.product_uom_categ_vol
 msgid "Volume"
 msgstr "Volumen"
 
@@ -2346,7 +2399,6 @@ msgstr "Caja"
 
 #. module: product
 #: view:product.product:0
-#: model:res.groups,name:product.group_product_variant
 msgid "Product Variant"
 msgstr "Variantes de producto"
 
@@ -2356,7 +2408,8 @@ msgid "Shelves"
 msgstr "Estantes"
 
 #. module: product
-#: code:addons/product/pricelist.py:375
+#: code:addons/product/pricelist.py:376
+#: field:product.pricelist.item,base_pricelist_id:0
 #, python-format
 msgid "Other Pricelist"
 msgstr "Otra tarifa"
@@ -2371,6 +2424,7 @@ msgstr "Plantilla de producto"
 
 #. module: product
 #: field:product.template,cost_method:0
+#: model:res.groups,name:product.group_costing_method
 msgid "Costing Method"
 msgstr "Método de coste"
 
@@ -2410,7 +2464,7 @@ msgstr "Versiones de tarifa"
 #. module: product
 #: model:product.template,name:product.product_product_span100_product_template
 msgid "Shelf Panel"
-msgstr ""
+msgstr "Repisa"
 
 #. module: product
 #: help:product.pricelist.item,price_round:0
@@ -2431,7 +2485,7 @@ msgstr "Precio de venta"
 #. module: product
 #: constraint:product.category:0
 msgid "Error ! You cannot create recursive categories."
-msgstr ""
+msgstr "¡Error! No puede crear categorías recursivas"
 
 #. module: product
 #: field:product.category,type:0
@@ -2439,7 +2493,7 @@ msgid "Category Type"
 msgstr "Tipo categoría"
 
 #. module: product
-#: model:product.category,name:product.cat2
+#: model:product.category,name:product.product_category_2
 msgid "Private"
 msgstr "Privado"
 
@@ -2455,9 +2509,13 @@ msgstr ""
 #. module: product
 #: constraint:res.partner:0
 msgid "Error ! You cannot create recursive associated members."
-msgstr ""
+msgstr "¡Error! No puede crear miembros asociados recursivamente."
 
 #. module: product
 #: field:product.pricelist.item,price_discount:0
 msgid "Price Discount"
 msgstr "Descuento precio"
+
+#, python-format
+#~ msgid " (copy)"
+#~ msgstr " (copia)"

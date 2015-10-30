@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 00:35+0000\n"
-"PO-Revision-Date: 2012-02-21 06:53+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2012-04-23 06:21+0000\n"
+"Last-Translator: Satish Vagadia <satish.vagadia@j-kri.com>\n"
 "Language-Team: Gujarati <gu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-22 06:56+0000\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Launchpad-Export-Date: 2013-05-29 06:42+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: account_analytic_analysis
 #: field:account.analytic.account,revenue_per_hour:0
@@ -163,7 +163,10 @@ msgid ""
 msgstr "OpenERPમાં કરાર એટલે કે વિશ્લેષણાત્મક ખાતું જેમાં સહ-ભાગીદાર હોય."
 
 #. module: account_analytic_analysis
+#: field:account.analytic.account,fix_price_to_invoice:0
 #: field:account.analytic.account,remaining_hours:0
+#: field:account.analytic.account,remaining_hours_to_invoice:0
+#: field:account.analytic.account,timesheet_ca_invoiced:0
 msgid "Remaining Time"
 msgstr "બાકી રહેલ સમય"
 
@@ -211,7 +214,7 @@ msgstr "આ સૂત્રની મદદથી થયેલી ગણતર�
 #. module: account_analytic_analysis
 #: view:account.analytic.account:0
 msgid "Parent"
-msgstr ""
+msgstr "મૂળ"
 
 #. module: account_analytic_analysis
 #: field:account.analytic.account,user_ids:0
@@ -314,7 +317,6 @@ msgid "Month"
 msgstr "મહિનો"
 
 #. module: account_analytic_analysis
-#: view:account.analytic.account:0
 #: field:account_analytic_analysis.summary.month,account_id:0
 #: field:account_analytic_analysis.summary.user,account_id:0
 #: model:ir.model,name:account_analytic_analysis.model_account_analytic_account
@@ -322,6 +324,7 @@ msgid "Analytic Account"
 msgstr "વિશ્લેષણાત્મક ખાતું"
 
 #. module: account_analytic_analysis
+#: view:account.analytic.account:0
 #: model:ir.actions.act_window,name:account_analytic_analysis.action_account_analytic_overdue_all
 #: model:ir.ui.menu,name:account_analytic_analysis.menu_action_account_analytic_overdue_all
 msgid "Contracts"
@@ -359,7 +362,6 @@ msgid "Contracts that are not assigned to an account manager."
 msgstr "કરારો કે જે ખાતા સંચાલક ને સોંપાયેલ નથી."
 
 #. module: account_analytic_analysis
-#: field:account.analytic.account,hours_quantity:0
 #: field:account_analytic_analysis.summary.month,unit_amount:0
 #: field:account_analytic_analysis.summary.user,unit_amount:0
 msgid "Total Time"

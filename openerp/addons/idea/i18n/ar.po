@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: kifcaliph <Unknown>\n"
+"PO-Revision-Date: 2012-09-08 17:58+0000\n"
+"Last-Translator: almodhesh <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:42+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:04+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: idea
 #: help:idea.category,visibility:0
@@ -56,10 +56,7 @@ msgid "Ideas Analysis"
 msgstr "تحليل الفكرة"
 
 #. module: idea
-#: view:idea.category:0
 #: view:idea.idea:0
-#: view:idea.vote:0
-#: view:report.vote:0
 msgid "Group By..."
 msgstr "تجميع حسب..."
 
@@ -237,7 +234,7 @@ msgstr "الحالة"
 #: view:idea.idea:0
 #: selection:idea.idea,state:0
 msgid "New"
-msgstr ""
+msgstr "جديد"
 
 #. module: idea
 #: selection:idea.idea,my_vote:0
@@ -264,16 +261,19 @@ msgid ""
 " It is             opened by the user, the state is 'Opened'.            \n"
 "If the idea is accepted, the state is 'Accepted'."
 msgstr ""
+"عند انشاء الفكرة تصبح الحالة هي ‘مشروع‘.\n"
+"تم فتحها من قبل المستخدم, الحالة هي ‘فتح‘.\n"
+"اذا تم قبول الفكرة, الحالة هي ‘قبول‘."
 
 #. module: idea
 #: view:idea.idea:0
 msgid "New Ideas"
-msgstr ""
+msgstr "أفكار جديدة"
 
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote created last month"
-msgstr ""
+msgstr "التصويت لفكرة منشأة الشهر الماضي"
 
 #. module: idea
 #: field:idea.category,visibility:0
@@ -284,7 +284,7 @@ msgstr "اعرض الفكرة؟"
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote created in current month"
-msgstr ""
+msgstr "التصويت لفكرة منشأة الشهر الحالي"
 
 #. module: idea
 #: selection:report.vote,month:0
@@ -294,8 +294,6 @@ msgstr "يوليو"
 #. module: idea
 #: view:idea.idea:0
 #: selection:idea.idea,state:0
-#: view:report.vote:0
-#: selection:report.vote,idea_state:0
 msgid "Accepted"
 msgstr "مقبول"
 
@@ -364,18 +362,12 @@ msgstr "شهر"
 
 #. module: idea
 #: view:idea.idea:0
-#: model:ir.actions.act_window,name:idea.action_idea_idea_categ_open
-#: model:ir.actions.act_window,name:idea.action_idea_idea_open
 msgid "Open Ideas"
 msgstr "اﻻفكار المتاحه"
 
 #. module: idea
 #: view:idea.category:0
-#: field:idea.category,name:0
 #: view:idea.idea:0
-#: field:idea.idea,category_id:0
-#: view:report.vote:0
-#: field:report.vote,category_id:0
 msgid "Category"
 msgstr "الفئة"
 
@@ -401,7 +393,7 @@ msgstr "مقترحات الفكرة"
 #. module: idea
 #: view:idea.idea:0
 msgid "By Idea Category"
-msgstr ""
+msgstr "عن طريق تصنيف الفكرة"
 
 #. module: idea
 #: view:idea.idea:0
@@ -493,7 +485,7 @@ msgid "idea.idea"
 msgstr "فكرة.فكرة"
 
 #. module: idea
-#: field:idea.category,summary:0
+#: field:idea.idea,message_summary:0
 msgid "Summary"
 msgstr "موجز"
 
@@ -519,8 +511,7 @@ msgstr "ترتيب التواريخ"
 
 #. module: idea
 #: view:idea.idea:0
-#: field:idea.idea,user_id:0
-#: view:report.vote:0
+#: field:idea.idea,create_uid:0
 msgid "Creator"
 msgstr "المُنشأ"
 
@@ -538,7 +529,7 @@ msgstr "ضع الى واحد اذا طلبت مقترح واحدًا فقط لك
 #. module: idea
 #: view:idea.idea:0
 msgid "By Creators"
-msgstr ""
+msgstr "عن طريق المفكرين"
 
 #. module: idea
 #: view:idea.post.vote:0
@@ -557,9 +548,8 @@ msgstr "فتح"
 
 #. module: idea
 #: view:idea.idea:0
-#: view:report.vote:0
 msgid "In Progress"
-msgstr ""
+msgstr "قيد التقدم"
 
 #. module: idea
 #: view:report.vote:0
@@ -571,7 +561,6 @@ msgstr "تحليل مقترح الفكرة"
 #: model:ir.actions.act_window,name:idea.action_idea_idea
 #: model:ir.ui.menu,name:idea.menu_idea_idea
 #: model:ir.ui.menu,name:idea.menu_ideas
-#: model:ir.ui.menu,name:idea.menu_ideas1
 msgid "Ideas"
 msgstr "أفكار"
 
@@ -589,7 +578,7 @@ msgstr "النتيجة"
 #. module: idea
 #: view:idea.idea:0
 msgid "Votes Statistics"
-msgstr ""
+msgstr "إحصائيات التصويت"
 
 #. module: idea
 #: view:idea.vote:0
@@ -597,9 +586,7 @@ msgid "Comments:"
 msgstr "التعليقات:"
 
 #. module: idea
-#: view:idea.category:0
 #: field:idea.idea,description:0
-#: field:idea.post.vote,note:0
 msgid "Description"
 msgstr "وصف"
 
@@ -610,7 +597,6 @@ msgstr "مايو"
 
 #. module: idea
 #: selection:idea.idea,state:0
-#: view:report.vote:0
 msgid "Refused"
 msgstr "مرفوض"
 
@@ -627,7 +613,7 @@ msgstr "فبراير"
 #. module: idea
 #: field:idea.category,complete_name:0
 msgid "Name"
-msgstr ""
+msgstr "الاسم"
 
 #. module: idea
 #: field:idea.vote.stat,nbr:0
@@ -637,7 +623,7 @@ msgstr "عدد الأصوات"
 #. module: idea
 #: view:report.vote:0
 msgid "Month-1"
-msgstr ""
+msgstr "شهر- ١"
 
 #. module: idea
 #: selection:report.vote,month:0
@@ -657,7 +643,7 @@ msgstr "حالة الاقتراح"
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote created in current year"
-msgstr ""
+msgstr "فكرة إنشاء تصويت في العام الحالي"
 
 #. module: idea
 #: field:idea.idea,vote_avg:0
@@ -667,17 +653,10 @@ msgstr "متوسط نقاط"
 #. module: idea
 #: constraint:idea.category:0
 msgid "Error ! You cannot create recursive categories."
-msgstr ""
+msgstr "خطأ ! لا يمكن إنشاء فئات متداخلة."
 
 #. module: idea
-#: field:idea.comment,idea_id:0
-#: field:idea.select,idea_id:0
-#: view:idea.vote:0
-#: field:idea.vote,idea_id:0
-#: field:idea.vote.stat,idea_id:0
-#: model:ir.ui.menu,name:idea.menu_idea_reporting
-#: view:report.vote:0
-#: field:report.vote,idea_id:0
+#: view:idea.idea:0
 msgid "Idea"
 msgstr "فكره"
 
@@ -701,7 +680,7 @@ msgstr "سنة"
 #: code:addons/idea/idea.py:274
 #, python-format
 msgid "You can not vote on a Draft/Accepted/Cancelled ideas."
-msgstr ""
+msgstr "لا يمكنك التصويت على مسودة / قبول /  أفكار ملغاة."
 
 #. module: idea
 #: view:idea.select:0

@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.4\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2012-02-08 00:35+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2012-10-08 12:28+0000\n"
+"PO-Revision-Date: 2012-11-16 18:50+0000\n"
+"Last-Translator: kifcaliph <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:13+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 06:43+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: account_budget
 #: field:crossovered.budget,creating_user_id:0
@@ -137,7 +137,7 @@ msgstr ""
 #: code:addons/account_budget/account_budget.py:119
 #, python-format
 msgid "The Budget '%s' has no accounts!"
-msgstr ""
+msgstr "الميزانية '%s' ليس لديها حسابات!"
 
 #. module: account_budget
 #: report:account.budget:0
@@ -189,7 +189,7 @@ msgstr "المبلغ المخطط"
 #: report:account.budget:0
 #: report:crossovered.budget.report:0
 msgid "Perc(%)"
-msgstr ""
+msgstr "النسبة المئوية(%)"
 
 #. module: account_budget
 #: view:crossovered.budget:0
@@ -235,6 +235,11 @@ msgid "Name"
 msgstr "الاسم"
 
 #. module: account_budget
+#: report:account.analytic.account.budget:0
+msgid "Total:"
+msgstr "المجموع:"
+
+#. module: account_budget
 #: model:ir.model,name:account_budget.model_crossovered_budget_lines
 msgid "Budget Line"
 msgstr "خط الميزانية"
@@ -258,7 +263,7 @@ msgstr "الميزانية"
 #. module: account_budget
 #: view:crossovered.budget:0
 msgid "To Approve Budgets"
-msgstr ""
+msgstr "للموافقة علي الميزانية"
 
 #. module: account_budget
 #: code:addons/account_budget/account_budget.py:119
@@ -280,7 +285,6 @@ msgstr "يستخدم هذا المعالج لطباعة الميزانية"
 
 #. module: account_budget
 #: model:ir.actions.act_window,name:account_budget.act_crossovered_budget_view
-#: model:ir.actions.act_window,name:account_budget.action_account_budget_post_tree
 #: model:ir.actions.act_window,name:account_budget.action_account_budget_report
 #: model:ir.actions.report.xml,name:account_budget.report_crossovered_budget
 #: model:ir.ui.menu,name:account_budget.menu_act_crossovered_budget_view
@@ -299,6 +303,12 @@ msgstr "يستخدم هذا المعالج لطباعة ملخص الميزان�
 #: selection:crossovered.budget,state:0
 msgid "Cancelled"
 msgstr "ملغي"
+
+#. module: account_budget
+#: report:account.analytic.account.budget:0
+#: model:ir.actions.report.xml,name:account_budget.account_budget_analytic
+msgid "Analytic Budget"
+msgstr "ميزانية تحليلية"
 
 #. module: account_budget
 #: view:crossovered.budget:0
@@ -402,7 +412,6 @@ msgstr "خطوط الميزانية"
 #: view:account.budget.crossvered.report:0
 #: view:account.budget.crossvered.summary.report:0
 #: view:account.budget.report:0
-#: view:crossovered.budget:0
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -420,4 +429,4 @@ msgstr "نموذج تحليلى"
 #. module: account_budget
 #: view:crossovered.budget:0
 msgid "Draft Budgets"
-msgstr ""
+msgstr "ميزانيات مؤقتة"

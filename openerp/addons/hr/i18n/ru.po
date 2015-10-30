@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 01:37+0100\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Alexey Y. Fedotov <Unknown>\n"
+"PO-Revision-Date: 2012-06-09 12:06+0000\n"
+"Last-Translator: Rinat Karimov <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:36+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:00+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: hr
 #: model:process.node,name:hr.process_node_openerpuser0
@@ -22,7 +22,7 @@ msgid "Openerp user"
 msgstr "Пользователь OpenERP"
 
 #. module: hr
-#: view:hr.job:0 field:hr.job,requirements:0
+#: field:hr.job,requirements:0
 msgid "Requirements"
 msgstr "Требования"
 
@@ -42,21 +42,25 @@ msgid "SIN No"
 msgstr "СНИЛС"
 
 #. module: hr
+#: model:ir.actions.act_window,name:hr.open_board_hr
+#: model:ir.ui.menu,name:hr.menu_hr_dashboard
 #: model:ir.ui.menu,name:hr.menu_hr_main
-#: model:ir.ui.menu,name:hr.menu_hr_management
+#: model:ir.ui.menu,name:hr.menu_hr_reporting
 #: model:ir.ui.menu,name:hr.menu_hr_root
+#: model:ir.ui.menu,name:hr.menu_human_resources_configuration
 msgid "Human Resources"
 msgstr "Кадры"
 
 #. module: hr
-#: view:hr.employee:0 view:hr.job:0
+#: view:hr.employee:0
+#: view:hr.job:0
 msgid "Group By..."
-msgstr "Объеденить по..."
+msgstr "Группировать по ..."
 
 #. module: hr
 #: model:ir.actions.act_window,name:hr.view_department_form_installer
 msgid "Create Your Departments"
-msgstr ""
+msgstr "Укажите ваши отделы"
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.action_hr_job
@@ -74,8 +78,12 @@ msgstr ""
 "эту должность."
 
 #. module: hr
-#: view:hr.employee:0 field:hr.employee,department_id:0 view:hr.job:0
-#: field:hr.job,department_id:0 view:res.users:0
+#: view:hr.department:0
+#: view:hr.employee:0
+#: field:hr.employee,department_id:0
+#: view:hr.job:0
+#: field:hr.job,department_id:0
+#: model:ir.model,name:hr.model_hr_department
 msgid "Department"
 msgstr "Подразделение"
 
@@ -95,7 +103,9 @@ msgid "In Recruitment"
 msgstr "Набор сотрудников"
 
 #. module: hr
-#: field:hr.department,company_id:0 view:hr.employee:0 view:hr.job:0
+#: field:hr.department,company_id:0
+#: view:hr.employee:0
+#: view:hr.job:0
 #: field:hr.job,company_id:0
 msgid "Company"
 msgstr "Компания"
@@ -108,7 +118,7 @@ msgstr "Планируется набрать"
 #. module: hr
 #: model:ir.actions.todo.category,name:hr.category_hr_management_config
 msgid "HR Management"
-msgstr ""
+msgstr "Управление кадрами"
 
 #. module: hr
 #: help:hr.employee,partner_id:0
@@ -130,7 +140,7 @@ msgid "Parent Department"
 msgstr "Вышестоящее подразделение"
 
 #. module: hr
-#: view:hr.employee:0 field:hr.employee,notes:0
+#: field:hr.employee,notes:0
 msgid "Notes"
 msgstr "Примечания"
 
@@ -147,6 +157,10 @@ msgid ""
 "operations on all the employees of the same category, i.e. allocating "
 "holidays."
 msgstr ""
+"Создать сотрудника и добавить ссылку на пользователя OpenERP, если вы "
+"желаете предоставить ему доступ. Категории могут быть указаны для "
+"сотрудников для применения массовых операций на всех сотрудниках данной "
+"категории."
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.open_module_tree_department
@@ -162,7 +176,7 @@ msgstr ""
 #. module: hr
 #: field:hr.employee,color:0
 msgid "Color Index"
-msgstr ""
+msgstr "Цветовая палитра"
 
 #. module: hr
 #: model:process.transition,note:hr.process_transition_employeeuser0
@@ -191,12 +205,12 @@ msgstr "Женский"
 #. module: hr
 #: help:hr.job,expected_employees:0
 msgid "Required number of employees in total for that job."
-msgstr ""
+msgstr "Общее необходимое число сотрудников для данной работы."
 
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_open_view_attendance_reason_new_config
 msgid "Attendance"
-msgstr ""
+msgstr "Посещаемость"
 
 #. module: hr
 #: view:hr.employee:0
@@ -214,7 +228,7 @@ msgid "Child Categories"
 msgstr "Дочерние категории"
 
 #. module: hr
-#: view:hr.job:0 field:hr.job,description:0
+#: field:hr.job,description:0
 #: model:ir.model,name:hr.model_hr_job
 msgid "Job Description"
 msgstr "Описание должности"
@@ -230,7 +244,8 @@ msgid "My Departments Employee"
 msgstr "Сотрудники моего подразделения"
 
 #. module: hr
-#: view:hr.employee:0 model:ir.model,name:hr.model_hr_employee
+#: view:hr.employee:0
+#: model:ir.model,name:hr.model_hr_employee
 #: model:process.node,name:hr.process_node_employee0
 msgid "Employee"
 msgstr "Сотрудник"
@@ -256,13 +271,14 @@ msgid "Reporting"
 msgstr "Отчетность"
 
 #. module: hr
-#: model:ir.actions.act_window,name:hr.open_board_hr
-#: model:ir.ui.menu,name:hr.menu_hr_dashboard_user
+#: view:board.board:0
 msgid "Human Resources Dashboard"
 msgstr "Инфо-панель \"Кадры\""
 
 #. module: hr
-#: view:hr.employee:0 field:hr.employee,job_id:0 view:hr.job:0
+#: view:hr.employee:0
+#: field:hr.employee,job_id:0
+#: view:hr.job:0
 msgid "Job"
 msgstr "Должность"
 
@@ -305,7 +321,6 @@ msgstr "Ошибка! Вы не можете создавать рекурсив
 #: view:hr.department:0
 #: model:ir.actions.act_window,name:hr.open_module_tree_department
 #: model:ir.ui.menu,name:hr.menu_hr_department_tree
-#: field:res.users,context_department_id:0
 msgid "Departments"
 msgstr "Подразделения"
 
@@ -349,7 +364,7 @@ msgstr "hr.department"
 #. module: hr
 #: model:ir.actions.act_window,name:hr.action_create_hr_employee_installer
 msgid "Create your Employees"
-msgstr ""
+msgstr "Создайте ваших сотрудников."
 
 #. module: hr
 #: field:hr.employee.category,name:0
@@ -426,6 +441,8 @@ msgstr "Подчиненные подразделения"
 
 #. module: hr
 #: view:hr.employee:0
+#: view:hr.job:0
+#: field:hr.job,state:0
 msgid "Status"
 msgstr "Статус"
 
@@ -443,7 +460,7 @@ msgstr "неизвестен"
 #. module: hr
 #: help:hr.job,no_of_employee:0
 msgid "Number of employees with that job."
-msgstr ""
+msgstr "Количество сотрудников с данной работой."
 
 #. module: hr
 #: field:hr.employee,ssnid:0
@@ -463,7 +480,7 @@ msgstr "Ошибка! Структура подчинения не может б
 #. module: hr
 #: model:ir.actions.act_window,name:hr.action2
 msgid "Subordonate Hierarchy"
-msgstr ""
+msgstr "Дерево субординации"
 
 #. module: hr
 #: model:ir.actions.act_window,help:hr.view_department_form_installer
@@ -472,6 +489,9 @@ msgid ""
 "employees by departments: expenses and timesheet validation, leaves "
 "management, recruitments, etc."
 msgstr ""
+"Структура отделов используется для управления документами, относящимся к "
+"сотрудникам по отделам: проверки расходов и расписания, управления "
+"посещаемостью, набор новых сотрудников и т. д."
 
 #. module: hr
 #: field:hr.employee,bank_account_id:0
@@ -495,7 +515,7 @@ msgstr ""
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_hr_dashboard
 msgid "Dashboard"
-msgstr ""
+msgstr "Инфо-панель"
 
 #. module: hr
 #: selection:hr.job,state:0
@@ -528,7 +548,7 @@ msgid "Employee form and structure"
 msgstr "??Форма и структура сотрудника"
 
 #. module: hr
-#: field:hr.employee,photo:0
+#: field:hr.employee,image:0
 msgid "Photo"
 msgstr "Фотография"
 
@@ -545,7 +565,7 @@ msgstr "Личные данные"
 #. module: hr
 #: field:hr.employee,city:0
 msgid "City"
-msgstr ""
+msgstr "Город"
 
 #. module: hr
 #: field:hr.employee,passport_id:0
@@ -555,7 +575,7 @@ msgstr "№ паспорта"
 #. module: hr
 #: field:hr.employee,mobile_phone:0
 msgid "Work Mobile"
-msgstr ""
+msgstr "Рабочий сотовый телефон"
 
 #. module: hr
 #: view:hr.employee.category:0
@@ -583,7 +603,7 @@ msgid "Job Name"
 msgstr "Наименование должности"
 
 #. module: hr
-#: view:hr.job:0 selection:hr.job,state:0
+#: view:hr.job:0
 msgid "In Position"
 msgstr "В норме"
 
@@ -600,7 +620,7 @@ msgstr "Национальность"
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_open_view_attendance_reason_config
 msgid "Leaves"
-msgstr ""
+msgstr "Отпуска"
 
 #. module: hr
 #: view:board.board:0
@@ -614,6 +634,7 @@ msgstr "Ресурс"
 
 #. module: hr
 #: field:hr.department,complete_name:0
+#: field:hr.employee,name_related:0
 #: field:hr.employee.category,complete_name:0
 msgid "Name"
 msgstr "Наименование"
@@ -624,14 +645,13 @@ msgid "Gender"
 msgstr "Пол"
 
 #. module: hr
-#: view:hr.employee:0 view:hr.employee.category:0
-#: field:hr.employee.category,employee_ids:0 view:hr.job:0
+#: view:hr.employee:0
+#: field:hr.employee.category,employee_ids:0
 #: field:hr.job,employee_ids:0
 #: model:ir.actions.act_window,name:hr.hr_employee_normal_action_tree
 #: model:ir.actions.act_window,name:hr.open_view_employee_list
 #: model:ir.actions.act_window,name:hr.open_view_employee_list_my
 #: model:ir.ui.menu,name:hr.menu_open_view_employee_list_my
-#: model:ir.ui.menu,name:hr.menu_view_employee_category_configuration_form
 msgid "Employees"
 msgstr "Сотрудники"
 
@@ -658,7 +678,7 @@ msgstr "Создание пользователя OpenERP"
 #. module: hr
 #: field:hr.employee,login:0
 msgid "Login"
-msgstr ""
+msgstr "Имя пользователя системы"
 
 #. module: hr
 #: view:hr.employee:0
@@ -674,17 +694,18 @@ msgstr "Штатное расписание"
 #. module: hr
 #: field:hr.employee,otherid:0
 msgid "Other Id"
-msgstr ""
+msgstr "Other Id"
 
 #. module: hr
-#: view:hr.employee:0 field:hr.employee,coach_id:0
+#: view:hr.employee:0
+#: field:hr.employee,coach_id:0
 msgid "Coach"
 msgstr "Тренер"
 
 #. module: hr
 #: sql_constraint:hr.job:0
 msgid "The name of the job position must be unique per company!"
-msgstr ""
+msgstr "Название должности в компании должно быть уникальным!"
 
 #. module: hr
 #: view:hr.job:0
@@ -692,7 +713,8 @@ msgid "My Departments Jobs"
 msgstr ""
 
 #. module: hr
-#: field:hr.department,manager_id:0 view:hr.employee:0
+#: field:hr.department,manager_id:0
+#: view:hr.employee:0
 #: field:hr.employee,parent_id:0
 msgid "Manager"
 msgstr "Руководитель"
@@ -710,4 +732,4 @@ msgstr "Подчиненные"
 #. module: hr
 #: field:hr.job,no_of_employee:0
 msgid "Number of Employees"
-msgstr ""
+msgstr "Количество сотрудников"

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+       <!--******************************** Truck Form View ********************************-->
+        <record model="ir.ui.view" id="view_shipment_truck_form">
+            <field name="name">shipment.truck.form</field>
+            <field name="model">shipment.truck</field>
+            <field name="arch" type="xml">
+                <form string="shipment.truck" version="7.0">
+                    <sheet string="truck">
+                        <h1>
+                            <label string="Add Truck "/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="license_plate" />
+                                <field name="reg_exp_date" />
+                                <field name="state_id" />
+                                <field name="insurance_exp_date" />
+                                <field name="maker_id" />
+                                <field name="bit_inspection" />
+
+                            </group>
+                            <group>
+                                <field name="model_id" />
+                                <field name="type_id" />
+                                <field name="insurance_details_text" />
+                                <field name="notes" />
+                                <!--<field name="driver_ids" create="false"/>-->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Drivers">
+                                <field name="driver_ids" widget="many2many" colspan="4"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--******************************** Truck tree View ********************************-->
+        <record model="ir.ui.view" id="view_shipment_truck_tree">
+            <field name="name">shipment.truck.tree</field>
+            <field name="model">shipment.truck</field>
+            <field name="arch" type="xml">
+                <tree string="shipment_truck">
+                    <field name="license_plate"/>
+                    <field name="reg_exp_date"/>
+                    <field name="maker_id"/>
+                    <field name="model_id"/>
+                    <field name="type_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--******************************** Search View  ************************************** -->
+        <record model="ir.ui.view" id="view_shipment_truck_filter">
+            <field name="name">shipment.truck.select</field>
+            <field name="model">shipment.truck</field>
+            <field name="arch" type="xml">
+                <search string="Search Truck">
+                    <field name="license_plate" filter_domain="[('license_plate','=',self)]"/>
+                    <field name="insurance_details_text" filter_domain="[('insurance_details_text','ilike',self)]"/>
+                    <separator/>
+                    <field name="state_id" widget="selection" context="{'state_id':self}"/>
+                    <field name="maker_id" widget="selection" context="{'maker_id':self}"/>
+                    <field name="model_id" widget="selection" context="{'model_id':self}"/>
+                    <field name="type_id" widget="selection" context="{'type_id':self}"/>
+
+                    <group expand="0" string="Group By...">
+                        <filter string="State" icon="terp-partner" domain="[]" context="{'group_by':'state_id'}"/>
+                        <filter string="Maker" icon="terp-tools" domain="[]" context="{'group_by':'maker_id'}"/>
+                        <filter string="Model" icon="terp-tools" domain="[]" context="{'group_by':'model_id'}"/>
+                        <filter string="Type" icon="terp-tools" domain="[]" context="{'group_by':'type_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+
+
+        <!--******************************** Driver Action View ********************************-->
+        <record model="ir.actions.act_window" id="action_shipment_truck">
+            <field name="name">Truck</field>
+            <field name="res_model">shipment.truck</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+
+             <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new Truck.
+              </p><p>
+                Description goes Here.
+              </p>
+            </field>
+        </record>
+
+
+
+        <menuitem id="menu_item_truck" parent="menu_section_trucking" name="Truck" action="action_shipment_truck"
+                icon="terp-product"/>
+    </data>
+</openerp>

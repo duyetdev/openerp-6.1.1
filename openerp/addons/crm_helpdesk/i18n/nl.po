@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Erwin <Unknown>\n"
+"PO-Revision-Date: 2012-12-25 12:29+0000\n"
+"Last-Translator: Erwin van der Ploeg (Endian Solutions) <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:31+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 06:56+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: crm_helpdesk
 #: field:crm.helpdesk.report,delay_close:0
@@ -107,7 +107,7 @@ msgstr "Geannuleerd"
 #: model:ir.actions.act_window,name:crm_helpdesk.action_report_crm_helpdesk
 #: model:ir.ui.menu,name:crm_helpdesk.menu_report_crm_helpdesks_tree
 msgid "Helpdesk Analysis"
-msgstr "Helpdesk Analyse"
+msgstr "Helpdesk analyse"
 
 #. module: crm_helpdesk
 #: view:crm.helpdesk.report:0
@@ -118,7 +118,7 @@ msgstr "Sluitingsdatum"
 #. module: crm_helpdesk
 #: field:crm.helpdesk,ref:0
 msgid "Reference"
-msgstr "Verwijzing"
+msgstr "Referentie"
 
 #. module: crm_helpdesk
 #: field:crm.helpdesk,date_action_next:0
@@ -204,7 +204,6 @@ msgid "# Mails"
 msgstr "# Mails"
 
 #. module: crm_helpdesk
-#: view:crm.helpdesk:0
 #: view:crm.helpdesk.report:0
 msgid "My Sales Team(s)"
 msgstr "Mijn verkoop team(s)"
@@ -225,7 +224,7 @@ msgstr "Terugzetten naar Concept"
 #: selection:crm.helpdesk,state:0
 #: selection:crm.helpdesk.report,state:0
 msgid "Pending"
-msgstr "Wacht"
+msgstr "In afwachting"
 
 #. module: crm_helpdesk
 #: view:crm.helpdesk:0
@@ -270,7 +269,7 @@ msgid "Month of helpdesk requests"
 msgstr "Maand van helpdesk verzoek"
 
 #. module: crm_helpdesk
-#: code:addons/crm_helpdesk/crm_helpdesk.py:101
+#: code:addons/crm_helpdesk/crm_helpdesk.py:104
 #, python-format
 msgid "No Subject"
 msgstr "Geen onderwerp"
@@ -283,7 +282,7 @@ msgstr "#Helpdesk"
 #. module: crm_helpdesk
 #: view:crm.helpdesk:0
 msgid "All pending Helpdesk Request"
-msgstr "Alle lopende helpdesk verzoeken"
+msgstr "Alle helpdesk verzoeken in afwachting"
 
 #. module: crm_helpdesk
 #: view:crm.helpdesk.report:0
@@ -293,7 +292,7 @@ msgstr "Jaar van helpdesk verzoek"
 #. module: crm_helpdesk
 #: view:crm.helpdesk:0
 msgid "References"
-msgstr "Verwijzingen"
+msgstr "Referenties"
 
 #. module: crm_helpdesk
 #: selection:crm.helpdesk.report,month:0
@@ -370,9 +369,9 @@ msgid ""
 "outbound emails for this record before being sent. Separate multiple email "
 "addresses with a comma"
 msgstr ""
-"Deze email addressen worden toegevoegd aan het CC veld van alle inkomende en "
-"uitgaande emails van dit record voordat het wordt verstuurd. Meerdere namen "
-"scheidt u met een komma (,)."
+"Deze email adressen worden toegevoegd aan het CC veld bij alle inkomende en "
+"uitgaande emails voor dit record voorafgaand aan versturen. Scheidt "
+"verschillende email adressen met een komma."
 
 #. module: crm_helpdesk
 #: view:crm.helpdesk:0
@@ -543,7 +542,7 @@ msgstr ""
 #. module: crm_helpdesk
 #: view:crm.helpdesk:0
 msgid "Done"
-msgstr "Klaar"
+msgstr "Verwerkt"
 
 #. module: crm_helpdesk
 #: selection:crm.helpdesk.report,month:0
@@ -646,9 +645,9 @@ msgstr ""
 "                  \n"
 "Als de aanvraag in behandeling is, wordt de status op 'Open' gezet.          "
 "                        \n"
-"Als de aanvraag klaar is, gaat de status naar 'Gereed'.                      "
-"            \n"
-"Als de aanvraag moet worden onderzocht, wordt de status op 'Behandeling' "
+"Als de aanvraag klaar is, gaat de status naar 'Verwerkt'.                    "
+"              \n"
+"Als de aanvraag moet worden onderzocht, wordt de status op 'In afwachting' "
 "gezet."
 
 #. module: crm_helpdesk
@@ -669,7 +668,7 @@ msgstr "Maand-1"
 #. module: crm_helpdesk
 #: model:ir.ui.menu,name:crm_helpdesk.menu_help_support_main
 msgid "Helpdesk and Support"
-msgstr "Helpdesk en ondersteuning"
+msgstr "Helpdesk"
 
 #. module: crm_helpdesk
 #: selection:crm.helpdesk.report,month:0
@@ -744,11 +743,11 @@ msgid ""
 "history of the conversation with the customer."
 msgstr ""
 "Helpdesk en support laat u incidenten volgen. Selecteer een klant, voeg "
-"notities toe en categoriseer incidenten met relaties indien nodig. U kunt "
-"ook een prioriteit niveau toekennen. Gebruik het OpenERP problemen systeem "
-"om uw support activiteiten en beheren. Problemen kunnen worden gekoppeld aan "
-"de email gateway: neiuwe emails kunnen problemen maken, elk daarvan krijgt "
-"automatisch de conversatie geschiedenis met de klant."
+"notities toe en categoriseer incidenten met relaties. U kunt ook een "
+"prioriteit niveau toekennen. Gebruik het OpenERP helpdesk systeem om uw "
+"support activiteiten te beheren. Issues kunnen worden gekoppeld aan de email "
+"gateway: nieuwe emails kunnen issues maken, elk daarvan krijgt automatisch "
+"de conversatie geschiedenis met de klant."
 
 #. module: crm_helpdesk
 #: view:crm.helpdesk.report:0

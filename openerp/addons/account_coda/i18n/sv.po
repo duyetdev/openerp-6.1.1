@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 00:35+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: OpenERP Administrators <Unknown>\n"
+"PO-Revision-Date: 2012-09-11 11:53+0000\n"
+"Last-Translator: Treecko <Unknown>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:15+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 06:45+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_09_21
@@ -65,7 +65,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_031
 msgid "Charges foreign cheque"
-msgstr ""
+msgstr "Utlänskcheckavgift"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_002
@@ -75,7 +75,7 @@ msgstr ""
 #. module: account_coda
 #: field:account.coda.trans.type,parent_id:0
 msgid "Parent"
-msgstr ""
+msgstr "Överliggande"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_03_62
@@ -187,7 +187,7 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.statement.line,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Belopp"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_11_70
@@ -202,7 +202,7 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.statement.line,counterparty_bic:0
 msgid "Counterparty BIC"
-msgstr ""
+msgstr "Motpartens BIC"
 
 #. module: account_coda
 #: help:coda.bank.account,def_receivable:0
@@ -222,7 +222,7 @@ msgstr ""
 #: code:addons/account_coda/wizard/account_coda_import.py:144
 #, python-format
 msgid "Warning !"
-msgstr ""
+msgstr "Varning !"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_07_39
@@ -232,7 +232,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_011
 msgid "VAT"
-msgstr ""
+msgstr "Moms"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_07_09
@@ -254,7 +254,7 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.statement.line,ref:0
 msgid "Reference"
-msgstr ""
+msgstr "Hänvisning"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_07_58
@@ -298,7 +298,7 @@ msgstr ""
 #. module: account_coda
 #: field:account.coda,date:0
 msgid "Import Date"
-msgstr "Import Datum"
+msgstr "Importdatum"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_039
@@ -350,7 +350,7 @@ msgstr ""
 #. module: account_coda
 #: model:ir.model,name:account_coda.model_account_bank_statement_line_global
 msgid "Batch Payment Info"
-msgstr ""
+msgstr "Batchbetalningsinformation"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_00_33
@@ -426,7 +426,7 @@ msgstr ""
 #. module: account_coda
 #: constraint:account.bank.statement:0
 msgid "The journal and period chosen have to belong to the same company."
-msgstr ""
+msgstr "Journalen och perioden måste tillhöra samma bolag."
 
 #. module: account_coda
 #: model:account.coda.comm.type,description:account_coda.acct_115
@@ -461,13 +461,13 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.statement.line,name:0
 msgid "Communication"
-msgstr ""
+msgstr "Kommunikation"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_00_35
 #: model:account.coda.trans.code,description:account_coda.actcc_00_85
 msgid "Correction"
-msgstr ""
+msgstr "Rättning"
 
 #. module: account_coda
 #: code:addons/account_coda/wizard/account_coda_import.py:404
@@ -518,7 +518,7 @@ msgstr ""
 #. module: account_coda
 #: view:account.coda:0
 msgid "Additional Information"
-msgstr ""
+msgstr "Ytterligare information"
 
 #. module: account_coda
 #: model:account.coda.comm.type,description:account_coda.acct_120
@@ -534,7 +534,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.comm.type,description:account_coda.acct_124
 msgid "Number of the credit card"
-msgstr ""
+msgstr "Antal kreditkort"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_80_13
@@ -550,7 +550,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.comm.type,description:account_coda.acct_104
 msgid "Equivalent in EUR"
-msgstr ""
+msgstr "Motsvarighet i EUR"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_47_50
@@ -584,12 +584,12 @@ msgstr ""
 #. module: account_coda
 #: view:coda.bank.statement.line:0
 msgid "Credit Transactions."
-msgstr ""
+msgstr "Kredittransaktioner"
 
 #. module: account_coda
 #: field:account.coda.trans.type,type:0
 msgid "Transaction Type"
-msgstr ""
+msgstr "Transaktionstyp"
 
 #. module: account_coda
 #: model:ir.model,name:account_coda.model_account_coda
@@ -605,7 +605,7 @@ msgstr ""
 #: model:account.coda.trans.category,description:account_coda.actrca_053
 #: model:account.coda.trans.code,description:account_coda.actcc_80_43
 msgid "Printing of forms"
-msgstr ""
+msgstr "Skriver ut formulär"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_003
@@ -684,7 +684,7 @@ msgstr ""
 #. module: account_coda
 #: field:account.coda.trans.code,parent_id:0
 msgid "Family"
-msgstr ""
+msgstr "Familj"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_11_66
@@ -700,7 +700,7 @@ msgstr ""
 #: view:coda.bank.statement:0
 #: field:coda.bank.statement,period_id:0
 msgid "Period"
-msgstr ""
+msgstr "Period"
 
 #. module: account_coda
 #: code:addons/account_coda/wizard/account_coda_import.py:588
@@ -804,7 +804,7 @@ msgstr ""
 #: view:coda.bank.statement:0
 #: field:coda.bank.statement,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_03_19
@@ -834,14 +834,14 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_04_52
 msgid "Loading GSM cards"
-msgstr ""
+msgstr "Laddar GSM-kort"
 
 #. module: account_coda
 #: view:coda.bank.statement:0
 #: view:coda.bank.statement.line:0
 #: field:coda.bank.statement.line,note:0
 msgid "Notes"
-msgstr ""
+msgstr "Anteckningar"
 
 #. module: account_coda
 #: field:coda.bank.statement,balance_end_real:0
@@ -910,7 +910,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_407
 msgid "Costs Article 45"
-msgstr ""
+msgstr "Kostnadsartikel 45"
 
 #. module: account_coda
 #: model:account.coda.comm.type,description:account_coda.acct_007
@@ -991,12 +991,12 @@ msgstr ""
 #. module: account_coda
 #: selection:coda.bank.statement.line,type:0
 msgid "Supplier"
-msgstr ""
+msgstr "Leverantör"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_009
 msgid "Travelling expenses"
-msgstr ""
+msgstr "Resekostnad"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcf_30
@@ -1011,7 +1011,7 @@ msgstr ""
 #. module: account_coda
 #: view:coda.bank.statement:0
 msgid "Transactions"
-msgstr ""
+msgstr "Transaktioner"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_09_50
@@ -1137,7 +1137,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_09_64
 msgid "Your winning lottery ticket"
-msgstr ""
+msgstr "Din vinnande lott"
 
 #. module: account_coda
 #: model:account.coda.comm.type,description:account_coda.acct_009
@@ -1163,12 +1163,12 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_05_01
 msgid "Payment"
-msgstr ""
+msgstr "Betalning"
 
 #. module: account_coda
 #: view:account.coda.import:0
 msgid "_Cancel"
-msgstr ""
+msgstr "_Avbryt"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_09_07
@@ -1241,7 +1241,7 @@ msgstr ""
 #: field:coda.bank.statement,type:0
 #: field:coda.bank.statement.line,type:0
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #. module: account_coda
 #: model:account.coda.comm.type,description:account_coda.acct_112
@@ -1287,7 +1287,7 @@ msgstr ""
 #: code:addons/account_coda/account_coda.py:299
 #, python-format
 msgid "Invalid action !"
-msgstr ""
+msgstr "Felaktig åtgärd !"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_01_64
@@ -1316,7 +1316,7 @@ msgstr ""
 #: code:addons/account_coda/wizard/account_coda_import.py:868
 #, python-format
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_405
@@ -1346,7 +1346,7 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.statement.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_80_37
@@ -1382,7 +1382,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_04_07
 msgid "Payment by GSM"
-msgstr ""
+msgstr "Betalning via GSM"
 
 #. module: account_coda
 #: view:coda.bank.account:0
@@ -1390,7 +1390,7 @@ msgstr ""
 #: view:coda.bank.statement:0
 #: selection:coda.bank.statement,type:0
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_05_50
@@ -1407,7 +1407,7 @@ msgstr ""
 #: field:coda.bank.account,currency:0
 #: field:coda.bank.statement,currency:0
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_07_06
@@ -1427,7 +1427,7 @@ msgstr ""
 #. module: account_coda
 #: view:coda.bank.statement.line:0
 msgid "Total Amount"
-msgstr ""
+msgstr "Totalsumma"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_214
@@ -1444,7 +1444,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_04_01
 msgid "Loading a GSM card"
-msgstr ""
+msgstr "Laddar GSM-kort"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_021
@@ -1488,7 +1488,7 @@ msgstr ""
 #: code:addons/account_coda/wizard/account_coda_import.py:497
 #, python-format
 msgid "Data Error!"
-msgstr ""
+msgstr "Datafel!"
 
 #. module: account_coda
 #: model:account.coda.comm.type,description:account_coda.acct_010
@@ -1538,7 +1538,7 @@ msgstr ""
 #. module: account_coda
 #: view:coda.bank.statement.line:0
 msgid "Extended Filters..."
-msgstr ""
+msgstr "Utökat filter..."
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_07_06
@@ -1565,7 +1565,7 @@ msgstr ""
 #. module: account_coda
 #: field:account.coda,note:0
 msgid "Import Log"
-msgstr ""
+msgstr "Importlogg"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcf_07
@@ -1608,7 +1608,7 @@ msgstr ""
 #. module: account_coda
 #: field:account.coda.trans.code,code:0
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_032
@@ -1649,7 +1649,7 @@ msgstr ""
 #. module: account_coda
 #: selection:coda.bank.statement.line,type:0
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_00_39
@@ -1667,7 +1667,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_09_15
 msgid "Your purchase of lottery tickets"
-msgstr ""
+msgstr "Ditt köp av lotter"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_41_05
@@ -1792,7 +1792,7 @@ msgstr ""
 #: field:coda.bank.account,name:0
 #: field:coda.bank.statement,name:0
 msgid "Name"
-msgstr ""
+msgstr "Namn"
 
 #. module: account_coda
 #: view:account.coda:0
@@ -1808,6 +1808,8 @@ msgid ""
 "\n"
 "Unknown Error : "
 msgstr ""
+"\n"
+"Okänt fel : "
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_035
@@ -1854,7 +1856,7 @@ msgstr ""
 #. module: account_coda
 #: view:account.coda:0
 msgid "CODA Files"
-msgstr ""
+msgstr "CODA-filer"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_01_17
@@ -1878,6 +1880,8 @@ msgid ""
 "\n"
 "Number of errors : "
 msgstr ""
+"\n"
+"Antal fel : "
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_80_22
@@ -1908,7 +1912,7 @@ msgstr ""
 #: field:account.coda,name:0
 #: field:account.coda.import,coda_fname:0
 msgid "CODA Filename"
-msgstr ""
+msgstr "CODA-filnamn"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_80_31
@@ -1934,7 +1938,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_431
 msgid "Delivery of a copy"
-msgstr ""
+msgstr "Leverans av kopia"
 
 #. module: account_coda
 #: help:coda.bank.account,transfer_account:0
@@ -1964,6 +1968,8 @@ msgid ""
 "\n"
 "System Error : "
 msgstr ""
+"\n"
+"Systemfel : "
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_01_60
@@ -2028,7 +2034,7 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.statement.line,account_id:0
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_47_37
@@ -2122,7 +2128,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_04_04
 msgid "At home as well as abroad"
-msgstr ""
+msgstr "Hemma och utomlands"
 
 #. module: account_coda
 #: code:addons/account_coda/wizard/account_coda_import.py:192
@@ -2170,7 +2176,7 @@ msgstr ""
 #: model:account.coda.trans.code,comment:account_coda.actcc_04_02
 #: model:account.coda.trans.code,comment:account_coda.actcc_04_08
 msgid "Eurozone = countries which have the euro as their official currency"
-msgstr ""
+msgstr "Eurozon = Länder som använder euro som deras officiella valuta"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_01_02
@@ -2188,7 +2194,7 @@ msgstr ""
 #: view:coda.bank.statement:0
 #: selection:coda.bank.statement,type:0
 msgid "Info"
-msgstr ""
+msgstr "Information"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_80_02
@@ -2274,7 +2280,7 @@ msgstr ""
 #. module: account_coda
 #: view:account.coda.import:0
 msgid "Select your file :"
-msgstr ""
+msgstr "Välj din fil :"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_80_06
@@ -2298,7 +2304,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:account_coda.wizard_account_coda_import_2
 #: model:ir.model,name:account_coda.model_account_coda_import
 msgid "Import CODA File"
-msgstr ""
+msgstr "Importera CODA-fil"
 
 #. module: account_coda
 #: code:addons/account_coda/wizard/account_coda_import.py:289
@@ -2340,7 +2346,7 @@ msgstr "Logg"
 #. module: account_coda
 #: view:account.coda:0
 msgid "Search CODA Files"
-msgstr ""
+msgstr "Sök CODA-filer"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_07_52
@@ -2463,7 +2469,7 @@ msgstr ""
 #: model:account.coda.trans.code,description:account_coda.actcf_13
 #: view:coda.bank.statement.line:0
 msgid "Credit"
-msgstr ""
+msgstr "Kredit"
 
 #. module: account_coda
 #: code:addons/account_coda/wizard/account_coda_import.py:155
@@ -2504,7 +2510,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_03_87
 msgid "Overall amount, VAT included"
-msgstr ""
+msgstr "Totalt belopp, inklusive moms"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_43_01
@@ -2514,7 +2520,7 @@ msgstr ""
 #. module: account_coda
 #: selection:coda.bank.statement.line,type:0
 msgid "General"
-msgstr ""
+msgstr "Allmänt"
 
 #. module: account_coda
 #: code:addons/account_coda/wizard/account_coda_import.py:856
@@ -2545,7 +2551,7 @@ msgstr ""
 #: model:account.coda.trans.code,description:account_coda.actcc_41_01
 #: model:account.coda.trans.code,description:account_coda.actcc_41_50
 msgid "Transfer"
-msgstr ""
+msgstr "Överföring"
 
 #. module: account_coda
 #: view:account.coda.import:0
@@ -2686,7 +2692,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_019
 msgid "Tax on physical delivery"
-msgstr ""
+msgstr "Moms på fysisk leverans"
 
 #. module: account_coda
 #: field:coda.bank.statement,statement_id:0
@@ -2725,7 +2731,7 @@ msgstr ""
 #: model:account.coda.trans.code,description:account_coda.actcc_09_25
 #: model:account.coda.trans.code,description:account_coda.actcc_43_70
 msgid "Purchase of traveller’s cheque"
-msgstr ""
+msgstr "Köp av resecheckar"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_01_39
@@ -2766,7 +2772,7 @@ msgstr ""
 #. module: account_coda
 #: view:coda.bank.statement.line:0
 msgid "Search Bank Transactions"
-msgstr ""
+msgstr "Sök banktransaktioner"
 
 #. module: account_coda
 #: code:addons/account_coda/wizard/account_coda_import.py:577
@@ -2775,6 +2781,8 @@ msgid ""
 "\n"
 "Application Error : "
 msgstr ""
+"\n"
+"Applikationsfel : "
 
 #. module: account_coda
 #: help:coda.bank.account,description1:0
@@ -2802,7 +2810,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcf_04
 msgid "Cards"
-msgstr ""
+msgstr "Kort"
 
 #. module: account_coda
 #: view:coda.bank.statement.line:0
@@ -2824,7 +2832,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_13_02
 msgid "Long-term loan"
-msgstr ""
+msgstr "Långtidslån"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_30_05
@@ -2876,12 +2884,12 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.statement.line,counterparty_number:0
 msgid "Counterparty Number"
-msgstr ""
+msgstr "Motpartens nummer"
 
 #. module: account_coda
 #: view:account.coda.import:0
 msgid "_Import"
-msgstr ""
+msgstr "_Importera"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_04_03
@@ -2939,7 +2947,7 @@ msgstr ""
 #: code:addons/account_coda/wizard/account_coda_import.py:524
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "Fel!"
 
 #. module: account_coda
 #: help:coda.bank.statement,type:0
@@ -2967,7 +2975,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_041
 msgid "Credit card costs"
-msgstr ""
+msgstr "Kreditkortskostnad"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_13_56
@@ -3013,7 +3021,7 @@ msgstr ""
 #: model:account.coda.trans.category,description:account_coda.actrca_004
 #: model:account.coda.trans.code,description:account_coda.actcc_80_09
 msgid "Postage"
-msgstr ""
+msgstr "Porto"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_09_50
@@ -3041,7 +3049,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_01_05
 msgid "Payment of wages, etc."
-msgstr ""
+msgstr "Betalning av löner, etc."
 
 #. module: account_coda
 #: sql_constraint:coda.bank.account:0
@@ -3063,7 +3071,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_04_55
 msgid "Income from payments by GSM"
-msgstr ""
+msgstr "Ingående betalningar via GSM"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_11_19
@@ -3074,12 +3082,12 @@ msgstr ""
 #: model:account.coda.trans.code,description:account_coda.actcc_01_13
 #: model:account.coda.trans.code,description:account_coda.actcc_41_13
 msgid "Transfer from your account"
-msgstr ""
+msgstr "Överföring från ditt konto"
 
 #. module: account_coda
 #: sql_constraint:account.bank.statement.line.global:0
 msgid "The code must be unique !"
-msgstr ""
+msgstr "Koden måste vara unik !"
 
 #. module: account_coda
 #: help:coda.bank.account,currency:0
@@ -3118,7 +3126,7 @@ msgstr ""
 #. module: account_coda
 #: model:ir.ui.menu,name:account_coda.menu_account_coda_import
 msgid "Import CODA Files"
-msgstr ""
+msgstr "Importera CODA-filer"
 
 #. module: account_coda
 #: model:account.coda.comm.type,description:account_coda.acct_105
@@ -3163,7 +3171,7 @@ msgstr ""
 #. module: account_coda
 #: field:account.coda.trans.code,comment:0
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_203
@@ -3208,7 +3216,7 @@ msgstr ""
 #: model:account.coda.trans.code,description:account_coda.actcc_35_37
 #: model:account.coda.trans.code,description:account_coda.actcc_80_35
 msgid "Costs"
-msgstr ""
+msgstr "Kostnad"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_050
@@ -3297,7 +3305,7 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.statement.line,counterparty_currency:0
 msgid "Counterparty Currency"
-msgstr ""
+msgstr "Motpartsvaluta"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_202
@@ -3313,7 +3321,7 @@ msgstr ""
 #: view:coda.bank.statement:0
 #: view:coda.bank.statement.line:0
 msgid "Glob. Id"
-msgstr ""
+msgstr "Glob. Id"
 
 #. module: account_coda
 #: view:coda.bank.statement:0
@@ -3342,6 +3350,8 @@ msgid ""
 "\n"
 "Error ! "
 msgstr ""
+"\n"
+"Fel ! "
 
 #. module: account_coda
 #: view:account.coda:0
@@ -3352,7 +3362,7 @@ msgstr "Användare"
 #. module: account_coda
 #: model:ir.model,name:account_coda.model_account_coda_trans_code
 msgid "CODA transaction code"
-msgstr ""
+msgstr "CODA-transaktionskod"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_05_52
@@ -3400,7 +3410,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_49_03
 msgid "ATM withdrawal"
-msgstr ""
+msgstr "Bankomatuttag"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_012
@@ -3418,7 +3428,7 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.account,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #. module: account_coda
 #: code:addons/account_coda/wizard/account_coda_import.py:724
@@ -3437,12 +3447,12 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_04_04
 msgid "Cash withdrawal from an ATM"
-msgstr ""
+msgstr "Kontantuttag från bankomat"
 
 #. module: account_coda
 #: field:coda.bank.statement,balance_end:0
 msgid "Balance"
-msgstr ""
+msgstr "Saldo"
 
 #. module: account_coda
 #: field:account.bank.statement,coda_statement_id:0
@@ -3457,7 +3467,7 @@ msgstr ""
 #. module: account_coda
 #: model:ir.ui.menu,name:account_coda.menu_manage_coda
 msgid "CODA Configuration"
-msgstr ""
+msgstr "CODA-konfiguration"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_07_39
@@ -3472,7 +3482,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_07_08
 msgid "Payment in advance"
-msgstr ""
+msgstr "Förbetalning"
 
 #. module: account_coda
 #: view:account.coda.import:0
@@ -3561,7 +3571,7 @@ msgstr ""
 #: field:account.coda.trans.code,description:0
 #: field:account.coda.trans.type,description:0
 msgid "Description"
-msgstr ""
+msgstr "Beskrivning"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_07_01
@@ -3596,7 +3606,7 @@ msgstr ""
 #. module: account_coda
 #: view:coda.bank.statement.line:0
 msgid "Debit Transactions."
-msgstr ""
+msgstr "Debettransaktioner"
 
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_80_33
@@ -3653,7 +3663,7 @@ msgstr ""
 #: view:coda.bank.statement.line:0
 #: field:coda.bank.statement.line,coda_bank_account_id:0
 msgid "Bank Account"
-msgstr ""
+msgstr "Bankkonto"
 
 #. module: account_coda
 #: model:account.coda.trans.code,comment:account_coda.actcc_13_56
@@ -3668,7 +3678,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.code,description:account_coda.actcc_01_62
 msgid "Unpaid postal order"
-msgstr ""
+msgstr "Obetald postorder"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_428
@@ -3683,7 +3693,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_401
 msgid "Visa charges"
-msgstr ""
+msgstr "Visa-kostnad"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_210
@@ -3700,7 +3710,7 @@ msgstr ""
 #. module: account_coda
 #: field:coda.bank.statement.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Sekvens"
 
 #. module: account_coda
 #: view:account.coda.import:0
@@ -3721,7 +3731,7 @@ msgstr ""
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_073
 msgid "Costs of ATM abroad"
-msgstr ""
+msgstr "Bankomatkostnad utomlands"
 
 #. module: account_coda
 #: model:account.coda.trans.category,description:account_coda.actrca_018

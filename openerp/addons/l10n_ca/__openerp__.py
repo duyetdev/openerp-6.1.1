@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name" : "Canada - Accounting",
-    "version" : "1.0",
+    "version" : "1.1",
     "author" : "Savoir-faire Linux",
     "website" : "http://www.savoirfairelinux.com",
     "category" : "Localization/Account Charts",
@@ -33,13 +33,11 @@ Canadian accounting charts and localizations.
     "depends" : ['base', 'account', 'base_iban', 'base_vat', 'account_chart'],
     "init_xml" : [],
     "update_xml" : [
-        'account_types_en.xml',
         'account_chart_en.xml',
         'account_tax_code_en.xml',
         'account_chart_template_en.xml',
         'account_tax_en.xml',
         'fiscal_templates_en.xml',
-        'account_types_fr.xml',
         'account_chart_fr.xml',
         'account_tax_code_fr.xml',
         'account_chart_template_fr.xml',

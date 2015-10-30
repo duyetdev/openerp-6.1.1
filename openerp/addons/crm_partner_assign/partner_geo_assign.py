@@ -19,30 +19,46 @@
 #
 ##############################################################################
 
+import urllib
+import random
+
+try:
+    import simplejson as json
+except ImportError:
+    import json     # noqa
+
 from osv import osv
 from osv import fields
-import urllib,re
-import random, time
 from tools.translate import _
 import tools
 
 def geo_find(addr):
-    addr = addr.encode('utf8')
-    regex = '<coordinates>([+-]?[0-9\.]+),([+-]?[0-9\.]+),([+-]?[0-9\.]+)</coordinates>'
-    url = 'http://maps.google.com/maps/geo?q=' + urllib.quote(addr) + '&output=xml&oe=utf8&sensor=false'
+    url = 'https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address='
+    url += urllib.quote(addr.encode('utf8'))
+
     try:
-        xml = urllib.urlopen(url).read()
+        result = json.load(urllib.urlopen(url))
     except Exception, e:
         raise osv.except_osv(_('Network error'),
                              _('Could not contact geolocation servers, please make sure you have a working internet connection (%s)') % e)
+    if result['status'] != 'OK':
+        return None
 
-    if '<error>' in xml:
+    try:
+        geo = result['results'][0]['geometry']['location']
+        return float(geo['lat']), float(geo['lng'])
+    except (KeyError, ValueError):
         return None
-    result = re.search(regex, xml, re.M|re.I)
-    if not result:
-        return None
-    return float(result.group(2)),float(result.group(1))
-    
+
+def geo_query_address(street=None, zip=None, city=None, state=None, country=None):
+    if country and ',' in country and (country.endswith(' of') or country.endswith(' of the')):
+        # put country qualifier in front, otherwise GMap gives wrong results,
+        # e.g. 'Congo, Democratic Republic of the' => 'Democratic Republic of the Congo' 
+        country = '{1} {0}'.format(*country.split(',',1)) 
+    return tools.ustr(', '.join(filter(None, [street, 
+                                              ("%s %s" % (zip or '', city or '')).strip(), 
+                                              state, 
+                                              country])))
 
 class res_partner_grade(osv.osv):
     _order = 'sequence'
@@ -88,16 +104,16 @@ class res_partner(osv.osv):
         'partner_weight': lambda *args: 0
     }
     def geo_localize(self, cr, uid, ids, context=None):
-        for partner in self.browse(cr, uid, ids, context=context):
+        # Don't pass context to browse()! We need country names in english below
+        for partner in self.browse(cr, uid, ids):
             if not partner.address:
                 continue
             contact = partner.address[0] #TOFIX: should be get latitude and longitude for default contact?
-            addr = ', '.join(filter(None, [
-                    contact.street, 
-                    "%s %s" % (contact.zip , contact.city), 
-                    contact.state_id and contact.state_id.name, 
-                    contact.country_id and contact.country_id.name]))
-            result = geo_find(tools.ustr(addr))
+            result = geo_find(geo_query_address(street=contact.street,
+                                                zip=contact.zip,
+                                                city=contact.city,
+                                                state=contact.state_id.name,
+                                                country=contact.country_id.name))
             if result:
                 self.write(cr, uid, [partner.id], {
                     'partner_latitude': result[0],
@@ -154,18 +170,16 @@ class crm_lead(osv.osv):
             self.write(cr, uid, [lead.id], {'date_assign': fields.date.context_today(self,cr,uid,context=context), 'partner_assigned_id': partner_id}, context=context)
         return res
 
-
     def assign_geo_localize(self, cr, uid, ids, latitude=False, longitude=False, context=None):
-        for lead in self.browse(cr, uid, ids, context=context):
+        # Don't pass context to browse()! We need country name in english below
+        for lead in self.browse(cr, uid, ids):
             if not lead.country_id:
                 continue
-            addr = ', '.join(filter(None, [
-                    lead.street, 
-                    "%s %s" % (lead.zip, lead.city), 
-                    lead.state_id and lead.state_id.name or '', 
-                    lead.country_id and lead.country_id.name or ''
-            ]))
-            result = geo_find(tools.ustr(addr))
+            result = geo_find(geo_query_address(street=lead.street,
+                                                zip=lead.zip,
+                                                city=lead.city,
+                                                state=lead.state_id.name,
+                                                country=lead.country_id.name))
             if not latitude and result:
                 latitude = result[0]
             if not longitude and result:
@@ -175,7 +189,7 @@ class crm_lead(osv.osv):
                 'partner_longitude': longitude
             }, context=context)
         return True
-        
+
     def search_geo_partner(self, cr, uid, ids, context=None):
         res_partner = self.pool.get('res.partner')
         res_partner_ids = {}
@@ -204,6 +218,14 @@ class crm_lead(osv.osv):
                         ('country', '=', lead.country_id.id),
                     ], context=context)
 
+                # 3. third way: in the same country, extra large area
+                if not partner_ids:
+                    partner_ids = res_partner.search(cr, uid, [
+                        ('partner_weight','>', 0),
+                        ('partner_latitude','>', latitude - 8), ('partner_latitude','<', latitude + 8),
+                        ('partner_longitude','>', longitude - 8), ('partner_longitude','<', longitude + 8),
+                        ('country', '=', lead.country_id.id),
+                    ], context=context)
 
                 # 5. fifth way: anywhere in same country
                 if not partner_ids:

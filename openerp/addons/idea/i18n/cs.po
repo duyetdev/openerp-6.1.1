@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:42+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:04+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 "X-Poedit-Language: Czech\n"
 
 #. module: idea
@@ -26,7 +26,7 @@ msgstr ""
 #. module: idea
 #: view:idea.idea:0
 msgid "By States"
-msgstr ""
+msgstr "Podle stavů"
 
 #. module: idea
 #: model:ir.actions.act_window,name:idea.action_idea_select
@@ -58,10 +58,7 @@ msgid "Ideas Analysis"
 msgstr "Analýza nápadů"
 
 #. module: idea
-#: view:idea.category:0
 #: view:idea.idea:0
-#: view:idea.vote:0
-#: view:report.vote:0
 msgid "Group By..."
 msgstr "Seskupit podle..."
 
@@ -73,7 +70,7 @@ msgstr "Březen"
 #. module: idea
 #: view:idea.idea:0
 msgid "Accepted Ideas"
-msgstr ""
+msgstr "Schválené nápady"
 
 #. module: idea
 #: code:addons/idea/wizard/idea_post_vote.py:94
@@ -84,7 +81,7 @@ msgstr "Nápad musí být ve stavu 'Otevřený' přes hlasováním pro tento ná
 #. module: idea
 #: view:report.vote:0
 msgid "Open Date"
-msgstr ""
+msgstr "Datum otevření"
 
 #. module: idea
 #: view:report.vote:0
@@ -239,7 +236,7 @@ msgstr "Stav"
 #: view:idea.idea:0
 #: selection:idea.idea,state:0
 msgid "New"
-msgstr ""
+msgstr "Nový"
 
 #. module: idea
 #: selection:idea.idea,my_vote:0
@@ -273,12 +270,12 @@ msgstr ""
 #. module: idea
 #: view:idea.idea:0
 msgid "New Ideas"
-msgstr ""
+msgstr "Nové nápady"
 
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote created last month"
-msgstr ""
+msgstr "Hlas nápadu vytvořený v posledním měsíci"
 
 #. module: idea
 #: field:idea.category,visibility:0
@@ -289,7 +286,7 @@ msgstr "Otevřít nápad?"
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote created in current month"
-msgstr ""
+msgstr "Hlas nápadu vytvořený v tomto měsíci"
 
 #. module: idea
 #: selection:report.vote,month:0
@@ -299,8 +296,6 @@ msgstr "Červenec"
 #. module: idea
 #: view:idea.idea:0
 #: selection:idea.idea,state:0
-#: view:report.vote:0
-#: selection:report.vote,idea_state:0
 msgid "Accepted"
 msgstr "Přijato"
 
@@ -369,18 +364,12 @@ msgstr "Měsíc"
 
 #. module: idea
 #: view:idea.idea:0
-#: model:ir.actions.act_window,name:idea.action_idea_idea_categ_open
-#: model:ir.actions.act_window,name:idea.action_idea_idea_open
 msgid "Open Ideas"
 msgstr "Otevřené nápady"
 
 #. module: idea
 #: view:idea.category:0
-#: field:idea.category,name:0
 #: view:idea.idea:0
-#: field:idea.idea,category_id:0
-#: view:report.vote:0
-#: field:report.vote,category_id:0
 msgid "Category"
 msgstr "Kategorie"
 
@@ -406,7 +395,7 @@ msgstr "Hlasy nápadů"
 #. module: idea
 #: view:idea.idea:0
 msgid "By Idea Category"
-msgstr ""
+msgstr "Podle kategorie nápadů"
 
 #. module: idea
 #: view:idea.idea:0
@@ -498,7 +487,7 @@ msgid "idea.idea"
 msgstr "idea.idea"
 
 #. module: idea
-#: field:idea.category,summary:0
+#: field:idea.idea,message_summary:0
 msgid "Summary"
 msgstr "Shrnutí"
 
@@ -524,8 +513,7 @@ msgstr "Datum objednávky"
 
 #. module: idea
 #: view:idea.idea:0
-#: field:idea.idea,user_id:0
-#: view:report.vote:0
+#: field:idea.idea,create_uid:0
 msgid "Creator"
 msgstr "Tvůrce"
 
@@ -543,7 +531,7 @@ msgstr "Nastavte na jedničku, pokud požadujete pouze jeden hlas na uživatele"
 #. module: idea
 #: view:idea.idea:0
 msgid "By Creators"
-msgstr ""
+msgstr "Podle tvůrce"
 
 #. module: idea
 #: view:idea.post.vote:0
@@ -562,9 +550,8 @@ msgstr "Otevřít"
 
 #. module: idea
 #: view:idea.idea:0
-#: view:report.vote:0
 msgid "In Progress"
-msgstr ""
+msgstr "V běhu"
 
 #. module: idea
 #: view:report.vote:0
@@ -576,7 +563,6 @@ msgstr "Analýza hlasování nápadu"
 #: model:ir.actions.act_window,name:idea.action_idea_idea
 #: model:ir.ui.menu,name:idea.menu_idea_idea
 #: model:ir.ui.menu,name:idea.menu_ideas
-#: model:ir.ui.menu,name:idea.menu_ideas1
 msgid "Ideas"
 msgstr "Nápady"
 
@@ -594,7 +580,7 @@ msgstr "Skóre"
 #. module: idea
 #: view:idea.idea:0
 msgid "Votes Statistics"
-msgstr ""
+msgstr "Statistika hlasů"
 
 #. module: idea
 #: view:idea.vote:0
@@ -602,9 +588,7 @@ msgid "Comments:"
 msgstr "Komentáře:"
 
 #. module: idea
-#: view:idea.category:0
 #: field:idea.idea,description:0
-#: field:idea.post.vote,note:0
 msgid "Description"
 msgstr "Popis"
 
@@ -615,7 +599,6 @@ msgstr "Květen"
 
 #. module: idea
 #: selection:idea.idea,state:0
-#: view:report.vote:0
 msgid "Refused"
 msgstr "Odmítnuto"
 
@@ -632,7 +615,7 @@ msgstr "Únor"
 #. module: idea
 #: field:idea.category,complete_name:0
 msgid "Name"
-msgstr ""
+msgstr "Jméno"
 
 #. module: idea
 #: field:idea.vote.stat,nbr:0
@@ -642,7 +625,7 @@ msgstr "Počet hlasů"
 #. module: idea
 #: view:report.vote:0
 msgid "Month-1"
-msgstr ""
+msgstr "Měsíc -1"
 
 #. module: idea
 #: selection:report.vote,month:0
@@ -662,7 +645,7 @@ msgstr "Stav hlasu"
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote created in current year"
-msgstr ""
+msgstr "Hlasy nápadu vytvořené v tomto roce"
 
 #. module: idea
 #: field:idea.idea,vote_avg:0
@@ -672,17 +655,10 @@ msgstr "Průměrné skóre"
 #. module: idea
 #: constraint:idea.category:0
 msgid "Error ! You cannot create recursive categories."
-msgstr ""
+msgstr "Chyba ! Nemůžete vytvořit rekurzivní Kategorie."
 
 #. module: idea
-#: field:idea.comment,idea_id:0
-#: field:idea.select,idea_id:0
-#: view:idea.vote:0
-#: field:idea.vote,idea_id:0
-#: field:idea.vote.stat,idea_id:0
-#: model:ir.ui.menu,name:idea.menu_idea_reporting
-#: view:report.vote:0
-#: field:report.vote,idea_id:0
+#: view:idea.idea:0
 msgid "Idea"
 msgstr "Nápad"
 
@@ -706,7 +682,7 @@ msgstr "Rok"
 #: code:addons/idea/idea.py:274
 #, python-format
 msgid "You can not vote on a Draft/Accepted/Cancelled ideas."
-msgstr ""
+msgstr "Nemůžete hlasovat pro rozpracované/schválené/zrušené nápady."
 
 #. module: idea
 #: view:idea.select:0

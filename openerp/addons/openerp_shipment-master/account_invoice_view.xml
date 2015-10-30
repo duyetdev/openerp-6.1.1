@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!-- Adding the fields from product.product to the screen
+        <record id="view_partner_form_inherited" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="is_company" position="before">
+                    <field name="is_freight_forwarder" attrs="{'invisible': [('customer', '=', 1)]}"/>
+                    <label for="is_freight_forwarder" string="Is a Forwarder?" attrs="{'invisible': [('customer', '=', 1)]}"/>
+
+                    <field name="is_carrier" attrs="{'invisible': [('customer', '=', 1)]}"/>
+                    <label for="is_carrier" string="Is a Carrier?" attrs="{'invisible': [('customer', '=', 1)]}"/>
+                </field>
+            </field>
+        </record>-->
+
+        <!-- Update customer invoice  !-->
+        <record model="ir.ui.view" id="view_account_invoice_form_inherited">
+            <field name="name">account.invoice.form.inherited</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                 <field name="journal_id" position="after">
+                    <field name="shipment_id" attrs=""/>
+
+                </field>
+            </field>
+        </record>
+
+        <!-- Update supplier invoice  !-->
+        <record model="ir.ui.view" id="view_account_invoice_form_inherited">
+            <field name="name">account.invoice.form.inherited</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                 <field name="journal_id" position="after">
+                    <field name="shipment_id" attrs=""/>
+
+                </field>
+            </field>
+        </record>
+
+
+        <!-- Update customer invoice search  !-->
+        <record id="view_account_invoice_filter_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.groupby</field>
+            <field name="model">account.invoice</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="field[@name='number']" position="after">
+                    <field name="shipment_id" filter_domain="[('shipment_id', '=', self)]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

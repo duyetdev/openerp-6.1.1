@@ -173,6 +173,8 @@ class db(netsvc.ExportService):
                 raise Exception, e
 
     def exp_drop(self, db_name):
+        if not self.exp_db_exist(db_name):
+            return False
         openerp.modules.registry.RegistryManager.delete(db_name)
         sql_db.close_db(db_name)
 
@@ -180,6 +182,17 @@ class db(netsvc.ExportService):
         cr = db.cursor()
         cr.autocommit(True) # avoid transaction block
         try:
+            # Try to terminate all other connections that might prevent
+            # dropping the database
+            try:
+                cr.execute("""SELECT pg_terminate_backend(procpid)
+                              FROM pg_stat_activity
+                              WHERE datname = %s AND 
+                                    procpid != pg_backend_pid()""",
+                           (db_name,))
+            except Exception:
+                pass
+
             try:
                 cr.execute('DROP DATABASE "%s"' % db_name)
             except Exception, e:
@@ -568,8 +581,10 @@ class objects_proxy(netsvc.ExportService):
             raise NameError("Method not available %s" % method)
         security.check(db,uid,passwd)
         assert openerp.osv.osv.service, "The object_proxy class must be started with start_object_proxy."
+        openerp.modules.registry.RegistryManager.check_registry_signaling(db)
         fn = getattr(openerp.osv.osv.service, method)
         res = fn(db, uid, *params)
+        openerp.modules.registry.RegistryManager.signal_caches_change(db)
         return res
 
 
@@ -649,8 +664,10 @@ class report_spool(netsvc.ExportService):
         if method not in ['report', 'report_get', 'render_report']:
             raise KeyError("Method not supported %s" % method)
         security.check(db,uid,passwd)
+        openerp.modules.registry.RegistryManager.check_registry_signaling(db)
         fn = getattr(self, 'exp_' + method)
         res = fn(db, uid, *params)
+        openerp.modules.registry.RegistryManager.signal_caches_change(db)
         return res
 
     def exp_render_report(self, db, uid, object, ids, datas=None, context=None):

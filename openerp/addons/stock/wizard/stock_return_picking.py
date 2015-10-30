@@ -100,7 +100,7 @@ class stock_return_picking(osv.osv_memory):
             valid_lines = 0
             return_history = self.get_return_history(cr, uid, record_id, context)
             for m  in pick.move_lines:
-                if m.product_qty * m.product_uom.factor > return_history[m.id]:
+                if (return_history.get(m.id) is not None) and (m.product_qty * m.product_uom.factor > return_history[m.id]):
                         valid_lines += 1
             if not valid_lines:
                 raise osv.except_osv(_('Warning !'), _("There are no products to return (only lines in Done state and not fully returned yet can be returned)!"))
@@ -123,7 +123,13 @@ class stock_return_picking(osv.osv_memory):
             if m.state == 'done':
                 return_history[m.id] = 0
                 for rec in m.move_history_ids2:
-                    return_history[m.id] += (rec.product_qty * rec.product_uom.factor)
+                    # only take into account 'product return' moves, ignoring any other
+                    # kind of upstream moves, such as internal procurements, etc.
+                    # a valid return move will be the exact opposite of ours:
+                    #     (src location, dest location) <=> (dest location, src location))
+                    if rec.location_dest_id.id == m.location_id.id \
+                        and rec.location_id.id == m.location_dest_id.id:
+                        return_history[m.id] += (rec.product_qty * rec.product_uom.factor)
         return return_history
 
     def create_returns(self, cr, uid, ids, context=None):
@@ -158,7 +164,9 @@ class stock_return_picking(osv.osv_memory):
             new_type = 'out'
         else:
             new_type = 'internal'
-        new_picking = pick_obj.copy(cr, uid, pick.id, {'name':'%s-return' % pick.name,
+        seq_obj_name = 'stock.picking.' + new_type
+        new_pick_name = self.pool.get('ir.sequence').get(cr, uid, seq_obj_name)
+        new_picking = pick_obj.copy(cr, uid, pick.id, {'name':'%s-%s-return' % (new_pick_name, pick.name),
                 'move_lines':[], 'state':'draft', 'type':new_type,
                 'date':date_cur, 'invoice_state':data['invoice_state'],})
         
@@ -194,23 +202,22 @@ class stock_return_picking(osv.osv_memory):
         pick_obj.force_assign(cr, uid, [new_picking], context)
         # Update view id in context, lp:702939
         view_list = {
-                'out': 'view_picking_out_tree',
-                'in': 'view_picking_in_tree',
-                'internal': 'vpicktree',
-            }
-        data_obj = self.pool.get('ir.model.data')
-        res = data_obj.get_object_reference(cr, uid, 'stock', view_list.get(new_type, 'vpicktree'))
-        context.update({'view_id': res and res[1] or False})
-        return {
-            'domain': "[('id', 'in', ["+str(new_picking)+"])]",
-            'name': 'Picking List',
-            'view_type':'form',
-            'view_mode':'tree,form',
-            'res_model':'stock.picking',
-            'type':'ir.actions.act_window',
-            'context':context,
+            'out': 'action_picking_tree',
+            'in': 'action_picking_tree4',
+            'internal': 'action_picking_tree6',
         }
-
+        data_pool = self.pool.get('ir.model.data')
+        action = {}
+        try:
+            action_model,action_id = data_pool.get_object_reference(cr, uid, 'stock', view_list.get(new_type,'action_picking_tree6'))
+        except ValueError:
+            raise osv.except_osv(_('Error'), _('Object reference %s not found' % view_list.get(new_type,'action_picking_tree6')))
+        if action_model:
+            action_pool = self.pool.get(action_model)
+            action = action_pool.read(cr, uid, action_id, context=context)
+            action['domain'] = "[('id','=', "+str(new_picking)+")]"
+            action['context'] = context
+        return action
 stock_return_picking()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

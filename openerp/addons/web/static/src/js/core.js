@@ -3,7 +3,13 @@
  *--------------------------------------------------------*/
 var console;
 if (!console) {
-    console = {log: function () {}};
+    console = {};
+    var noop = function () {};
+    _.each('log error debug info warn assert clear dir dirxml trace group \
+            groupCollapsed groupEnd time timeEnd profile profileEnd count \
+            exception'.split(/\s+/), function (property) {
+        console[property] = noop;
+    });
 }
 if (!console.debug) {
     console.debug = console.log;
@@ -42,7 +48,6 @@ openerp.web.core = function(openerp) {
         for (var name in prop) {
             // Check if we're overwriting an existing function
             prototype[name] = typeof prop[name] == "function" &&
-                              typeof _super[name] == "function" &&
                               fnTest.test(prop[name]) ?
                     (function(name, fn) {
                         return function() {
@@ -568,19 +573,19 @@ openerp.web.Connection = openerp.web.CallbackEnabled.extend( /** @lends openerp.
         } else {
             // Indirect jsonp request
             var ifid = _.uniqueId('oe_rpc_iframe');
-            var display = options.openerp.debug ? 'block' : 'none';
+            var display = this.debug ? 'block' : 'none';
             var $iframe = $(_.str.sprintf("<iframe src='javascript:false;' name='%s' id='%s' style='display:%s'></iframe>", ifid, ifid, display));
             var $form = $('<form>')
                         .attr('method', 'POST')
                         .attr('target', ifid)
                         .attr('enctype', "multipart/form-data")
-                        .attr('action', ajax.url + '?' + $.param(data))
+                        .attr('action', ajax.url + '?jsonp=1&' + $.param(data))
                         .append($('<input type="hidden" name="r" />').attr('value', payload_str))
                         .hide()
                         .appendTo($('body'));
             var cleanUp = function() {
                 if ($iframe) {
-                    $iframe.unbind("load").attr("src", "javascript:false;").remove();
+                    $iframe.unbind("load").remove();
                 }
                 $form.remove();
             };
@@ -744,6 +749,14 @@ openerp.web.Connection = openerp.web.CallbackEnabled.extend( /** @lends openerp.
                         var file_list = ["/web/static/lib/datejs/globalization/" + lang.replace("_", "-") + ".js"];
                         return self.rpc('/web/webclient/jslist', {mods: to_load}).pipe(function(files) {
                             return self.do_load_js(file_list.concat(files));
+                        }).then(function () {
+                            if (!Date.CultureInfo.pmDesignator) {
+                                // If no am/pm designator is specified but the openerp
+                                // datetime format uses %i, date.js won't be able to
+                                // correctly format a date. See bug#938497.
+                                Date.CultureInfo.amDesignator = 'AM';
+                                Date.CultureInfo.pmDesignator = 'PM';
+                            }
                         });
                     }))
             }

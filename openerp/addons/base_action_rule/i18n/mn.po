@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: OpenERP Administrators <Unknown>\n"
+"PO-Revision-Date: 2012-07-29 17:15+0000\n"
+"Last-Translator: gobi <Unknown>\n"
 "Language-Team: Mongolian <mn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:22+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 06:50+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: base_action_rule
 #: help:base.action.rule,act_mail_to_user:0
@@ -77,7 +77,7 @@ msgstr "Өдөр"
 #. module: base_action_rule
 #: field:base.action.rule,last_run:0
 msgid "Last Run"
-msgstr ""
+msgstr "Сүүлд Ажилласан"
 
 #. module: base_action_rule
 #: code:addons/base_action_rule/base_action_rule.py:328
@@ -127,7 +127,7 @@ msgid "Deadline"
 msgstr "Товлосон хугацаа"
 
 #. module: base_action_rule
-#: field:base.action.rule,trg_partner_id:0
+#: field:base.action.rule.lead.test,partner_id:0
 msgid "Partner"
 msgstr "Харилцагч"
 
@@ -159,11 +159,15 @@ msgid ""
 "specific sales team, or an opportunity which still has status pending after "
 "14 days might trigger an automatic reminder email."
 msgstr ""
+"Төрөл бүрийн дэлгэцэнд үйлдлийг автоматаар ажиллуулахын тулд автомат "
+"үйлдлүүдийг ашигла. Жишээлбэл: тодорхой хэрэглэгчийн үүсгэсэн сэжим нь "
+"тодорхой борлуулалтын багийг тохируулах, эсвэл 14 хоног хүлээгдэж байгаа "
+"боломж нь сануулга имэйл илгээх зэрэг үйлдлүүд байж болох юм."
 
 #. module: base_action_rule
 #: help:base.action.rule,act_mail_to_email:0
 msgid "Email-id of the persons whom mail is to be sent"
-msgstr ""
+msgstr "Имэйл илгээх шаардлагатай хүмүүсийн Email-id"
 
 #. module: base_action_rule
 #: view:base.action.rule:0
@@ -226,6 +230,8 @@ msgid ""
 "Use a python expression to specify the right field on which one than we will "
 "use for the 'To' field of the header"
 msgstr ""
+"Толгойны 'Хэнд' талбар дээр хэрэглэх  зөв талбарыг зааж өгөх Python "
+"илэрхийллэг ашигла"
 
 #. module: base_action_rule
 #: view:base.action.rule:0
@@ -238,6 +244,8 @@ msgid ""
 "The rule uses the AND operator. The model must match all non-empty fields so "
 "that the rule executes the action described in the 'Actions' tab."
 msgstr ""
+"Дүрэм нь AND буюу БА операторыг хэрэглэж байна. Модель нь хоосон биш бүх "
+"талбарыг тулгах ёстой, иймээс 'Үйлдлүүд' хавтас дахь үйлдлийг ажиллуулна."
 
 #. module: base_action_rule
 #: field:base.action.rule,trg_date_range_type:0
@@ -252,6 +260,9 @@ msgid ""
 "string 'urgent'\n"
 "Note: This is case sensitive search."
 msgstr ""
+"Нөөцийн нэрийг тулгах Regular expression\n"
+"ө.х.: 'urgent.*' нь 'urgent'-р эхэлсэн бичлэгүүдийг хайна\n"
+"Анхаарах нь: Энэ нь том жижиг үсэг ялгадаг хайлт."
 
 #. module: base_action_rule
 #: field:base.action.rule,act_method:0
@@ -269,6 +280,8 @@ msgid ""
 "Check this if you want the rule to mark CC(mail to any other person defined "
 "in actions)."
 msgstr ""
+"Хэрэв дүрэм нь CC-г тэмдэглэхээр бол үүнийг тэмдэгл (үйлдэлд тодорхойлогдсон "
+"өөр хүмүүсрүү мэйл илгээх)"
 
 #. module: base_action_rule
 #: view:base.action.rule:0
@@ -286,6 +299,8 @@ msgid ""
 "Use a python expression to specify the right field on which one than we will "
 "use for the 'From' field of the header"
 msgstr ""
+"Толгойны 'Хаанаас' талбар дээр хэрэглэх  зөв талбарыг зааж өгөх Python "
+"илэрхийллэг ашигла"
 
 #. module: base_action_rule
 #: field:base.action.rule,trg_date_range:0
@@ -310,6 +325,7 @@ msgstr ""
 
 #. module: base_action_rule
 #: field:base.action.rule,active:0
+#: field:base.action.rule.lead.test,active:0
 msgid "Active"
 msgstr "Идэвхитэй"
 
@@ -366,7 +382,7 @@ msgstr "%(object_description)s = Object description"
 #. module: base_action_rule
 #: constraint:base.action.rule:0
 msgid "Error: The mail is not well formated"
-msgstr ""
+msgstr "Алдаа: Мэйл сайн форматтай биш байна"
 
 #. module: base_action_rule
 #: view:base.action.rule:0
@@ -389,7 +405,7 @@ msgid "Content of mail"
 msgstr "Имэйлийн агуулга"
 
 #. module: base_action_rule
-#: field:base.action.rule,trg_user_id:0
+#: field:base.action.rule.lead.test,user_id:0
 msgid "Responsible"
 msgstr "Хариуцлагатай"
 
@@ -447,14 +463,14 @@ msgid "Automated Actions"
 msgstr "Үйл ажиллагааны автоматжуулалт"
 
 #. module: base_action_rule
-#: field:base.action.rule,server_action_id:0
+#: field:base.action.rule,server_action_ids:0
 msgid "Server Action"
 msgstr "Үйлдвэр үйлчилгээ"
 
 #. module: base_action_rule
 #: field:base.action.rule,regex_name:0
 msgid "Regex on Resource Name"
-msgstr ""
+msgstr "Нөөцийн нэр дээрх Regex"
 
 #. module: base_action_rule
 #: help:base.action.rule,act_remind_attach:0
@@ -502,6 +518,6 @@ msgid "Conditions on States"
 msgstr "Нөхцөл байдал"
 
 #. module: base_action_rule
-#: field:base.action.rule,trg_date_type:0
+#: field:base.action.rule,trg_date_id:0
 msgid "Trigger Date"
 msgstr "Гарааны огноо"

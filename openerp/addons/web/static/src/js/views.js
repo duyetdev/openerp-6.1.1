@@ -49,6 +49,7 @@ session.web.ActionManager = session.web.OldWidget.extend({
     do_push_state: function(state) {
         if (this.widget_parent && this.widget_parent.do_push_state) {
             if (this.inner_action) {
+                state['title'] = this.inner_action.name;
                 state['model'] = this.inner_action.res_model;
                 if (this.inner_action.id) {
                     state['action_id'] = this.inner_action.id;
@@ -364,6 +365,7 @@ session.web.ViewManager =  session.web.OldWidget.extend(/** @lends session.web.V
      * @returns {$.Deferred} switching end signal
      */
     on_prev_view: function (options) {
+        options = options || {};
         var current_view = this.views_history.pop();
         var previous_view = this.views_history[this.views_history.length - 1] || options['default'];
         if (options.created && current_view === 'form' && previous_view === 'list') {
@@ -408,6 +410,9 @@ session.web.ViewManager =  session.web.OldWidget.extend(/** @lends session.web.V
             var groupby = results.group_by.length
                         ? results.group_by
                         : action_context.group_by;
+            if (_.isString(groupby)) {
+                groupby = [groupby];
+            }
             controller.do_search(results.domain, results.context, groupby || []);
         });
     },
@@ -959,8 +964,8 @@ session.web.TranslateDialog = session.web.Dialog.extend({
         // TODO fme: should add the language to fields_view_get because between the fields view get
         // and the moment the user opens the translation dialog, the user language could have been changed
         this.view_language = view.session.user_context.lang;
-        this['on_button' + _t("Save")] = this.on_button_Save;
-        this['on_button' + _t("Close")] = this.on_button_Close;
+        this['on_button_' + _t("Save")] = this.on_btn_save;
+        this['on_button_' + _t("Close")] = this.on_btn_close;
         this._super(view, {
             width: '80%',
             height: '80%'
@@ -1041,16 +1046,18 @@ session.web.TranslateDialog = session.web.Dialog.extend({
             }
         });
     },
-    on_button_Save: function() {
+    on_btn_save: function() {
         var trads = {},
             self = this,
             trads_mutex = new $.Mutex();
-        self.$fields_form.find('.oe_trad_field.touched').each(function() {
-            var field = $(this).attr('name').split('-');
-            if (!trads[field[0]]) {
-                trads[field[0]] = {};
-            }
-            trads[field[0]][field[1]] = $(this).val();
+        self.$fields_form.find('.oe_trad_field.touched').parents('tr').each(function() {
+            $(this).find('.oe_trad_field').each(function() {
+                var field = $(this).attr('name').split('-');
+                if (!trads[field[0]]) {
+                    trads[field[0]] = {};
+                }
+                trads[field[0]][field[1]] = $(this).val();
+            });
         });
         _.each(trads, function(data, code) {
             if (code === self.view_language) {
@@ -1064,7 +1071,7 @@ session.web.TranslateDialog = session.web.Dialog.extend({
         });
         this.close();
     },
-    on_button_Close: function() {
+    on_btn_close: function() {
         this.close();
     }
 });
@@ -1161,7 +1168,11 @@ session.web.View = session.web.Widget.extend(/** @lends session.web.View# */{
             args.push(context);
             return dataset.call_button(action_data.name, args, handler);
         } else if (action_data.type=="action") {
-            return this.rpc('/web/action/load', { action_id: parseInt(action_data.name, 10), context: context, do_not_eval: true}, handler);
+            return this.rpc('/web/action/load', {
+                action_id: parseInt(action_data.name, 10),
+                context: context,
+                do_not_eval: true
+            }).then(handler);
         } else  {
             return dataset.exec_workflow(record_id, action_data.name, handler);
         }

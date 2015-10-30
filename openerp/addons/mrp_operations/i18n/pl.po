@@ -7,18 +7,17 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: OpenERP Administrators <Unknown>\n"
+"PO-Revision-Date: 2012-02-25 21:40+0000\n"
+"Last-Translator: Grzegorz Grzelak (OpenGLOBE.pl) <grzegorz@openglobe.pl>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:50+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:09+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: mrp_operations
 #: model:ir.actions.act_window,name:mrp_operations.mrp_production_wc_action_form
-#: model:ir.ui.menu,name:mrp_operations.menu_mrp_production_wc_action_planning
 #: model:ir.ui.menu,name:mrp_operations.menu_mrp_production_wc_order
 #: view:mrp.production.workcenter.line:0
 #: view:mrp.workorder:0
@@ -26,10 +25,10 @@ msgid "Work Orders"
 msgstr "Zlecenie operacji"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:489
+#: code:addons/mrp_operations/mrp_operations.py:484
 #, python-format
 msgid "Operation is already finished!"
-msgstr ""
+msgstr "Operacja jest zakończona!"
 
 #. module: mrp_operations
 #: model:process.node,note:mrp_operations.process_node_canceloperation0
@@ -59,7 +58,6 @@ msgstr "Marzec"
 
 #. module: mrp_operations
 #: model:ir.actions.act_window,name:mrp_operations.mrp_production_wc_resource_planning
-#: model:ir.ui.menu,name:mrp_operations.menu_mrp_production_wc_resource_planning
 msgid "Work Centers"
 msgstr "Centra robocze"
 
@@ -88,7 +86,7 @@ msgstr "Operacja produkcji"
 #. module: mrp_operations
 #: view:mrp.production:0
 msgid "Set to Draft"
-msgstr ""
+msgstr "Ustaw na projekt"
 
 #. module: mrp_operations
 #: field:mrp.production,allow_reorder:0
@@ -114,7 +112,7 @@ msgstr "Dzień"
 #. module: mrp_operations
 #: view:mrp.production:0
 msgid "Cancel Order"
-msgstr ""
+msgstr "Anuluj zamówienie"
 
 #. module: mrp_operations
 #: model:process.node,name:mrp_operations.process_node_productionorder0
@@ -150,10 +148,10 @@ msgstr "Zlecenia operacji są tworzone na podstawie zamówienia produkcji"
 
 #. module: mrp_operations
 #: code:addons/mrp_operations/mrp_operations.py:134
-#: code:addons/mrp_operations/mrp_operations.py:470
-#: code:addons/mrp_operations/mrp_operations.py:474
-#: code:addons/mrp_operations/mrp_operations.py:486
-#: code:addons/mrp_operations/mrp_operations.py:489
+#: code:addons/mrp_operations/mrp_operations.py:465
+#: code:addons/mrp_operations/mrp_operations.py:469
+#: code:addons/mrp_operations/mrp_operations.py:481
+#: code:addons/mrp_operations/mrp_operations.py:484
 #, python-format
 msgid "Error!"
 msgstr "Błąd!"
@@ -172,10 +170,10 @@ msgid "There is no Operation to be cancelled!"
 msgstr ""
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:482
+#: code:addons/mrp_operations/mrp_operations.py:477
 #, python-format
 msgid "Operation is Already Cancelled!"
-msgstr ""
+msgstr "Operacja jest już anulowana!"
 
 #. module: mrp_operations
 #: model:ir.actions.act_window,name:mrp_operations.mrp_production_operation_action
@@ -189,11 +187,11 @@ msgid "Stock Move"
 msgstr "Przesunięcie zapasu"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:479
+#: code:addons/mrp_operations/mrp_operations.py:474
 #, python-format
 msgid ""
 "In order to Finish the operation, it must be in the Start or Resume state!"
-msgstr ""
+msgstr "Aby zakończyć operację, to musi być ona w stanie Start lub Wznów."
 
 #. module: mrp_operations
 #: field:mrp.workorder,nbr:0
@@ -202,9 +200,8 @@ msgstr "# pozycji"
 
 #. module: mrp_operations
 #: view:mrp.production:0
-#: view:mrp.production.workcenter.line:0
 msgid "Finish Order"
-msgstr ""
+msgstr "Zakończ zlecenie"
 
 #. module: mrp_operations
 #: field:mrp.production.workcenter.line,date_finished:0
@@ -262,7 +259,7 @@ msgstr "JM"
 #. module: mrp_operations
 #: constraint:stock.move:0
 msgid "You can not move products from or to a location of the type view."
-msgstr ""
+msgstr "Nie można przesuwać produktów do lub ze strefy typu widok."
 
 #. module: mrp_operations
 #: view:mrp.production.workcenter.line:0
@@ -279,7 +276,7 @@ msgstr "Ilość produktu"
 #: code:addons/mrp_operations/mrp_operations.py:134
 #, python-format
 msgid "Manufacturing order cannot start in state \"%s\"!"
-msgstr ""
+msgstr "Zamówienie produkcji nie może być rozpoczęte w stanie \"%s\"!"
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -292,6 +289,10 @@ msgid "Operation Name"
 msgstr "Nazwa operacji"
 
 #. module: mrp_operations
+#: view:mrp.production.workcenter.line:0
+#: field:mrp.production.workcenter.line,state:0
+#: view:mrp.workorder:0
+#: field:mrp.workorder,state:0
 #: field:mrp_operations.operation.code,start_stop:0
 msgid "Status"
 msgstr "Stan"
@@ -309,7 +310,7 @@ msgstr ""
 #. module: mrp_operations
 #: view:mrp.workorder:0
 msgid "Planned Year"
-msgstr ""
+msgstr "Planowany rok"
 
 #. module: mrp_operations
 #: field:mrp_operations.operation,order_date:0
@@ -329,7 +330,7 @@ msgstr ""
 #. module: mrp_operations
 #: help:mrp.production.workcenter.line,delay:0
 msgid "The elapsed time between operation start and stop in this Work Center"
-msgstr ""
+msgstr "Czas pomiędzy rozpoczęciem a zakończeniem operacji."
 
 #. module: mrp_operations
 #: model:process.node,name:mrp_operations.process_node_canceloperation0
@@ -338,9 +339,8 @@ msgstr "Operację anulowano"
 
 #. module: mrp_operations
 #: view:mrp.production:0
-#: view:mrp.production.workcenter.line:0
 msgid "Pause Work Order"
-msgstr ""
+msgstr "Wstrzymaj operację"
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -376,11 +376,10 @@ msgstr "Raport zleceń operacji"
 #. module: mrp_operations
 #: constraint:mrp.production:0
 msgid "Order quantity cannot be negative or zero!"
-msgstr ""
+msgstr "Ilość zamówienia nie może byc ujemna lub zero !"
 
 #. module: mrp_operations
 #: field:mrp.production.workcenter.line,date_start:0
-#: field:mrp.production.workcenter.line,date_start_date:0
 #: field:mrp_operations.operation,date_start:0
 msgid "Start Date"
 msgstr "Data początkowa"
@@ -409,17 +408,17 @@ msgid "In Progress"
 msgstr "W toku"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:470
+#: code:addons/mrp_operations/mrp_operations.py:465
 #, python-format
 msgid ""
 "In order to Pause the operation, it must be in the Start or Resume state!"
-msgstr ""
+msgstr "Aby wstrzymać operację, to musi być ona w stanie Start lub Wznów!"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:474
+#: code:addons/mrp_operations/mrp_operations.py:469
 #, python-format
 msgid "In order to Resume the operation, it must be in the Pause state!"
-msgstr ""
+msgstr "Aby wznowić operację, to musi być ona w stanie Wstrzymaj!"
 
 #. module: mrp_operations
 #: view:mrp.production:0
@@ -486,7 +485,7 @@ msgstr ""
 #. module: mrp_operations
 #: view:mrp.workorder:0
 msgid "Planned Day"
-msgstr ""
+msgstr "Planowany dzień"
 
 #. module: mrp_operations
 #: selection:mrp.workorder,month:0
@@ -542,9 +541,8 @@ msgstr "Styczeń"
 
 #. module: mrp_operations
 #: view:mrp.production:0
-#: view:mrp.production.workcenter.line:0
 msgid "Resume Work Order"
-msgstr ""
+msgstr "Wznół operację"
 
 #. module: mrp_operations
 #: model:process.node,note:mrp_operations.process_node_doneoperation0
@@ -552,7 +550,7 @@ msgid "Finish the operation."
 msgstr "Skończ operację."
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:459
+#: code:addons/mrp_operations/mrp_operations.py:454
 #, python-format
 msgid "Operation is not started yet !"
 msgstr "Operacja nie została jeszcze uruchomiona !"
@@ -565,13 +563,13 @@ msgstr "Infromacja z zamówienia produkcji."
 #. module: mrp_operations
 #: sql_constraint:mrp.production:0
 msgid "Reference must be unique per Company!"
-msgstr ""
+msgstr "Odnośnik musi być unikalny w firmie!"
 
 #. module: mrp_operations
-#: code:addons/mrp_operations/mrp_operations.py:459
-#: code:addons/mrp_operations/mrp_operations.py:466
-#: code:addons/mrp_operations/mrp_operations.py:479
-#: code:addons/mrp_operations/mrp_operations.py:482
+#: code:addons/mrp_operations/mrp_operations.py:454
+#: code:addons/mrp_operations/mrp_operations.py:461
+#: code:addons/mrp_operations/mrp_operations.py:474
+#: code:addons/mrp_operations/mrp_operations.py:477
 #, python-format
 msgid "Sorry!"
 msgstr "Przepraszamy!"
@@ -620,7 +618,6 @@ msgid "Start/Stop Barcode"
 msgstr "Kod kreskowy Start/Stop"
 
 #. module: mrp_operations
-#: view:mrp.production:0
 #: view:mrp.production.workcenter.line:0
 msgid "Cancel"
 msgstr "Anuluj"
@@ -676,7 +673,7 @@ msgstr "Produkcja"
 #. module: mrp_operations
 #: view:mrp.production.workcenter.line:0
 msgid "Search Work Orders"
-msgstr ""
+msgstr "Szukaj zleceń"
 
 #. module: mrp_operations
 #: view:mrp.production.workcenter.line:0
@@ -725,7 +722,7 @@ msgstr ""
 #. module: mrp_operations
 #: model:ir.ui.menu,name:mrp_operations.menu_report_mrp_workorders_tree
 msgid "Work Order Analysis"
-msgstr ""
+msgstr "Analiza zleceń operacji"
 
 #. module: mrp_operations
 #: view:mrp.production:0
@@ -787,9 +784,8 @@ msgstr ""
 
 #. module: mrp_operations
 #: view:mrp.production:0
-#: view:mrp.production.workcenter.line:0
 msgid "Start Working"
-msgstr ""
+msgstr "Rozpocznij pracę"
 
 #. module: mrp_operations
 #: model:process.transition,note:mrp_operations.process_transition_startdoneoperation0

@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Aline (OpenERP) <Unknown>\n"
+"PO-Revision-Date: 2012-03-09 22:50+0000\n"
+"Last-Translator: t.o <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:37+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:00+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: hr_attendance
 #: model:ir.ui.menu,name:hr_attendance.menu_hr_time_tracking
@@ -121,9 +121,7 @@ msgid "Define attendance reason"
 msgstr "Définir les motifs de pointage"
 
 #. module: hr_attendance
-#: code:addons/hr_attendance/report/attendance_by_month.py:184
 #: model:ir.actions.act_window,name:hr_attendance.action_hr_attendance_month
-#, python-format
 msgid "Attendances By Month"
 msgstr "Présences par mois"
 
@@ -155,7 +153,7 @@ msgid "Ending Date"
 msgstr "Date de fin"
 
 #. module: hr_attendance
-#: code:addons/hr_attendance/hr_attendance.py:140
+#: code:addons/hr_attendance/hr_attendance.py:161
 #, python-format
 msgid "Warning"
 msgstr "Avertissement"
@@ -173,6 +171,7 @@ msgid "A sign-in must be right after a sign-out !"
 msgstr "Un pointage en entrée doit être précédé d'un pointage en sortie !"
 
 #. module: hr_attendance
+#: view:hr.attendance:0
 #: field:hr.employee,state:0
 #: model:ir.model,name:hr_attendance.model_hr_attendance
 msgid "Attendance"
@@ -198,7 +197,7 @@ msgstr "Recherche sur les temps de présences"
 #. module: hr_attendance
 #: model:ir.actions.act_window,name:hr_attendance.action_hr_attendance_week
 msgid "Attendances By Week"
-msgstr ""
+msgstr "Présences par semaine"
 
 #. module: hr_attendance
 #: constraint:hr.attendance:0
@@ -230,8 +229,10 @@ msgid "Min Delay"
 msgstr "Retard min"
 
 #. module: hr_attendance
+#: code:addons/hr_attendance/hr_attendance.py:154
 #: selection:hr.attendance,action:0
 #: view:hr.employee:0
+#, python-format
 msgid "Sign In"
 msgstr "Pointer l'entrée"
 
@@ -264,7 +265,7 @@ msgstr "Mois"
 #. module: hr_attendance
 #: field:hr.action.reason,action_type:0
 msgid "Action Type"
-msgstr ""
+msgstr "Type d'action"
 
 #. module: hr_attendance
 #: report:report.hr.timesheet.attendance.error:0
@@ -276,7 +277,7 @@ msgstr ""
 #. module: hr_attendance
 #: view:hr.attendance:0
 msgid "My Attendance"
-msgstr ""
+msgstr "Mes présences"
 
 #. module: hr_attendance
 #: help:hr.attendance,action_desc:0
@@ -315,7 +316,7 @@ msgstr "hr.sign.out.ask"
 #. module: hr_attendance
 #: view:hr.attendance.week:0
 msgid "Print Attendance Report Weekly"
-msgstr ""
+msgstr "Imprimer le rapport de présence hebdomadaire"
 
 #. module: hr_attendance
 #: selection:hr.attendance.month,month:0
@@ -366,8 +367,6 @@ msgstr "Janvier"
 
 #. module: hr_attendance
 #: selection:hr.action.reason,action_type:0
-#: view:hr.sign.in.out:0
-#: view:hr.sign.in.out.ask:0
 msgid "Sign in"
 msgstr "Pointer l'entrée"
 
@@ -421,8 +420,6 @@ msgstr "Identifiant de l'employé"
 #: view:hr.attendance.error:0
 #: view:hr.attendance.month:0
 #: view:hr.attendance.week:0
-#: view:hr.sign.in.out:0
-#: view:hr.sign.in.out.ask:0
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -446,8 +443,6 @@ msgstr "Imprimer le rapport des présences par mois"
 
 #. module: hr_attendance
 #: selection:hr.action.reason,action_type:0
-#: view:hr.sign.in.out:0
-#: view:hr.sign.in.out.ask:0
 msgid "Sign out"
 msgstr "Pointer la sortie"
 
@@ -458,6 +453,7 @@ msgstr "Retard"
 
 #. module: hr_attendance
 #: view:hr.attendance:0
+#: field:hr.attendance,employee_id:0
 #: model:ir.model,name:hr_attendance.model_hr_employee
 msgid "Employee"
 msgstr "Employé"
@@ -501,8 +497,10 @@ msgid "Your last sign in"
 msgstr "Votre dernier pointage en entrée"
 
 #. module: hr_attendance
+#: code:addons/hr_attendance/hr_attendance.py:154
 #: selection:hr.attendance,action:0
 #: view:hr.employee:0
+#, python-format
 msgid "Sign Out"
 msgstr "Pointer la sortie"
 

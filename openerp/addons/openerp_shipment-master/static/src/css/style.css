@@ -1,0 +1,14 @@
+.openerp {
+
+}
+.openerp .shipment_fieldset {
+    border: 2px groove threedface;
+    border-top: none;
+    padding: 0.5em;
+    margin: 1em 2px;
+}
+
+.openerp .oe_horizontal_separator .custom_header {
+	font-size: 15px;
+	border-bottom: 2px groove threedface;
+}

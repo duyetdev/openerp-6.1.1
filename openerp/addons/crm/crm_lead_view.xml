@@ -300,7 +300,7 @@
                                     <td align="left" valign="middle" class="oe_kanban_title" tooltip="lead_details">
                                         <field name="partner_id"/>
                                         <t t-if="record.planned_revenue.raw_value">
-                                            - <t t-esc="Math.round(record.planned_revenue.value)"/>
+                                            - <t t-esc="record.planned_revenue.value"/>
                                             <field name="company_currency"/>
                                         </t>
                                     </td>
@@ -414,6 +414,7 @@
                         domain="[]" context="{'group_by':'type_id'}" />
                     <filter string="Channel" icon="terp-call-start"
                         domain="[]" context="{'group_by':'channel_id'}" />
+                    <filter string="Country" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'country_id'}"/>
                     <separator orientation="vertical"/>
                     <filter string="Stage" icon="terp-stage" domain="[]" context="{'group_by':'stage_id'}"/>
                     <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>

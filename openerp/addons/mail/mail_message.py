@@ -21,9 +21,11 @@
 
 import ast
 import base64
+import datetime
 import dateutil.parser
 import email
 import logging
+import pytz
 import re
 import time
 from email.header import decode_header
@@ -33,6 +35,7 @@ import tools
 from osv import osv
 from osv import fields
 from tools.translate import _
+from openerp import SUPERUSER_ID
 
 _logger = logging.getLogger('mail')
 
@@ -149,7 +152,9 @@ class mail_message(osv.osv):
             context = {}
         tz = context.get('tz')
         result = {}
-        for message in self.browse(cr, uid, ids, context=context):
+
+        # Read message as UID 1 to allow viewing author even if from different company
+        for message in self.browse(cr, SUPERUSER_ID, ids):
             msg_txt = ''
             if message.email_from:
                 msg_txt += _('%s wrote on %s: \n Subject: %s \n\t') % (message.email_from or '/', format_date_tz(message.date, tz), message.subject)
@@ -263,7 +268,7 @@ class mail_message(osv.osv):
             attachment_data = {
                     'name': fname,
                     'datas_fname': fname,
-                    'datas': fcontent,
+                    'datas': fcontent and fcontent.encode('base64'),
                     'res_model': self._name,
                     'res_id': email_msg_id,
             }
@@ -394,8 +399,23 @@ class mail_message(osv.osv):
             msg['reply'] = decode(msg_txt.get('Reply-To'))
 
         if 'Date' in fields:
-            date_hdr = decode(msg_txt.get('Date'))
-            msg['date'] = dateutil.parser.parse(date_hdr).strftime("%Y-%m-%d %H:%M:%S")
+            try:
+                date_hdr = decode(msg_txt.get('Date'))
+                parsed_date = dateutil.parser.parse(date_hdr, fuzzy=True)
+                if parsed_date.utcoffset() is None:
+                    # naive datetime, so we arbitrarily decide to make it
+                    # UTC, there's no better choice. Should not happen,
+                    # as RFC2822 requires timezone offset in Date headers.
+                    stored_date = parsed_date.replace(tzinfo=pytz.utc)
+                else:
+                    stored_date = parsed_date.astimezone(pytz.utc)
+            except Exception:
+                _logger.warning('Failed to parse Date header %r in incoming mail '
+                                'with message-id %r, assuming current date/time.',
+                                msg_txt.get('Date'), message_id)
+                stored_date = datetime.datetime.now()
+                
+            msg['date'] = stored_date.strftime("%Y-%m-%d %H:%M:%S")
 
         if 'Content-Transfer-Encoding' in fields:
             msg['encoding'] = msg_txt.get('Content-Transfer-Encoding')
@@ -413,12 +433,12 @@ class mail_message(osv.osv):
                 msg['headers'].update({item[0]: item[1]})
         if not msg_txt.is_multipart() or 'text/plain' in msg.get('content-type', ''):
             encoding = msg_txt.get_content_charset()
-            body = msg_txt.get_payload(decode=True)
+            body = tools.ustr(msg_txt.get_payload(decode=True), encoding, errors='replace')
             if 'text/html' in msg.get('content-type', ''):
                 msg['body_html'] =  body
                 msg['subtype'] = 'html'
                 body = tools.html2plaintext(body)
-            msg['body_text'] = tools.ustr(body, encoding)
+            msg['body_text'] = tools.ustr(body, encoding, errors='replace')
 
         attachments = []
         if msg_txt.is_multipart() or 'multipart/alternative' in msg.get('content-type', ''):
@@ -437,11 +457,12 @@ class mail_message(osv.osv):
                     content = part.get_payload(decode=True)
                     if filename:
                         attachments.append((filename, content))
-                    content = tools.ustr(content, encoding)
+                    content = tools.ustr(content, encoding, errors='replace')
                     if part.get_content_subtype() == 'html':
                         msg['body_html'] = content
                         msg['subtype'] = 'html' # html version prevails
                         body = tools.ustr(tools.html2plaintext(content))
+                        body = body.replace('&#13;', '')
                     elif part.get_content_subtype() == 'plain':
                         body = content
                 elif part.get_content_maintype() in ('application', 'image'):
@@ -449,7 +470,7 @@ class mail_message(osv.osv):
                         attachments.append((filename,part.get_payload(decode=True)))
                     else:
                         res = part.get_payload(decode=True)
-                        body += tools.ustr(res, encoding)
+                        body += tools.ustr(res, encoding, errors='replace')
 
             msg['body_text'] = body
         msg['attachments'] = attachments
@@ -514,14 +535,17 @@ class mail_message(osv.osv):
                                                 context=context)
                 if res:
                     message.write({'state':'sent', 'message_id': res})
+                    message_sent = True
                 else:
                     message.write({'state':'exception'})
+                    message_sent = False
 
                 # if auto_delete=True then delete that sent messages as well as attachments
-                message.refresh()
-                if message.state == 'sent' and message.auto_delete:
+                if message_sent and message.auto_delete:
                     self.pool.get('ir.attachment').unlink(cr, uid,
-                                                          [x.id for x in message.attachment_ids],
+                                                          [x.id for x in message.attachment_ids \
+                                                                if x.res_model == self._name and \
+                                                                   x.res_id == message.id],
                                                           context=context)
                     message.unlink()
             except Exception:

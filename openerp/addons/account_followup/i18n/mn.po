@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 00:35+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: ub121 <ubs121@gmail.com>\n"
+"PO-Revision-Date: 2013-02-06 04:33+0000\n"
+"Last-Translator: gobi <Unknown>\n"
 "Language-Team: Mongolian <mn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:16+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 06:46+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: account_followup
 #: view:account_followup.followup:0
@@ -24,8 +24,9 @@ msgstr ""
 
 #. module: account_followup
 #: view:account_followup.stat:0
+#: view:res.partner:0
 msgid "Group By..."
-msgstr ""
+msgstr "Бүлэглэх..."
 
 #. module: account_followup
 #: view:res.company:0
@@ -34,10 +35,9 @@ msgid "Follow-up Message"
 msgstr ""
 
 #. module: account_followup
-#: view:account_followup.followup:0
-#: field:account_followup.followup,followup_line:0
+#: field:account_followup.print,followup_id:0
 msgid "Follow-Up"
-msgstr ""
+msgstr "Мөшгөлт"
 
 #. module: account_followup
 #: help:account.followup.print.all,test_print:0
@@ -79,13 +79,15 @@ msgstr "Компани"
 
 #. module: account_followup
 #: report:account_followup.followup.print:0
+#: code:addons/account_followup/account_followup.py:259
+#, python-format
 msgid "Invoice Date"
-msgstr "Нэхэмжилсэн Огноо"
+msgstr "Нэхэмлэлийн Огноо"
 
 #. module: account_followup
-#: field:account.followup.print.all,email_subject:0
+#: field:account_followup.print,email_subject:0
 msgid "Email Subject"
-msgstr ""
+msgstr "Имэйлийн гарчиг"
 
 #. module: account_followup
 #: model:ir.actions.act_window,help:account_followup.action_followup_stat
@@ -111,8 +113,10 @@ msgstr "Ok"
 
 #. module: account_followup
 #: report:account_followup.followup.print:0
+#: code:addons/account_followup/account_followup.py:263
+#, python-format
 msgid "Amount"
-msgstr ""
+msgstr "Дүн"
 
 #. module: account_followup
 #: sql_constraint:account.move.line:0
@@ -133,7 +137,7 @@ msgstr ""
 #. module: account_followup
 #: view:account_followup.stat.by.partner:0
 msgid "Balance > 0"
-msgstr ""
+msgstr "Баланс > 0"
 
 #. module: account_followup
 #: view:account.move.line:0
@@ -153,9 +157,11 @@ msgid "%(heading)s: Move line header"
 msgstr ""
 
 #. module: account_followup
-#: field:account.followup.print,followup_id:0
+#: view:account_followup.followup:0
+#: field:account_followup.followup,followup_line:0
+#: view:res.partner:0
 msgid "Follow-up"
-msgstr ""
+msgstr "Мөшгөлт"
 
 #. module: account_followup
 #: report:account_followup.followup.print:0
@@ -166,6 +172,7 @@ msgstr "НӨАТ:"
 #: view:account_followup.stat:0
 #: field:account_followup.stat,partner_id:0
 #: field:account_followup.stat.by.partner,partner_id:0
+#: model:ir.model,name:account_followup.model_res_partner
 msgid "Partner"
 msgstr "Харилцагч"
 
@@ -175,15 +182,15 @@ msgid "Date :"
 msgstr "Огноо"
 
 #. module: account_followup
-#: field:account.followup.print.all,partner_ids:0
+#: field:account_followup.print,partner_ids:0
 msgid "Partners"
 msgstr "Харилцагч"
 
 #. module: account_followup
-#: code:addons/account_followup/wizard/account_followup_print.py:142
+#: code:addons/account_followup/wizard/account_followup_print.py:254
 #, python-format
 msgid "Invoices Reminder"
-msgstr ""
+msgstr "Үнийн нэхэмжлэл сануулах"
 
 #. module: account_followup
 #: model:ir.model,name:account_followup.model_account_followup_followup
@@ -198,7 +205,7 @@ msgstr "Сарын эцэс"
 #. module: account_followup
 #: view:account_followup.stat:0
 msgid "Not Litigation"
-msgstr ""
+msgstr "Зарга биш"
 
 #. module: account_followup
 #: view:account.followup.print.all:0
@@ -221,12 +228,12 @@ msgstr ""
 #. module: account_followup
 #: report:account_followup.followup.print:0
 msgid "Ref"
-msgstr ""
+msgstr "Сурвалж"
 
 #. module: account_followup
 #: help:account_followup.followup.line,sequence:0
 msgid "Gives the sequence order when displaying a list of follow-up lines."
-msgstr ""
+msgstr "Мөшгөлтүүдийн мөрүүдийг харуулах дэс дарааллыг өгнө"
 
 #. module: account_followup
 #: view:account.followup.print.all:0
@@ -236,29 +243,29 @@ msgstr "И-мэйл бие"
 
 #. module: account_followup
 #: field:account.move.line,followup_line_id:0
+#: view:account_followup.stat:0
 msgid "Follow-up Level"
-msgstr ""
+msgstr "Мөшгөлтийн түвшин"
 
 #. module: account_followup
 #: field:account_followup.stat,date_followup:0
-#: field:account_followup.stat.by.partner,date_followup:0
 msgid "Latest followup"
-msgstr ""
+msgstr "Сүүлийн мөшгөлт"
 
 #. module: account_followup
 #: view:account.followup.print.all:0
 msgid "Select Partners to Remind"
-msgstr ""
+msgstr "Сануулга өгөх харилцагчдыг сонгох"
 
 #. module: account_followup
-#: field:account.followup.print.all,partner_lang:0
+#: field:account_followup.print,partner_lang:0
 msgid "Send Email in Partner Language"
-msgstr ""
+msgstr "Имэйлийг Харилцагчийн хэлээр илгээх"
 
 #. module: account_followup
 #: view:account.followup.print.all:0
 msgid "Partner Selection"
-msgstr ""
+msgstr "Харилцагч сонгох"
 
 #. module: account_followup
 #: model:account_followup.followup.line,description:account_followup.demo_followup_line1
@@ -280,7 +287,7 @@ msgstr ""
 #. module: account_followup
 #: field:account_followup.followup.line,description:0
 msgid "Printed Message"
-msgstr ""
+msgstr "Хэвлэсэн мессеж"
 
 #. module: account_followup
 #: view:account.followup.print:0
@@ -294,13 +301,13 @@ msgstr ""
 #. module: account_followup
 #: view:account_followup.stat.by.partner:0
 msgid "Partner to Remind"
-msgstr ""
+msgstr "Сануулах Харилцагч"
 
 #. module: account_followup
 #: field:account_followup.followup.line,followup_id:0
 #: field:account_followup.stat,followup_id:0
 msgid "Follow Ups"
-msgstr ""
+msgstr "Мөшгөлтүүд"
 
 #. module: account_followup
 #: code:addons/account_followup/wizard/account_followup_print.py:296
@@ -317,6 +324,8 @@ msgid ""
 "Your description is invalid, use the right legend or %% if you want to use "
 "the percent character."
 msgstr ""
+"Таны тодорхойломж буруу, зөв тайлбар эсвэл %%-г процент тэмдэг хэрэглэх гэж "
+"байгаа бол ашиглана уу."
 
 #. module: account_followup
 #: constraint:account.move.line:0
@@ -329,7 +338,7 @@ msgstr ""
 #. module: account_followup
 #: view:account.followup.print.all:0
 msgid "Send Mails"
-msgstr ""
+msgstr "Мэйлүүд илгээх"
 
 #. module: account_followup
 #: model:ir.model,name:account_followup.model_account_followup_stat_by_partner
@@ -344,7 +353,7 @@ msgstr ""
 #. module: account_followup
 #: field:account_followup.stat,blocked:0
 msgid "Blocked"
-msgstr ""
+msgstr "Хоригдсон"
 
 #. module: account_followup
 #: code:addons/account_followup/wizard/account_followup_print.py:299
@@ -358,26 +367,26 @@ msgid ""
 msgstr ""
 
 #. module: account_followup
-#: help:account.followup.print,date:0
+#: help:account_followup.print,date:0
 msgid ""
 "This field allow you to select a forecast date to plan your follow-ups"
 msgstr ""
 
 #. module: account_followup
-#: field:account.followup.print,date:0
+#: field:account_followup.print,date:0
 msgid "Follow-up Sending Date"
-msgstr ""
+msgstr "Мөшгөлт илгээх огноо"
 
 #. module: account_followup
 #: code:addons/account_followup/wizard/account_followup_print.py:56
 #, python-format
 msgid "Select Partners"
-msgstr ""
+msgstr "Сонгосон харилцагч"
 
 #. module: account_followup
 #: view:account.followup.print.all:0
 msgid "Email Settings"
-msgstr ""
+msgstr "Имэйл тохируулах"
 
 #. module: account_followup
 #: view:account.followup.print.all:0
@@ -387,7 +396,7 @@ msgstr ""
 #. module: account_followup
 #: field:account.move.line,followup_date:0
 msgid "Latest Follow-up"
-msgstr ""
+msgstr "Сүүлийн Мөшгөлт"
 
 #. module: account_followup
 #: model:ir.model,name:account_followup.model_account_followup_stat
@@ -402,7 +411,7 @@ msgstr ""
 #. module: account_followup
 #: model:ir.model,name:account_followup.model_account_move_line
 msgid "Journal Items"
-msgstr ""
+msgstr "Журналын бичилтүүд"
 
 #. module: account_followup
 #: constraint:account.move.line:0
@@ -412,12 +421,12 @@ msgstr ""
 #. module: account_followup
 #: field:account.followup.print.all,email_conf:0
 msgid "Send email confirmation"
-msgstr ""
+msgstr "Баталгаажуулалтын имэйлийг илгээх"
 
 #. module: account_followup
 #: report:account_followup.followup.print:0
 msgid "Total:"
-msgstr ""
+msgstr "Нийт:"
 
 #. module: account_followup
 #: constraint:res.company:0
@@ -427,7 +436,7 @@ msgstr ""
 #. module: account_followup
 #: view:account.followup.print.all:0
 msgid "%(company_name)s: User's Company name"
-msgstr ""
+msgstr "%(company_name)s:Хэрэглэгчдийн компани нэр"
 
 #. module: account_followup
 #: model:ir.model,name:account_followup.model_res_company
@@ -435,8 +444,7 @@ msgid "Companies"
 msgstr ""
 
 #. module: account_followup
-#: view:account.followup.print.all:0
-#: field:account.followup.print.all,summary:0
+#: field:account_followup.print,summary:0
 msgid "Summary"
 msgstr "Хураангуй"
 
@@ -453,7 +461,7 @@ msgstr ""
 #. module: account_followup
 #: view:account_followup.followup.line:0
 msgid "%(partner_name)s: Partner Name"
-msgstr ""
+msgstr "%(partner_name)s: Харилцагчийн нэр"
 
 #. module: account_followup
 #: view:account_followup.stat:0
@@ -466,6 +474,7 @@ msgid "%(company_currency)s: User's Company Currency"
 msgstr ""
 
 #. module: account_followup
+#: field:account.move.line,result:0
 #: view:account_followup.stat:0
 #: field:account_followup.stat,balance:0
 #: field:account_followup.stat.by.partner,balance:0
@@ -475,7 +484,7 @@ msgstr "Тэнцэл"
 #. module: account_followup
 #: field:account_followup.followup.line,start:0
 msgid "Type of Term"
-msgstr ""
+msgstr "Төрөлийн хугацаа"
 
 #. module: account_followup
 #: model:ir.model,name:account_followup.model_account_followup_print
@@ -502,24 +511,23 @@ msgstr ""
 #. module: account_followup
 #: field:account_followup.stat,period_id:0
 msgid "Period"
-msgstr ""
+msgstr "Мөчлөг"
 
 #. module: account_followup
-#: code:addons/account_followup/wizard/account_followup_print.py:307
+#: code:addons/account_followup/wizard/account_followup_print.py:300
 #, python-format
 msgid "Followup Summary"
 msgstr ""
 
 #. module: account_followup
-#: view:account.followup.print:0
-#: view:account.followup.print.all:0
+#: view:account_followup.print:0
 msgid "Cancel"
 msgstr "Цуцлах"
 
 #. module: account_followup
 #: view:account_followup.stat:0
 msgid "Litigation"
-msgstr ""
+msgstr "Маргаантай"
 
 #. module: account_followup
 #: field:account_followup.stat.by.partner,max_followup_id:0
@@ -581,8 +589,10 @@ msgid "Followup Level"
 msgstr ""
 
 #. module: account_followup
-#: field:account_followup.followup,description:0
 #: report:account_followup.followup.print:0
+#: field:account_followup.sending.results,description:0
+#: code:addons/account_followup/account_followup.py:260
+#, python-format
 msgid "Description"
 msgstr "Тайлбар"
 
@@ -594,15 +604,15 @@ msgstr ""
 #. module: account_followup
 #: view:account_followup.stat:0
 msgid "This Fiscal year"
-msgstr ""
+msgstr "Энэ санхүүгийн жил"
 
 #. module: account_followup
 #: view:account.move.line:0
 msgid "Partner entries"
-msgstr ""
+msgstr "Харилцагчийн бичилт"
 
 #. module: account_followup
-#: help:account.followup.print.all,partner_lang:0
+#: help:account_followup.print,partner_lang:0
 msgid ""
 "Do not change message text, if you want to send email in partner language, "
 "or configure from company"
@@ -616,7 +626,6 @@ msgstr ""
 #. module: account_followup
 #: view:account_followup.stat:0
 #: model:ir.actions.act_window,name:account_followup.action_followup_stat
-#: model:ir.ui.menu,name:account_followup.menu_action_followup_stat_follow
 msgid "Follow-ups Sent"
 msgstr ""
 
@@ -627,7 +636,6 @@ msgstr ""
 
 #. module: account_followup
 #: field:account_followup.followup,name:0
-#: field:account_followup.followup.line,name:0
 msgid "Name"
 msgstr "Нэр"
 
@@ -640,7 +648,7 @@ msgstr ""
 #. module: account_followup
 #: report:account_followup.followup.print:0
 msgid "Li."
-msgstr ""
+msgstr "Ли."
 
 #. module: account_followup
 #: view:account.followup.print:0
@@ -655,7 +663,7 @@ msgstr ""
 #. module: account_followup
 #: report:account_followup.followup.print:0
 msgid "Document : Customer account statement"
-msgstr ""
+msgstr "Баримт: Үйлчлүүлэгчийн дансны тодорхойлолт"
 
 #. module: account_followup
 #: view:account.move.line:0
@@ -708,9 +716,9 @@ msgid "Customer Ref :"
 msgstr ""
 
 #. module: account_followup
-#: field:account.followup.print.all,test_print:0
+#: field:account_followup.print,test_print:0
 msgid "Test Print"
-msgstr ""
+msgstr "Тест хэвлэх"
 
 #. module: account_followup
 #: view:account.followup.print.all:0

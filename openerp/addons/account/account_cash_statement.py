@@ -214,11 +214,12 @@ class account_cash_statement(osv.osv):
         if self.pool.get('account.journal').browse(cr, uid, vals['journal_id'], context=context).type == 'cash':
             open_close = self._get_cash_open_close_box_lines(cr, uid, context)
             if vals.get('starting_details_ids', False):
-                for start in vals.get('starting_details_ids'):
-                    dict_val = start[2]
+                starting_details_ids = vals.get('starting_details_ids')
+                for start in starting_details_ids:
+                    dict_val = start[2] or {}
                     for end in open_close['end']:
-                       if end[2]['pieces'] == dict_val['pieces']:
-                           end[2]['number'] += dict_val['number']
+                       if end[2]['pieces'] == dict_val.get('pieces', 0.0):
+                           end[2]['number'] += dict_val.get('number', 0.0)
             vals.update({
 #                'ending_details_ids': open_close['start'],
                 'starting_details_ids': open_close['end']
@@ -292,11 +293,11 @@ class account_cash_statement(osv.osv):
                 raise osv.except_osv(_('Error !'), (_('User %s does not have rights to access %s journal !') % (statement.user_id.name, statement.journal_id.name)))
 
             if statement.name and statement.name == '/':
+                c = {'fiscalyear_id': statement.period_id.fiscalyear_id.id}
                 if statement.journal_id.sequence_id:
-                    c = {'fiscalyear_id': statement.period_id.fiscalyear_id.id}
                     st_number = obj_seq.next_by_id(cr, uid, statement.journal_id.sequence_id.id, context=c)
                 else:
-                    st_number = obj_seq.next_by_code(cr, uid, 'account.cash.statement')
+                    st_number = obj_seq.next_by_code(cr, uid, 'account.cash.statement', context=c)
                 vals.update({
                     'name': st_number
                 })

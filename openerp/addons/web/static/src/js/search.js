@@ -32,6 +32,8 @@ openerp.web.SearchView = openerp.web.OldWidget.extend(/** @lends openerp.web.Sea
         this.hidden = !!hidden;
         this.headless = this.hidden && !this.has_defaults;
 
+        this.filter_data = {};
+
         this.ready = $.Deferred();
     },
     start: function() {
@@ -271,7 +273,12 @@ openerp.web.SearchView = openerp.web.OldWidget.extend(/** @lends openerp.web.Sea
                         group_by instanceof Array ? group_by : group_by.split(','),
                         function (el) { return { group_by: el }; });
                 }
-                this.on_search([filter.domain], [filter.context], groupbys);
+                this.filter_data = {
+                    domains: [filter.domain],
+                    contexts: [filter.context],
+                    groupbys: groupbys
+                };
+                this.do_search();
             }, this));
         } else {
             select.val('');
@@ -298,10 +305,13 @@ openerp.web.SearchView = openerp.web.OldWidget.extend(/** @lends openerp.web.Sea
                     var menu_id = $(this).find("select").val(),
                         title = $(this).find("input").val(),
                         data = self.build_search_data(),
-                        context = new openerp.web.CompoundContext(),
-                        domain = new openerp.web.CompoundDomain();
+                        context = new openerp.web.CompoundContext(self.dataset.get_context()),
+                        domain = new openerp.web.CompoundDomain(self.dataset.get_domain());
                     _.each(data.contexts, function(x) {
                         context.add(x);
+                    });
+                    context.add({
+                        group_by: _(data.groupbys).pluck('group_by')
                     });
                     _.each(data.domains, function(x) {
                            domain.add(x);
@@ -339,9 +349,6 @@ openerp.web.SearchView = openerp.web.OldWidget.extend(/** @lends openerp.web.Sea
         if (this.headless && !this.has_defaults) {
             return this.on_search([], [], []);
         }
-        // reset filters management
-        var select = this.$element.find(".oe_search-view-filters-management");
-        select.val("_filters");
 
         if (e && e.preventDefault) { e.preventDefault(); }
 
@@ -385,6 +392,16 @@ openerp.web.SearchView = openerp.web.OldWidget.extend(/** @lends openerp.web.Sea
                 .map(function (filter) { return filter.get_context();})
                 .compact()
                 .value();
+
+        if (this.filter_data.contexts) {
+            contexts = this.filter_data.contexts.concat(contexts)
+        }
+        if (this.filter_data.domains) {
+            domains = this.filter_data.domains.concat(domains);
+        }
+        if (this.filter_data.groupbys) {
+            groupbys = this.filter_data.groupbys.concat(groupbys);
+        }
         return {domains: domains, contexts: contexts, errors: errors, groupbys: groupbys};
     },
     /**
@@ -423,6 +440,9 @@ openerp.web.SearchView = openerp.web.OldWidget.extend(/** @lends openerp.web.Sea
      * @param {Boolean} [reload_view=true]
      */
     do_clear: function (reload_view) {
+        this.filter_data = {};
+        this.$element.find(".oe_search-view-filters-management").val('');
+
         this.$element.find('.filter_label, .filter_icon').removeClass('enabled');
         this.enabled_filters.splice(0);
         var string = $('a.searchview_group_string');
@@ -802,6 +822,11 @@ openerp.web.search.Field = openerp.web.search.Input.extend( /** @lends openerp.w
                 val);
         }
         return _.extend({}, domain, {own_values: {self: val}});
+    },
+    clear: function () {
+        if (this.$element.attr('value') !== undefined) {
+            this.$element.removeAttr('value');
+        }
     }
 });
 /**
@@ -922,6 +947,7 @@ openerp.web.search.SelectionField = openerp.web.search.Field.extend(/** @lends o
                 return d.promise();
             }
         }
+        this.$element.find('option[selected]').removeAttr("selected");
         return d.resolve().promise();
     }
 });
@@ -955,7 +981,7 @@ openerp.web.search.BooleanField = openerp.web.search.SelectionField.extend(/** @
         return this._super(defaults);
     },
     get_value: function () {
-        switch (this.$element.val()) {
+        switch (this._super()) {
             case 'false': return false;
             case 'true': return true;
             default: return null;
@@ -1173,7 +1199,7 @@ openerp.web.search.ExtendedSearchGroup = openerp.web.OldWidget.extend({
         }).compact().value();
         var choice = this.$element.find(".searchview_extended_group_choice").val();
         var op = choice == "all" ? "&" : "|";
-        return choice == "none" ? ['!'] : [].concat(
+        return (choice == "none" ? ['!'] : []).concat(
             _.map(_.range(_.max([0,props.length - 1])), function() { return op; }),
             props);
     },
@@ -1201,18 +1227,31 @@ openerp.web.search.ExtendedSearchProposition = openerp.web.OldWidget.extend(/** 
     init: function (parent, fields) {
         this._super(parent);
         this.fields = _(fields).chain()
-            .map(function(val, key) { return _.extend({}, val, {'name': key}); })
+            .map(function(val, key) {return _.extend({}, val, {'name': key}); })
+            .filter(function(field){return typeof field.store === 'undefined' || field.store || field.fnct_search})
             .sortBy(function(field) {return field.string;})
             .value();
         this.attrs = {_: _, fields: this.fields, selected: null};
         this.value = null;
     },
     start: function () {
+        var self = this;
         this.$element = $("#" + this.element_id);
         this.select_field(this.fields.length > 0 ? this.fields[0] : null);
         var _this = this;
         this.$element.find(".searchview_extended_prop_field").change(function() {
             _this.changed();
+        });
+        this.$element.find(".searchview_extended_prop_op").change(function() {
+            var $value = self.$element.find('.searchview_extended_prop_value');
+            switch($(this).val()) {
+            case '∃':
+            case '∄':
+                $value.hide();
+                break;
+            default:
+                $value.show();
+            }
         });
         this.$element.find('.searchview_extended_delete_prop').click(function () {
             _this.stop();
@@ -1280,6 +1319,13 @@ openerp.web.search.ExtendedSearchProposition = openerp.web.OldWidget.extend(/** 
         var field = this.attrs.selected.name;
         var op =  this.$element.find('.searchview_extended_prop_op').val();
         var value = this.value.get_value();
+
+        switch(op) {
+        case '∃':
+            return [field, '!=', false];
+        case '∄':
+            return [field, '=', false];
+        }
         return [field, op, value];
     }
 });
@@ -1299,7 +1345,9 @@ openerp.web.search.ExtendedSearchProposition.Char = openerp.web.search.ExtendedS
         {value: ">", text: _lt("greater than")},
         {value: "<", text: _lt("less than")},
         {value: ">=", text: _lt("greater or equal than")},
-        {value: "<=", text: _lt("less or equal than")}
+        {value: "<=", text: _lt("less or equal than")},
+        {value: "∃", text: _lt("is set")},
+        {value: "∄", text: _lt("is not set")}
     ],
     get_value: function() {
         return this.$element.val();
@@ -1313,7 +1361,9 @@ openerp.web.search.ExtendedSearchProposition.DateTime = openerp.web.search.Exten
         {value: ">", text: _lt("greater than")},
         {value: "<", text: _lt("less than")},
         {value: ">=", text: _lt("greater or equal than")},
-        {value: "<=", text: _lt("less or equal than")}
+        {value: "<=", text: _lt("less or equal than")},
+        {value: "∃", text: _lt("is set")},
+        {value: "∄", text: _lt("is not set")}
     ],
     get_value: function() {
         return this.datewidget.get_value();
@@ -1332,7 +1382,9 @@ openerp.web.search.ExtendedSearchProposition.Date = openerp.web.search.ExtendedS
         {value: ">", text: _lt("greater than")},
         {value: "<", text: _lt("less than")},
         {value: ">=", text: _lt("greater or equal than")},
-        {value: "<=", text: _lt("less or equal than")}
+        {value: "<=", text: _lt("less or equal than")},
+        {value: "∃", text: _lt("is set")},
+        {value: "∄", text: _lt("is not set")}
     ],
     get_value: function() {
         return this.datewidget.get_value();
@@ -1351,7 +1403,9 @@ openerp.web.search.ExtendedSearchProposition.Integer = openerp.web.search.Extend
         {value: ">", text: _lt("greater than")},
         {value: "<", text: _lt("less than")},
         {value: ">=", text: _lt("greater or equal than")},
-        {value: "<=", text: _lt("less or equal than")}
+        {value: "<=", text: _lt("less or equal than")},
+        {value: "∃", text: _lt("is set")},
+        {value: "∄", text: _lt("is not set")}
     ],
     get_value: function() {
         try {
@@ -1372,7 +1426,9 @@ openerp.web.search.ExtendedSearchProposition.Float = openerp.web.search.Extended
         {value: ">", text: _lt("greater than")},
         {value: "<", text: _lt("less than")},
         {value: ">=", text: _lt("greater or equal than")},
-        {value: "<=", text: _lt("less or equal than")}
+        {value: "<=", text: _lt("less or equal than")},
+        {value: "∃", text: _lt("is set")},
+        {value: "∄", text: _lt("is not set")}
     ],
     get_value: function() {
         try {
@@ -1386,7 +1442,9 @@ openerp.web.search.ExtendedSearchProposition.Selection = openerp.web.search.Exte
     template: 'SearchView.extended_search.proposition.selection',
     operators: [
         {value: "=", text: _lt("is")},
-        {value: "!=", text: _lt("is not")}
+        {value: "!=", text: _lt("is not")},
+        {value: "∃", text: _lt("is set")},
+        {value: "∄", text: _lt("is not set")}
     ],
     set_field: function(field) {
         this.field = field;

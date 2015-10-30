@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!--******************************** Form view  ************************************** -->
+
+        <record model="ir.ui.view" id="view_shipment_form">
+            <field name="name">shipment.form</field>
+            <field name="model">shipment</field>
+            <field name="arch" type="xml">
+                <form string="shipment" version="7.0">
+                    <header> </header>
+                    <sheet>
+                        <!--<separator string="General"/>-->
+                        <group class="custom_header" string="General Details">
+                            <group>
+                                 <field name="file_number" select="1" string="File Number" />
+                                 <field name="entry_number" />
+                                 <field name="carrier" string="Shipper" />
+                                 <field name="entry_type" />
+                                 <field name="est_vessel_arrival_date" />
+                            </group>
+
+                            <group>
+                                <field name="importer"/>
+                                <field name="consignee"/>
+                                <field name="bill_to"/>
+                                <field name="reference_num"/>
+                                <field name="lfd"/>
+                            </group>
+                        </group>
+
+                        <group class="custom_header" string="US Customs Details">
+                            <group>
+                                 <field name="customs_status"/>
+                                 <field name="usda_status"/>
+                                 <field name="fda_status"/>
+                                 <field name="cst"/>
+                                 <field name="scac_code" string="SCAC Code Master"/>
+                                 <field name="hbl_scac_code" string="SCAC Code House"/>
+                                 <field name="sub_house_forwarder"/>
+                            </group>
+
+                            <group>
+                                <field name="bl_num"/>
+                                <field name="house_bill_num"/>
+                                <field name="sub_house_bill_num"/>
+                            </group>
+                        </group>
+
+                        <group class="custom_header" Name="Voyage Details">
+                             <group>
+                                 <field name="vessel_name"/>
+                                 <field name="forwarder"/>
+                                 <field name="trucker"/>
+                                 <field name="exam_loc"/>
+                                 <field name="good_loc"/>
+                            </group>
+
+                            <group>
+                                 <field name="steamship_phone"/>
+                                 <field name="forwarder_phone"/>
+                                 <field name="trucker_phone"/>
+                                 <field name="exam_loc_phone"/>
+                                 <field name="good_loc_phone"/>
+                            </group>
+
+                            <group>
+
+                            </group>
+                        </group>
+
+                         <group class="custom_header" string="Important Dates">
+                             <group>
+                                 <field name="isf_number"/>
+                                 <field name="entry_date"/>
+                                 <field name="fda_date"/>
+                                 <field name="usda_date"/>
+                                 <field name="date_7501"/>
+                             </group>
+
+                            <group>
+                                <field name="isf_date"/>
+                                <field name="entry_delivery_date"/>
+                                <field name="fda_delivery_date"/>
+                                <field name="usda_delivery_date"/>
+                            </group>
+                         </group>
+
+                        <group class="custom_header" string="Others Details">
+                            <group>
+                                 <field name="date_received"/>
+                                 <field name="date_3461"/>
+                                 <field name="firm_code"/>
+                                 <field name="date_of_exportation"/>
+                                 <field name="ams_bill_num"/>
+                                 <field name="importer_number"/>
+                             </group>
+
+                            <group>
+                                <field name="status"/>
+                                <field name="packages"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                         <notebook>
+                            <page string="ABI Results">
+                                <field name="abi_results_ids" colspan="4">
+
+                                    <form string="Abi Results Lines" version="7.0">
+                                        <group>
+                                            <group>
+                                                <field name="date_time" class="oe_inline"/>
+                                                <field name="line" class="oe_inline"/>
+                                                <field name="status" class="oe_inline"/>
+                                            </group>
+                                        </group>
+                                    </form>
+
+                                    <tree string="Abi Results Lines" editable="bottom">
+                                        <field name="date_time"/>
+                                        <field name="line"/>
+                                        <field name="status"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Document">
+                                <field name="documents" widget="one2many_binary"/>
+                            </page>
+                            <!--<page string="Customer Invoices">
+                                <field name="invoices" widget="many2many" domain="[('type','=','out_invoice')]" readonly="1"/>
+                            </page>-->
+                            <page string="Shipment Expenses">
+                                <field name="shipment_exp_ids"/>
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+
+        <!--******************************** Tree view / Listing View  ************************************** -->
+
+        <record model="ir.ui.view" id="view_shipment_tree">
+            <field name="name">shipment.tree</field>
+            <field name="model">shipment</field>
+            <field name="arch" type="xml">
+                <tree string="shipment">
+                    <field name="file_number"/>
+                    <field name="importer_number"/>
+                    <field name="importer"/>
+                    <field name="bill_to"/>
+                    <field name="consignee"/>
+                    <field name="status"/>
+                    <field name="description"/>
+                    <!--<field name="carrier"/>
+                    <field name="date_received"/>
+                    <field name="vessel_name"/>
+                    <field name="vessel_code"/>
+                    <field name="voyage"/>
+                    <field name="entry_number"/>
+                    <field name="isf_number"/>
+                    <field name="entry_date"/>
+                    <field name="date_3461"/>
+                    <field name="arrival_date"/>
+                    <field name="firm_code"/>
+                    <field name="date_of_exportation"/>
+                    <field name="scac_code"/>
+                    <field name="bl_num"/>
+                    <field name="hbl_scac_code"/>
+                    <field name="ams_bill_num"/>
+                    <field name="packages"/>
+                    <field name="reference_num"/>
+                    <field name="usda_status"/>
+                    <field name="fda_status"/>
+                    <field name="customs_status"/>
+                    <field name="country_of_origin"/>
+                    <field name="est_vessel_arrival_date"/>
+                    <field name="est_vessel_dep_date"/>
+                    <field name="cst"/>-->
+                </tree>
+            </field>
+        </record>
+
+
+        <!--******************************** Kanban view/ board view  ************************************** -->
+
+        <record model="ir.ui.view" id="view_shipment_kanban">
+            <field name="name">shipment.kanban</field>
+            <field name="model">shipment</field>
+            <field name="arch" type="xml">
+                <kanban>
+                <!--list of field to be loaded -->
+                    <field name="file_number" />
+                    <field name="importer_number" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_vignette oe_semantic_html_override">
+                                <a type="open">
+                                    <img class="oe_kanban_image"
+                                    t-att-src='_s + "/base/static/src/img/company_image.png"' />
+                                </a>
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open">
+                                            <field name="file_number"></field>
+                                        </a>
+                                    </h4>
+                                    <ul>
+                                        <li><field name="importer_number"></field></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+
+        <!--******************************** Search View  ************************************** -->
+
+        <record model="ir.ui.view" id="view_shipment_filter">
+            <field name="name">shipment.select</field>
+            <field name="model">shipment</field>
+            <field name="arch" type="xml">
+                <search string="Search Shipment">
+                    <field name="file_number" filter_domain="[('file_number','=',self),('file_number','ilike',self)]"/>
+                    <field name="importer_number" filter_domain="[('importer_number','=',self),('importer_number','ilike',self)]"/>
+                    <field name="entry_number" filter_domain="[('entry_number','=',self),('entry_number','ilike',self)]"/>
+                    <field name="isf_number" filter_domain="[('isf_number','=',self),('isf_number','ilike',self)]"/>
+                    <separator/>
+
+                    <field name="consignee" widget="selection" context="{'consignee':self}"/>
+                    <field name="importer" widget="selection" context="{'importer': self}"/>
+
+                   <!-- <filter name="status" string="Status" domain="[('status','ilike',self)]"
+                            help="search status value can be classified,closed etc... "/>
+
+                    <filter name="fda_status" string="FDA Status" domain="[('fda_status','ilike',self)]"
+                            help="search status value can be classified,closed etc... "/>-->
+
+                    <group expand="0" string="Group By...">
+                        <filter string="Consignee" icon="terp-partner" domain="[]" context="{'group_by':'consignee'}"/>
+                    </group>
+
+               </search>
+            </field>
+        </record>
+
+        <!--******************************** View Actions  ************************************** -->
+
+        <record model="ir.actions.act_window" id="action_shipment">
+            <field name="name">Shipment</field>
+            <field name="res_model">shipment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to Define a New Shipments.
+              </p><p>
+                Description goes Here.
+              </p>
+            </field>
+        </record>
+
+
+        <!--******************************** Menu Item Defined  ************************************** -->
+        <menuitem id="menu_item_shipment" parent="menu_section_shipment" name="Shipment" action="action_shipment"/>
+
+
+        <!--***************************************shipment_expense_view start ************************************-->
+
+        <!--******************************** Form view  ************************************** -->
+
+        <record model="ir.ui.view" id="view_shipment_expense_form">
+            <field name="name">shipment.expense.form</field>
+            <field name="model">shipment.expense</field>
+            <field name="arch" type="xml">
+                <form string="shipment expense" version="7.0">
+                    <header> </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" select="1" />
+                                <field name="shipment_id" select="1" />
+                                <field name="amount" select="1" />
+                                <field name="statement_id" select="1" />
+                            </group>
+
+                            <group>
+                                <field name="check_number"/>
+                                <field name="paid_date"/>
+                                <field name="notes"/>
+                            </group>
+                        </group>
+                         <notebook></notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--******************************** Search View  ************************************** -->
+        <record model="ir.ui.view" id="view_shipment_expense_filter">
+            <field name="name">shipment.expense.select</field>
+            <field name="model">shipment.expense</field>
+            <field name="arch" type="xml">
+                <search string="Search Shipment Expense">
+                    <field name="name" filter_domain="[('name','=',self),('name','ilike',self)]"/>
+                    <field name="shipment_id" filter_domain="[('shipment_id','=',self)]"/>
+                    <field name="amount" filter_domain="[('amount','=',self)]"/>
+                    <field name="statement_id" filter_domain="[('statement_id','=',self),('statement_id','ilike',self)]"/>
+                    <field name="check_number" filter_domain="[('check_number','=',self),('check_number','ilike',self)]"/>
+                    <field name="paid_date" filter_domain="[('paid_date','=',self)]"/>
+                    <separator/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Shipment" domain="[]" context="{'group_by':'shipment_id'}"/>
+                        <filter string="Check Number" domain="[]" context="{'group_by':'check_number'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <!--******************************** Tree View  ************************************** -->
+        <record model="ir.ui.view" id="view_shipment_expense_tree">
+            <field name="name">shipment.expense.tree</field>
+            <field name="model">shipment.expense</field>
+            <field name="arch" type="xml">
+                <tree string="shipment.expense">
+                    <field name="name"/>
+                    <field name="shipment_id"/>
+                    <field name="amount" sum="Total Amount"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_shipment_expenses">
+            <field name="name">Shipment Expenses</field>
+            <field name="res_model">shipment.expense</field>
+            <field name="view_mode">tree</field>
+
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to Define a New Shipments Expenses.
+              </p><p>
+                Description goes Here.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_item_shipment_expenses" parent="menu_section_shipment" name="Shipment Expenses"
+                  action="action_shipment_expenses"/>
+
+
+    </data>
+
+</openerp>

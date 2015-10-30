@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!--******************************** Job Form View ********************************-->
+        <record model="ir.ui.view" id="view_shipment_job_form">
+            <field name="name">shipment.job.form</field>
+            <field name="model">shipment.job</field>
+            <field name="arch" type="xml">
+                <form string="shipment.job" version="7.0">
+                    <sheet string="job">
+                        <h1>
+                            <label string="Add Job "/>
+                        </h1>
+                    <group>
+                        <group>
+                            <field name="job_number" />
+                            <field name="client_id" />
+                            <field name="shipper_id" />
+                            <field name="consignee" />
+                            <field name="bill_client_id" />
+                            <field name="payment_terms" />
+                            <field name="status"/>
+                            <field name="palletized"/>
+                            <field name="number_pallets"/>
+                            <field name="per_diem"/>
+                            <field name="container_type"/>
+                            <field name="seal_number"/>
+                            <field name="chassis_number"/>
+                            <field name="pickup_loc"/>
+                        </group>
+                        <group>
+                            <field name="load_type" />
+                            <field name="date" />
+                            <field name="goods_type" />
+                            <field name="description" />
+                            <field name="quantity" />
+                            <field name="company_id" create="false" />
+                            <field name="vessel" />
+                            <field name="voyage" />
+                            <field name="master_bill" />
+                            <field name="house_bill" />
+                            <field name="scac_code" />
+                            <field name="unit" />
+                        </group>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--******************************** Driver tree View ********************************-->
+        <record model="ir.ui.view" id="view_shipment_job_tree">
+            <field name="name">shipment.job.tree</field>
+            <field name="model">shipment.job</field>
+            <field name="arch" type="xml">
+                <tree string="shipment_job">
+                    <field name="job_number"/>
+                    <field name="client_id"/>
+                    <field name="status"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--******************************** Search View  ************************************** -->
+        <record model="ir.ui.view" id="view_shipment_job_filter">
+            <field name="name">shipment.job.select</field>
+            <field name="model">shipment.job</field>
+            <!--
+            <field name="date" />
+            <field name="description" />
+            -->
+            <field name="arch" type="xml">
+                <search string="Search Job">
+                    <field name="job_number" filter_domain="[('job_number','=',self)]"/>
+                    <field name="unit" filter_domain="[('unit','=',self)]"/>
+                    <field name="scac_code" filter_domain="[('scac_code','ilike',self)]"/>
+                    <field name="house_bill" filter_domain="[('house_bill','ilike',self)]"/>
+                    <field name="master_bill" filter_domain="[('master_bill','ilike',self)]"/>
+                    <field name="voyage" filter_domain="[('voyage','ilike',self)]"/>
+                    <field name="vessel" filter_domain="[('vessel','ilike',self)]"/>
+                    <field name="quantity" filter_domain="[('quantity','ilike',self)]"/>
+                    <field name="goods_type" filter_domain="[('goods_type','ilike',self)]"/>
+                    <field name="load_type" filter_domain="[('load_type','ilike',self)]"/>
+                    <field name="chassis_number" filter_domain="[('chassis_number','ilike',self)]"/>
+                    <field name="seal_number" filter_domain="[('seal_number','ilike',self)]"/>
+                    <field name="per_diem" filter_domain="[('per_diem','ilike',self)]"/>
+                    <field name="number_pallets" filter_domain="[('number_pallets','ilike',self)]"/>
+                    <field name="payment_terms" filter_domain="[('payment_terms','ilike',self)]"/>
+                    <field name="status" filter_domain="[('status','ilike',self)]"/>
+                    <separator/>
+                    <field name="company_id" widget="selection" context="{'company_id':self}"/>
+                    <field name="container_type" widget="selection" context="{'container_type':self}"/>
+                    <field name="bill_client_id" widget="selection" context="{'bill_client_id':self}"/>
+                    <field name="consignee" widget="selection" context="{'consignee':self}"/>
+                    <field name="shipper_id" widget="selection" context="{'shipper_id':self}"/>
+                    <field name="client_id" widget="selection" context="{'client_id':self}"/>
+                    <separator/>
+                    <filter string="Palletized" name="palletized" domain="[('palletized','=',1)]" help="palletized"/>
+                    <filter string="Not Palletized" name="palletized" domain="[('palletized','=',0)]" help="Not palletized"/>
+
+                    <group expand="0" string="Group By...">
+                        <filter string="Company" icon="terp-partner" domain="[]" context="{'group_by':'company_id'}"/>
+                        <filter string="Container Size" icon="terp-tools" domain="[]" context="{'group_by':'container_type'}"/>
+                        <filter string="Bill Client" icon="terp-tools" domain="[]" context="{'group_by':'bill_client_id'}"/>
+                        <filter string="Consignee" icon="terp-tools" domain="[]" context="{'group_by':'consignee'}"/>
+                        <filter string="Shipper" icon="terp-tools" domain="[]" context="{'group_by':'client_id'}"/>
+                        <filter string="Client" icon="terp-tools" domain="[]" context="{'group_by':'shipper_id'}"/>
+
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <!--******************************** Driver Action View ********************************-->
+        <record model="ir.actions.act_window" id="action_shipment_job">
+            <field name="name">Job</field>
+            <field name="res_model">shipment.job</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to define a new Job.
+                </p><p>
+                    Description goes Here.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_item_job" parent="menu_section_trucking" name="Job" action="action_shipment_job"
+                icon="terp-product"/>
+    </data>
+</openerp>

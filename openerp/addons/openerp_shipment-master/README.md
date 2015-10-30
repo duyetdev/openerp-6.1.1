@@ -1,0 +1,4 @@
+openerp_shipment
+================
+
+Description

@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_charges_port_form">
+            <field name="name">shipment.charge.form</field>
+            <field name="model">shipment.charge</field>
+            <field name="arch" type="xml">
+                <form string="shipment.charge" version="7.0">
+                    <sheet string="charges">
+
+                        <h1>
+                            <label string="Charges Form "/>
+                            <field name="type" readonly="1" class="oe_inline"/>
+                        </h1>
+                    <group>
+                        <group>
+                            <field name="port_lading_id" on_change="onchange_generate_unique_key(port_lading_id,
+                                            port_unlading_id, type, mode, via)"/>
+                            <field name="port_unlading_id" on_change="onchange_generate_unique_key(port_lading_id,
+                                            port_unlading_id, type, mode, via)"/>
+                            <field name="type" on_change="onchange_generate_unique_key(port_lading_id, port_unlading_id,
+                                        type, mode, via)"/>
+                            <field name="mode" on_change="onchange_generate_unique_key(port_lading_id, port_unlading_id,
+                                        type, mode, via)"/>
+                            <field name="via" on_change="onchange_generate_unique_key(port_lading_id, port_unlading_id,
+                                        type, mode, via)"/>
+                            <field name="transit_time"/>
+                            <field name="forwarder_id" attrs="{'required':[('forwarder_id','=',False),('carrier_id', '=', False)]}"/>
+
+
+                        </group>
+                        <group>
+                            <field name="carrier_id" attrs="{'required':[('forwarder_id','=',False),('carrier_id', '=', False)]}"/>
+                            <field name="expiry_date"/>
+                            <field name="charges_key" invisible="1" />
+                            <field name="notes" placeholder="Notes......"/>
+                        </group>
+
+                    </group>
+                    <notebook>
+                            <page string="Quotation Lines">
+                                <field name="shipment_charge_price_ids" colspan="4">
+
+                                    <form string="Sales Order Lines" version="7.0">
+                                        <group>
+                                            <group>
+
+                                                <field name="container_size_id"/>
+                                                <field name="amount" class="oe_inline"/>
+                                                <field name="notes" class="oe_inline" placeholder="Notes ...."/>
+                                            </group>
+                                        </group>
+                                    </form>
+
+                                    <tree string="Sales Order Lines" editable="bottom">
+                                        <field name="container_size_id"/>
+                                        <field name="amount"/>
+                                        <field name="notes"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_shipment_charges_tree">
+            <field name="name">shipment.charge.tree</field>
+            <field name="model">shipment.charge</field>
+            <field name="arch" type="xml">
+                <tree string="shipment_charges">
+
+                    <field name="port_lading_id"/>
+                    <field name="port_unlading_id"/>
+                    <field name="type"/>
+                    <field name="mode"/>
+                    <field name="transit_time"/>
+                    <field name="via"/>
+                    <field name="charges_key"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_shipment_charges">
+            <field name="name">Charges</field>
+            <field name="res_model">shipment.charge</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+
+             <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new Charges.
+              </p><p>
+                Description goes Here.
+              </p>
+            </field>
+        </record>
+
+        <!--******************************** Form view for shipment.container.size  ************************************** -->
+        <record model="ir.ui.view" id="view_form_container_size">
+            <field name="name">shipment.container.size.form</field>
+            <field name="model">shipment.container.size</field>
+            <field name="arch" type="xml">
+                <form string="container.size">
+                    <field name="name" select="1" placeholder="Container Name"/>
+                    <field name="container_size" select="1" placeholder="Container Size"/>
+                    <field name="notes" select="1" placeholder="Notes..."/>
+                </form>
+            </field>
+        </record>
+
+
+        <!--******************************** Search View  ************************************** -->
+        <record model="ir.ui.view" id="view_shipment_charge_filter">
+            <field name="name">shipment.charge.select</field>
+            <field name="model">shipment.charge</field>
+            <field name="arch" type="xml">
+                <search string="Search Charge">
+                    <field string="Type" name="type" filter_domain="[('type','ilike',self)]"/>
+                    <!--<field string="Port Lading" name="port_lading_id" filter_domain="[('port_lading_id', 'ilike', self)]"/>-->
+                    <field string="Port Lading" name="port_lading_id" filter_domain="['|',('port_lading_id','ilike',self),('sister_port_lading','ilike',self)]" />
+                    <field string="Port UnLading" name="port_unlading_id" filter_domain="['|',('port_unlading_id','ilike',self),('sister_port_unlading','ilike',self)]" />
+
+               </search>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_item_charges" parent="menu_section_port" name="Charges" action="action_shipment_charges"/>
+    </data>
+</openerp>
+
+

@@ -188,7 +188,7 @@ class stock_location(osv.osv):
                 "by a worker. With 'Automatic No Step Added', the location is replaced in the original move."
             ),
         'chained_picking_type': fields.selection([('out', 'Sending Goods'), ('in', 'Getting Goods'), ('internal', 'Internal')], 'Shipping Type', help="Shipping Type of the Picking List that will contain the chained move (leave empty to automatically detect the type based on the source and destination locations)."),
-        'chained_company_id': fields.many2one('res.company', 'Chained Company', help='The company the Picking List containing the chained move will belong to (leave empty to use the default company determination rules'),
+        'chained_company_id': fields.many2one('res.company', 'Chained Company', help="Picking List containing the chained move will belong to this company ( leave empty to use the default company determination rules )."),
         'chained_delay': fields.integer('Chaining Lead Time',help="Delay between original move and chained move in days"),
         'address_id': fields.many2one('res.partner.address', 'Location Address',help="Address of  customer or supplier."),
         'icon': fields.selection(tools.icons, 'Icon', size=64,help="Icon show in  hierarchical tree view"),
@@ -1104,6 +1104,9 @@ class stock_picking(osv.osv):
             for move_line in picking.move_lines:
                 if move_line.state == 'cancel':
                     continue
+                if move_line.scrapped:
+                    # do no invoice scrapped products
+                    continue
                 vals = self._prepare_invoice_line(cr, uid, group, picking, move_line,
                                 invoice_id, invoice_vals, context=context)
                 if vals:
@@ -1730,7 +1733,7 @@ class stock_move(osv.osv):
         @param product_id: Product id
         @return: Warning message
         """
-        if not prodlot_id or not loc_id:
+        if not prodlot_id or not loc_id or not product_id:
             return {}
         ctx = context and context.copy() or {}
         ctx['location_id'] = loc_id
@@ -1936,7 +1939,7 @@ class stock_move(osv.osv):
                 old_ptype = location_obj.picking_type_get(cr, uid, picking.move_lines[0].location_id, picking.move_lines[0].location_dest_id)
                 if old_ptype != picking.type:
                     old_pick_name = seq_obj.get(cr, uid, 'stock.picking.' + old_ptype)
-                    self.pool.get('stock.picking').write(cr, uid, [picking.id], {'name': old_pick_name}, context=context)
+                    self.pool.get('stock.picking').write(cr, uid, [picking.id], {'name': old_pick_name, 'type': old_ptype}, context=context)
             else:
                 pickid = False
             for move, (loc, dummy, delay, dummy, company_id, ptype) in todo:
@@ -2080,7 +2083,7 @@ class stock_move(osv.osv):
                 if move.picking_id:
                     pickings[move.picking_id.id] = True
             if move.move_dest_id and move.move_dest_id.state == 'waiting':
-                self.write(cr, uid, [move.move_dest_id.id], {'state': 'assigned'})
+                self.write(cr, uid, [move.move_dest_id.id], {'state': 'confirmed'})
                 if context.get('call_unlink',False) and move.move_dest_id.picking_id:
                     wf_service = netsvc.LocalService("workflow")
                     wf_service.trg_write(uid, 'stock.picking', move.move_dest_id.picking_id.id, cr)
@@ -2165,7 +2168,7 @@ class stock_move(osv.osv):
                 context = {}
             currency_ctx = dict(context, currency_id = move.company_id.currency_id.id)
             amount_unit = move.product_id.price_get('standard_price', context=currency_ctx)[move.product_id.id]
-            reference_amount = amount_unit * qty or 1.0
+            reference_amount = amount_unit * qty
 
         return reference_amount, reference_currency_id
 
@@ -2233,14 +2236,17 @@ class stock_move(osv.osv):
             if move.picking_id:
                 picking_ids.append(move.picking_id.id)
             if move.move_dest_id.id and (move.state != 'done'):
-                self.write(cr, uid, [move.id], {'move_history_ids': [(4, move.move_dest_id.id)]})
-                #cr.execute('insert into stock_move_history_ids (parent_id,child_id) values (%s,%s)', (move.id, move.move_dest_id.id))
-                if move.move_dest_id.state in ('waiting', 'confirmed'):
-                    self.force_assign(cr, uid, [move.move_dest_id.id], context=context)
-                    if move.move_dest_id.picking_id:
-                        wf_service.trg_write(uid, 'stock.picking', move.move_dest_id.picking_id.id, cr)
-                    if move.move_dest_id.auto_validate:
-                        self.action_done(cr, uid, [move.move_dest_id.id], context=context)
+                # Downstream move should only be triggered if this move is the last pending upstream move
+                other_upstream_move_ids = self.search(cr, uid, [('id','!=',move.id),('state','not in',['done','cancel']),
+                                                                ('move_dest_id','=',move.move_dest_id.id)], context=context)
+                if not other_upstream_move_ids:
+                    self.write(cr, uid, [move.id], {'move_history_ids': [(4, move.move_dest_id.id)]})
+                    if move.move_dest_id.state in ('waiting', 'confirmed'):
+                        self.force_assign(cr, uid, [move.move_dest_id.id], context=context)
+                        if move.move_dest_id.picking_id:
+                            wf_service.trg_write(uid, 'stock.picking', move.move_dest_id.picking_id.id, cr)
+                        if move.move_dest_id.auto_validate:
+                            self.action_done(cr, uid, [move.move_dest_id.id], context=context)
 
             self._create_product_valuation_moves(cr, uid, move, context=context)
             if move.state not in ('confirmed','done','assigned'):
@@ -2628,12 +2634,14 @@ class stock_inventory(osv.osv):
         'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'stock.inventory', context=c)
     }
 
-    def copy(self, cr, uid, id, default=None, context=None):
+    def copy_data(self, cr, uid, id, default=None, context=None):
         if default is None:
             default = {}
-        default = default.copy()
-        default.update({'move_ids': [], 'date_done': False})
-        return super(stock_inventory, self).copy(cr, uid, id, default, context=context)
+        # force new date, date_done and move_ids on copied datas
+        default.update(date=False, date_done=False, move_ids=[])
+        copied_data = super(stock_inventory, self).copy_data(cr, uid, id, default=default, context=context)
+        copied_data.pop('date',None)
+        return copied_data
 
     def _inventory_line_hook(self, cr, uid, inventory_line, move_vals):
         """ Creates a stock move from an inventory line
@@ -2651,7 +2659,11 @@ class stock_inventory(osv.osv):
             context = {}
         move_obj = self.pool.get('stock.move')
         for inv in self.browse(cr, uid, ids, context=context):
-            move_obj.action_done(cr, uid, [x.id for x in inv.move_ids], context=context)
+            inventory_move_ids = [x.id for x in inv.move_ids]
+            move_obj.action_done(cr, uid, inventory_move_ids, context=context)
+            # ask 'stock.move' action done are going to change to 'date' of the move,
+            # we overwrite the date as moves must appear at the inventory date.
+            move_obj.write(cr, uid, inventory_move_ids, {'date': inv.date}, context=context)
             self.write(cr, uid, [inv.id], {'state':'done', 'date_done': time.strftime('%Y-%m-%d %H:%M:%S')}, context=context)
         return True
 
@@ -2670,7 +2682,7 @@ class stock_inventory(osv.osv):
             move_ids = []
             for line in inv.inventory_line_id:
                 pid = line.product_id.id
-                product_context.update(uom=line.product_uom.id, date=inv.date, prodlot_id=line.prod_lot_id.id)
+                product_context.update(uom=line.product_uom.id, to_date=inv.date, date=inv.date, prodlot_id=line.prod_lot_id.id)
                 amount = location_obj._product_get(cr, uid, line.location_id.id, [pid], product_context)[pid]
 
                 change = line.product_qty - amount

@@ -1,7 +1,7 @@
 
 openerp.web.formats = function(openerp) {
 var _t = openerp.web._t;
-
+var QWeb = openerp.web.qweb;
 /**
  * Intersperses ``separator`` in ``str`` at the positions indicated by
  * ``indices``.
@@ -134,6 +134,9 @@ openerp.web.format_value = function (value, descriptor, value_if_empty) {
         case 'many2one':
             // name_get value format
             return value[1];
+        case 'one2many':
+        case 'many2many':
+            return _.str.sprintf(_t("(%d records)"), value.length);
         case 'datetime':
             if (typeof(value) == "string")
                 value = openerp.web.auto_str_to_date(value);
@@ -148,7 +151,7 @@ openerp.web.format_value = function (value, descriptor, value_if_empty) {
             if (typeof(value) == "string")
                 value = openerp.web.auto_str_to_date(value);
             return value.toString(normalize_format(l10n.time_format));
-        case 'selection':
+        case 'selection': case 'statusbar':
             // Each choice is [value, label]
             if(_.isArray(value)) {
                  value = value[0]
@@ -333,11 +336,8 @@ openerp.web.format_cell = function (row_data, column, options) {
             href: download_url,
             size: row_data[column.id].value
         });
-    case 'progressbar':
-        return _.template(
-            '<progress value="<%-value%>" max="100"><%-value%>%</progress>', {
-                value: row_data[column.id].value
-            });
+    case 'progressbar': 
+        return QWeb.render('ListView.ProgressBar', {value: _.str.sprintf("%.0f", row_data[column.id].value || 0)})
     }
 
     return _.escape(openerp.web.format_value(

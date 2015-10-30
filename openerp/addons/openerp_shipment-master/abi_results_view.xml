@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    <record model="ir.ui.view" id="view_abi_results_form">
+        <field name="name">shipment.abi.results.form</field>
+        <field name="model">shipment.abi.results</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="shipment.abi.results">
+                <field name="file_number" select="1"/>
+                <field name="line" select="2"/>
+                <field name="date_time" select="2"/>
+                <field name="status" select="0"/>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_abi_results_tree">
+        <field name="name">shipment.abi.results.tree</field>
+        <field name="model">shipment.abi.results</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="shipment.abi.results">
+                <field name="file_number"/>
+                <field name="date_time"/>
+                <field name="line"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_abi_results">
+        <field name="name">ABI Notes</field>
+        <field name="res_model">shipment.abi.results</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<menuitem id="menu_item_abi_notes" parent="menu_section_ramport" name="Abi Results" action="action_abi_results" />
+
+</data>
+
+</openerp>
+
+

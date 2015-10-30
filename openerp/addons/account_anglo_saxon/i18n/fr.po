@@ -8,20 +8,19 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 00:35+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Maxime Chambreuil (http://www.savoirfairelinux.com) "
-"<maxime.chambreuil@savoirfairelinux.com>\n"
+"PO-Revision-Date: 2012-03-01 19:30+0000\n"
+"Last-Translator: t.o <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:13+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 06:43+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: account_anglo_saxon
 #: sql_constraint:purchase.order:0
 msgid "Order Reference must be unique per Company!"
-msgstr ""
+msgstr "La référence de commande doit être unique par société !"
 
 #. module: account_anglo_saxon
 #: view:product.category:0
@@ -31,22 +30,22 @@ msgstr " Propriété de comptabilité"
 #. module: account_anglo_saxon
 #: model:ir.model,name:account_anglo_saxon.model_product_category
 msgid "Product Category"
-msgstr "Catégorie de produit"
+msgstr "Catégorie d'articles"
 
 #. module: account_anglo_saxon
 #: sql_constraint:stock.picking:0
 msgid "Reference must be unique per Company!"
-msgstr ""
+msgstr "La référence doit être unique par société !"
 
 #. module: account_anglo_saxon
 #: constraint:product.category:0
 msgid "Error ! You cannot create recursive categories."
-msgstr ""
+msgstr "Erreur! Vous ne pouvez pas créer de catégories récursives"
 
 #. module: account_anglo_saxon
 #: constraint:account.invoice:0
 msgid "Invalid BBA Structured Communication !"
-msgstr ""
+msgstr "Structure de communication BBA incorrecte !"
 
 #. module: account_anglo_saxon
 #: constraint:product.template:0
@@ -69,7 +68,7 @@ msgstr "Bon de commande"
 #. module: account_anglo_saxon
 #: model:ir.model,name:account_anglo_saxon.model_product_template
 msgid "Product Template"
-msgstr "Modèle de produit"
+msgstr "Modèle d'article"
 
 #. module: account_anglo_saxon
 #: field:product.category,property_account_creditor_price_difference_categ:0
@@ -85,12 +84,12 @@ msgstr "Facture"
 #. module: account_anglo_saxon
 #: model:ir.model,name:account_anglo_saxon.model_stock_picking
 msgid "Picking List"
-msgstr "Opération de manutention"
+msgstr "Liste de colisage"
 
 #. module: account_anglo_saxon
 #: sql_constraint:account.invoice:0
 msgid "Invoice Number must be unique per Company!"
-msgstr ""
+msgstr "Le numéro de facture doit être unique par société !"
 
 #. module: account_anglo_saxon
 #: help:product.category,property_account_creditor_price_difference_categ:0

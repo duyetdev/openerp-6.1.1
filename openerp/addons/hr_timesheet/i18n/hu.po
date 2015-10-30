@@ -6,19 +6,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: NOVOTRADE RENDSZERHÁZ ( novotrade.hu ) "
-"<openerp@novotrade.hu>\n"
+"POT-Creation-Date: 2012-10-08 12:29+0000\n"
+"PO-Revision-Date: 2012-08-29 18:18+0000\n"
+"Last-Translator: Herczeg Péter <hp@erp-cloud.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:40+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:03+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:43
+#: code:addons/hr_timesheet/report/user_timesheet.py:44
 #: code:addons/hr_timesheet/report/users_timesheet.py:77
 #, python-format
 msgid "Wed"
@@ -81,12 +80,12 @@ msgstr "Elvégzett munka statisztika"
 
 #. module: hr_timesheet
 #: view:hr.analytic.timesheet:0
-#: model:ir.ui.menu,name:hr_timesheet.menu_hr_reporting_timesheet
+#: model:ir.ui.menu,name:hr_timesheet.menu_hr_timesheet_reports
 msgid "Timesheet"
 msgstr "Munkaidő-kimutatás"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:43
+#: code:addons/hr_timesheet/report/user_timesheet.py:44
 #: code:addons/hr_timesheet/report/users_timesheet.py:77
 #, python-format
 msgid "Mon"
@@ -98,7 +97,7 @@ msgid "Sign in"
 msgstr "Bejelentkezés"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:43
+#: code:addons/hr_timesheet/report/user_timesheet.py:44
 #: code:addons/hr_timesheet/report/users_timesheet.py:77
 #, python-format
 msgid "Fri"
@@ -107,7 +106,7 @@ msgstr "P"
 #. module: hr_timesheet
 #: field:hr.employee,uom_id:0
 msgid "UoM"
-msgstr ""
+msgstr "ME"
 
 #. module: hr_timesheet
 #: view:hr.sign.in.project:0
@@ -152,7 +151,7 @@ msgstr "Alkalmazottak neve"
 #. module: hr_timesheet
 #: field:hr.sign.out.project,account_id:0
 msgid "Project / Analytic Account"
-msgstr ""
+msgstr "Projekt /Gyűjtőkód"
 
 #. module: hr_timesheet
 #: model:ir.model,name:hr_timesheet.model_hr_analytical_timesheet_users
@@ -180,7 +179,7 @@ msgid "No cost unit defined for this employee !"
 msgstr "Nem állítottak be költségegységet erre az alkalmazottra!"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:43
+#: code:addons/hr_timesheet/report/user_timesheet.py:44
 #: code:addons/hr_timesheet/report/users_timesheet.py:77
 #, python-format
 msgid "Tue"
@@ -195,7 +194,7 @@ msgstr "Figyelmeztetés"
 #. module: hr_timesheet
 #: field:hr.analytic.timesheet,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: hr_timesheet
 #: view:hr.sign.in.project:0
@@ -204,23 +203,28 @@ msgid "Sign In/Out By Project"
 msgstr "Be- és kilépés projektek szerint"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:43
+#: code:addons/hr_timesheet/report/user_timesheet.py:44
 #: code:addons/hr_timesheet/report/users_timesheet.py:77
 #, python-format
 msgid "Sat"
 msgstr "Szo"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:43
+#: code:addons/hr_timesheet/report/user_timesheet.py:44
 #: code:addons/hr_timesheet/report/users_timesheet.py:77
 #, python-format
 msgid "Sun"
 msgstr "V"
 
 #. module: hr_timesheet
+#: xsl:hr.analytical.timesheet:0
+msgid "Sum"
+msgstr "Összeg"
+
+#. module: hr_timesheet
 #: view:hr.analytic.timesheet:0
 msgid "Analytic account"
-msgstr ""
+msgstr "Gyűjtőkód"
 
 #. module: hr_timesheet
 #: view:hr.analytical.timesheet.employee:0
@@ -241,7 +245,7 @@ msgid "Monthly Employees Timesheet"
 msgstr "Havi alkalmazotti munkaidő-kimutatás"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -261,11 +265,6 @@ msgid "Categories"
 msgstr "Kategóriák"
 
 #. module: hr_timesheet
-#: constraint:hr.analytic.timesheet:0
-msgid "You cannot modify an entry in a Confirmed/Done timesheet !."
-msgstr ""
-
-#. module: hr_timesheet
 #: help:hr.employee,product_id:0
 msgid "Specifies employee's designation as a product with type 'service'."
 msgstr ""
@@ -278,7 +277,7 @@ msgid "Total cost"
 msgstr "Összes költség"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -287,9 +286,13 @@ msgid "September"
 msgstr "Szeptember"
 
 #. module: hr_timesheet
-#: model:ir.model,name:hr_timesheet.model_hr_analytic_timesheet
-msgid "Timesheet Line"
-msgstr "Munkaidő-kimutatás sora"
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
+#: code:addons/hr_timesheet/report/users_timesheet.py:73
+#: selection:hr.analytical.timesheet.employee,month:0
+#: selection:hr.analytical.timesheet.users,month:0
+#, python-format
+msgid "December"
+msgstr "December"
 
 #. module: hr_timesheet
 #: field:hr.analytical.timesheet.users,employee_ids:0
@@ -302,7 +305,6 @@ msgid "Stats by month"
 msgstr "Havi statisztika"
 
 #. module: hr_timesheet
-#: view:account.analytic.account:0
 #: field:hr.analytical.timesheet.employee,month:0
 #: field:hr.analytical.timesheet.users,month:0
 msgid "Month"
@@ -316,7 +318,12 @@ msgstr "Munka leírása"
 #. module: hr_timesheet
 #: view:account.analytic.account:0
 msgid "Invoice Analysis"
-msgstr ""
+msgstr "Számlaelemzés"
+
+#. module: hr_timesheet
+#: xsl:hr.analytical.timesheet:0
+msgid "Timesheet by Employee"
+msgstr "Alaklmazonkénti időkimutatás"
 
 #. module: hr_timesheet
 #: model:ir.actions.report.xml,name:hr_timesheet.report_user_timesheet
@@ -332,10 +339,12 @@ msgstr "Projektbe bejelentkezés/kijelentkezés"
 #. module: hr_timesheet
 #: model:ir.actions.act_window,name:hr_timesheet.action_define_analytic_structure
 msgid "Define your Analytic Structure"
-msgstr ""
+msgstr "Gyűjtőkód szerkezet beállítása"
 
 #. module: hr_timesheet
+#: code:addons/hr_timesheet/wizard/hr_timesheet_sign_in_out.py:146
 #: view:hr.sign.in.project:0
+#, python-format
 msgid "Sign in / Sign out"
 msgstr "Bejelentkezés / Kijelentkezés"
 
@@ -356,6 +365,7 @@ msgid "(Keep empty for current time)"
 msgstr "(Hagyja üresen, hogy az aktuális időt használja)"
 
 #. module: hr_timesheet
+#: field:account.analytic.account,use_timesheets:0
 #: view:hr.employee:0
 msgid "Timesheets"
 msgstr "Munkaidő-kimutatások"
@@ -367,14 +377,17 @@ msgid ""
 "analyse costs and revenues. In OpenERP, analytic accounts are also used to "
 "track customer contracts."
 msgstr ""
+"Létre kell hoznia egy analitikai/elemző számla felépítést a költség és "
+"bevétel elemzés igényeitől függően. Az OpenERP, elemző számláit a vevők "
+"szerződéseinek nyomon követésére is használja."
 
 #. module: hr_timesheet
 #: field:hr.analytic.timesheet,line_id:0
 msgid "Analytic Line"
-msgstr ""
+msgstr "Gyűjtőkód tétel"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -383,7 +396,7 @@ msgid "August"
 msgstr "Augusztus"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -402,7 +415,7 @@ msgid "Date"
 msgstr "Dátum"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -421,7 +434,7 @@ msgid "Closing Date"
 msgstr "Zárás időpontja"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -430,7 +443,7 @@ msgid "October"
 msgstr "Október"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -444,7 +457,7 @@ msgid "Key dates"
 msgstr "Fontos dátumok"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:43
+#: code:addons/hr_timesheet/report/user_timesheet.py:44
 #: code:addons/hr_timesheet/report/users_timesheet.py:77
 #, python-format
 msgid "Thu"
@@ -477,13 +490,9 @@ msgid "My Timesheet"
 msgstr "Munkaidőm"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
-#: code:addons/hr_timesheet/report/users_timesheet.py:73
-#: selection:hr.analytical.timesheet.employee,month:0
-#: selection:hr.analytical.timesheet.users,month:0
-#, python-format
-msgid "December"
-msgstr "December"
+#: constraint:hr.analytic.timesheet:0
+msgid "You cannot modify an entry in a Confirmed/Done timesheet !."
+msgstr ""
 
 #. module: hr_timesheet
 #: view:hr.analytical.timesheet.employee:0
@@ -494,9 +503,9 @@ msgid "Cancel"
 msgstr "Mégse"
 
 #. module: hr_timesheet
+#: xsl:hr.analytical.timesheet_users:0
 #: model:ir.actions.act_window,name:hr_timesheet.action_hr_timesheet_users
 #: model:ir.actions.report.xml,name:hr_timesheet.report_users_timesheet
-#: model:ir.actions.wizard,name:hr_timesheet.wizard_hr_timesheet_users
 #: model:ir.ui.menu,name:hr_timesheet.menu_hr_timesheet_users
 msgid "Employees Timesheet"
 msgstr "Alkalmazottak munkaidő-kimutatása"
@@ -518,12 +527,19 @@ msgid ""
 "Through this menu you can register and follow your workings hours by project "
 "every day."
 msgstr ""
+"Ebben a menüben projektenként rögzítheti és követheti a napi munkaóra "
+"ráfordításait."
 
 #. module: hr_timesheet
 #: field:hr.sign.in.project,server_date:0
 #: field:hr.sign.out.project,server_date:0
 msgid "Current Date"
 msgstr "Aktuális dátum"
+
+#. module: hr_timesheet
+#: model:ir.model,name:hr_timesheet.model_hr_analytic_timesheet
+msgid "Timesheet Line"
+msgstr "Munkaidő-kimutatás sora"
 
 #. module: hr_timesheet
 #: view:hr.analytical.timesheet.employee:0
@@ -542,7 +558,7 @@ msgid "Invoicing"
 msgstr "Számlázás"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -566,7 +582,7 @@ msgid "Sign In By Project"
 msgstr "Bejelentkezés projektenként"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -585,7 +601,7 @@ msgid "Employees"
 msgstr "Alkalmazottak"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -594,7 +610,7 @@ msgid "March"
 msgstr "Március"
 
 #. module: hr_timesheet
-#: code:addons/hr_timesheet/report/user_timesheet.py:40
+#: code:addons/hr_timesheet/report/user_timesheet.py:41
 #: code:addons/hr_timesheet/report/users_timesheet.py:73
 #: selection:hr.analytical.timesheet.employee,month:0
 #: selection:hr.analytical.timesheet.users,month:0
@@ -614,7 +630,6 @@ msgstr ""
 "munkaidő-kimutatást."
 
 #. module: hr_timesheet
-#: view:account.analytic.account:0
 #: view:hr.analytic.timesheet:0
 msgid "Users"
 msgstr "Felhasználók"
@@ -645,6 +660,12 @@ msgstr "Év"
 #: view:hr.analytic.timesheet:0
 msgid "Accounting"
 msgstr "Könyvelés"
+
+#. module: hr_timesheet
+#: xsl:hr.analytical.timesheet:0
+#: xsl:hr.analytical.timesheet_users:0
+msgid "Total"
+msgstr "Összesen"
 
 #. module: hr_timesheet
 #: view:hr.sign.out.project:0

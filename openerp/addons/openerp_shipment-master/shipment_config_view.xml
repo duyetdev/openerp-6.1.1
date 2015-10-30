@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Shipment config wizard -->
+        <record id="view_shipment_config_settings" model="ir.ui.view">
+            <field name="name">Shipment</field>
+            <field name="model">shipment.config.settings</field>
+            <field name="arch" type="xml">
+                <form string="Configure Shipment" version="7.0" class="oe_form_configuration">
+                    <header>
+                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+                    <div name="shipment.settings">
+                        <separator string="Shipment Configuration"/>
+                        <group name="Supplier">
+                            <group>
+                                <label for="id" string="Select US Custom Supplier"/>
+                                <div name="Supplier">
+                                    <div name="us_customs" class="oe_inline">
+                                        <field name="us_customs"/>
+                                    </div>
+                                </div>
+                            </group>
+                            <group>
+
+                            </group>
+                        </group>
+                    </div>
+
+                    <div name="config_other"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_shipment_config" model="ir.actions.act_window">
+            <field name="name">Configure Shipment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipment.config.settings</field>
+            <field name="view_id" ref="view_shipment_config_settings"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+    <menuitem id="base.menu_shipment_config" name="Shipment" parent="base.menu_config" sequence="10" action="action_shipment_config"/>
+
+    </data>
+</openerp>

@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 01:37+0100\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Rolv Råen (adEgo) <Unknown>\n"
+"PO-Revision-Date: 2013-02-26 20:26+0000\n"
+"Last-Translator: Håvard Line <havard.line@lts.no>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 07:05+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:21+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: sale
 #: field:sale.config.picking_policy,timesheet:0
 msgid "Based on Timesheet"
-msgstr ""
+msgstr "Basert på timeliste"
 
 #. module: sale
 #: view:sale.order.line:0
@@ -28,6 +28,8 @@ msgid ""
 "Sale Order Lines that are confirmed, done or in exception state and haven't "
 "yet been invoiced"
 msgstr ""
+"Salgsordrelinjer som er bekreftet, levert eller med avvik og enda ikke er "
+"fakturert"
 
 #. module: sale
 #: view:board.board:0
@@ -47,20 +49,23 @@ msgstr ""
 #. module: sale
 #: view:sale.order:0
 msgid "UoS"
-msgstr ""
+msgstr "Salgsenhet"
 
 #. module: sale
 #: help:sale.order,partner_shipping_id:0
 msgid "Shipping address for current sales order."
-msgstr ""
+msgstr "Leveringsadresse for aktuell salgsordre."
 
 #. module: sale
-#: field:sale.advance.payment.inv,qtty:0 report:sale.order:0
+#: field:sale.advance.payment.inv,qtty:0
+#: report:sale.order:0
+#: field:sale.order.line,product_uom_qty:0
 msgid "Quantity"
 msgstr "Antall"
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,day:0
+#: view:sale.report:0
+#: field:sale.report,day:0
 msgid "Day"
 msgstr "Dag"
 
@@ -71,7 +76,7 @@ msgid "Cancel Order"
 msgstr "Kanseller ordre"
 
 #. module: sale
-#: code:addons/sale/sale.py:638
+#: code:addons/sale/sale.py:606
 #, python-format
 msgid "The quotation '%s' has been converted to a sales order."
 msgstr "Tilbudet '%s' har blitt konvertert til en salgsordre."
@@ -79,7 +84,7 @@ msgstr "Tilbudet '%s' har blitt konvertert til en salgsordre."
 #. module: sale
 #: view:sale.order:0
 msgid "Print Quotation"
-msgstr ""
+msgstr "Skriv ut tilbud"
 
 #. module: sale
 #: code:addons/sale/wizard/sale_make_invoice.py:42
@@ -95,13 +100,14 @@ msgstr "MVA"
 #. module: sale
 #: model:process.node,note:sale.process_node_saleorderprocurement0
 msgid "Drives procurement orders for every sales order line."
-msgstr ""
+msgstr "Danner inkjøpsordre for hver salgsordrelinje."
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,analytic_account_id:0
+#: view:sale.report:0
+#: field:sale.report,analytic_account_id:0
 #: field:sale.shop,project_id:0
 msgid "Analytic Account"
-msgstr "Analytisk konto"
+msgstr "Analytisk Konto"
 
 #. module: sale
 #: model:ir.actions.act_window,help:sale.action_order_line_tree2
@@ -110,6 +116,10 @@ msgid ""
 "sales orders partially, by lines of sales order. You do not need this list "
 "if you invoice from the delivery orders or if you invoice sales totally."
 msgstr ""
+"Her er en liste over salgsordrelinjer som skal faktureres. Du kan "
+"delfakturere salgsordre ved å fakturere enkeltlinjer. Du trenger ikke denne "
+"listen dersom du fakturerer på grunnlag av utleveringer eller hvis du "
+"fakturerer salgsordre samlet."
 
 #. module: sale
 #: code:addons/sale/sale.py:295
@@ -119,6 +129,9 @@ msgid ""
 "cancel a sale order, you must first cancel related picking or delivery "
 "orders."
 msgstr ""
+"For å slette en bekreftet salgsordre må du kansellere den først. For å "
+"kansellere en salgsordre må du først kansellere tilhørende plukk eller "
+"utleveringer."
 
 #. module: sale
 #: model:process.node,name:sale.process_node_saleprocurement0
@@ -126,14 +139,16 @@ msgid "Procurement Order"
 msgstr "Innkjøpsordre"
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,partner_id:0
+#: model:ir.model,name:sale.model_res_partner
+#: view:sale.report:0
+#: field:sale.report,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: sale
 #: selection:sale.order,order_policy:0
 msgid "Invoice based on deliveries"
-msgstr ""
+msgstr "Faktura basert på leveringer"
 
 #. module: sale
 #: view:sale.order:0
@@ -151,6 +166,13 @@ msgid ""
 "configuration of the sales order, a draft invoice will be generated so that "
 "you just have to confirm it when you want to bill your customer."
 msgstr ""
+"Salgsordre hjelper deg med å håndtere forespørsler og bestillinger fra dine "
+"kunder. OpenERP foreslår at du starter med å lage et tilbud. Når dette blir "
+"bekreftet vil det bli konvertert til en salgsordre. OpenERP kan håndtere "
+"ulike typer produkter slik at en salgsordre kan initere arbeidsoppgaver, "
+"utleveringer, produksjonsordre, bestillinger osv. Ut fra salgsordren vil det "
+"bli dannet et utkast til en faktura som du bare bekrefter når du ønsker å "
+"fakturere kunden."
 
 #. module: sale
 #: help:sale.order,invoice_quantity:0
@@ -175,15 +197,17 @@ msgstr "Default betalingsbetingelse"
 #. module: sale
 #: field:sale.config.picking_policy,deli_orders:0
 msgid "Based on Delivery Orders"
-msgstr ""
+msgstr "Basert på utleveringer"
 
 #. module: sale
 #: field:sale.config.picking_policy,time_unit:0
 msgid "Main Working Time Unit"
-msgstr ""
+msgstr "Normal arbeidstidsenhet"
 
 #. module: sale
-#: view:sale.order:0 view:sale.order.line:0 field:sale.order.line,state:0
+#: view:sale.order:0
+#: view:sale.order.line:0
+#: field:sale.order.line,state:0
 #: view:sale.report:0
 msgid "State"
 msgstr "Status"
@@ -194,19 +218,20 @@ msgid "Disc.(%)"
 msgstr "Rabatt(%)"
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,price_total:0
+#: view:sale.report:0
+#: field:sale.report,price_total:0
 msgid "Total Price"
 msgstr "Totalpris"
 
 #. module: sale
 #: help:sale.make.invoice,grouped:0
 msgid "Check the box to group the invoices for the same customers"
-msgstr ""
+msgstr "Marker for å gruppere fakturaer for samme kunde"
 
 #. module: sale
 #: view:sale.order:0
 msgid "My Sale Orders"
-msgstr ""
+msgstr "Mine salgsordre"
 
 #. module: sale
 #: selection:sale.order,invoice_quantity:0
@@ -224,7 +249,8 @@ msgid "Inventory Moves"
 msgstr "Lagerbevegelser"
 
 #. module: sale
-#: field:sale.order,name:0 field:sale.order.line,order_id:0
+#: field:sale.order,name:0
+#: field:sale.order.line,order_id:0
 msgid "Order Reference"
 msgstr "Ordrereferanse"
 
@@ -244,16 +270,19 @@ msgid ""
 "The invoice is created automatically if the shipping policy is 'Invoice from "
 "pick' or 'Invoice on order after delivery'."
 msgstr ""
+"Fakturaen blir dannet automatisk dersom grunnregelen er 'Fakturering etter "
+"plukk' eller 'Fakturering av ordre etter utlevering'."
 
 #. module: sale
 #: field:sale.config.picking_policy,task_work:0
 msgid "Based on Tasks' Work"
-msgstr ""
+msgstr "Basert på utført arbeid på oppgaver"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.act_res_partner_2_sale_order
+#: view:res.partner:0
 msgid "Quotations and Sales"
-msgstr ""
+msgstr "Tilbud og salg"
 
 #. module: sale
 #: model:ir.model,name:sale.model_sale_make_invoice
@@ -261,10 +290,10 @@ msgid "Sales Make Invoice"
 msgstr "Salg oppretter faktura"
 
 #. module: sale
-#: code:addons/sale/sale.py:330
+#: code:addons/sale/sale.py:308
 #, python-format
 msgid "Pricelist Warning!"
-msgstr ""
+msgstr "Prisliste-advarsel!"
 
 #. module: sale
 #: field:sale.order.line,discount:0
@@ -282,7 +311,7 @@ msgstr "Mine tilbud"
 #: model:ir.actions.act_window,name:sale.open_board_sales_manager
 #: model:ir.ui.menu,name:sale.menu_board_sales_manager
 msgid "Sales Manager Dashboard"
-msgstr ""
+msgstr "Salgsledelses-dashbord"
 
 #. module: sale
 #: field:sale.order.line,product_packaging:0
@@ -313,24 +342,34 @@ msgid ""
 "  - The 'Invoice based on deliveries' choice is used to create an invoice "
 "during the picking process."
 msgstr ""
+"Prinsipp for fakturering benyttes for å samholde fakturering og "
+"utleveringer.\n"
+" - 'Betal før utlevering' vil først danne faktura, og siden danne plukkordre "
+"når fakturaen er betalt.\n"
+" - 'Utlever og fakturer på forespørsel' vil danne plukkordre ved godkjenning "
+"av salgsordre, og vente til brukeren klikker på knappen 'Fakturere' før det "
+"dannes utkast til faktura bsert på salgsordre / salgsordrelinjer.\n"
+" - 'Fakturer ordre etter utlevering' vil danne utkast til faktura basert på "
+"salgsordre når alle plukklister er avsluttet.\n"
+" - 'Fakturer basert på utleveringer' vil danne utkast til faktura basert på "
+"det som plukkes og utleveres."
 
 #. module: sale
-#: code:addons/sale/sale.py:1171
+#: code:addons/sale/sale.py:865
 #, python-format
 msgid "No Customer Defined !"
 msgstr "Ingen kunde definert!"
 
 #. module: sale
-#: model:ir.actions.act_window,name:sale.action_order_tree2
+#: model:ir.actions.act_window,name:sale.action_orders_exception
 msgid "Sales in Exception"
-msgstr "Salg med unntak"
+msgstr "Salgsordre med avvik"
 
 #. module: sale
-#: code:addons/sale/sale.py:1158 code:addons/sale/sale.py:1277
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:70
+#: code:addons/sale/sale.py:1145
 #, python-format
 msgid "Configuration Error !"
-msgstr ""
+msgstr "Konfigurasjonsfeil!"
 
 #. module: sale
 #: view:sale.order:0
@@ -338,7 +377,7 @@ msgid "Conditions"
 msgstr "Vilkår"
 
 #. module: sale
-#: code:addons/sale/sale.py:1034
+#: code:addons/sale/sale.py:942
 #, python-format
 msgid ""
 "There is no income category account defined in default Properties for "
@@ -355,10 +394,10 @@ msgstr "August"
 #. module: sale
 #: constraint:stock.move:0
 msgid "You try to assign a lot which is not from the same product"
-msgstr ""
+msgstr "Du forsøker å angi en lot som ikke tilhører samme produkt"
 
 #. module: sale
-#: code:addons/sale/sale.py:655
+#: code:addons/sale/sale.py:623
 #, python-format
 msgid "invalid mode for test_state"
 msgstr "Ugyldig form for test_state"
@@ -369,7 +408,7 @@ msgid "June"
 msgstr "Juni"
 
 #. module: sale
-#: code:addons/sale/sale.py:617
+#: code:addons/sale/sale.py:587
 #, python-format
 msgid "Could not cancel this sales order !"
 msgstr "Kunne ikke kansellere denne salgsordren!"
@@ -382,7 +421,7 @@ msgstr "Salgsordrestatistikk"
 #. module: sale
 #: help:sale.order,project_id:0
 msgid "The analytic account related to a sales order."
-msgstr ""
+msgstr "Analytiske konto relatert til en salgsordre."
 
 #. module: sale
 #: selection:sale.report,month:0
@@ -392,17 +431,20 @@ msgstr "Oktober"
 #. module: sale
 #: sql_constraint:stock.picking:0
 msgid "Reference must be unique per Company!"
-msgstr ""
+msgstr "Referanse må være unik pr firma!"
 
 #. module: sale
-#: view:board.board:0 view:sale.order:0 view:sale.report:0
+#: model:ir.actions.act_window,name:sale.action_quotations
+#: model:ir.ui.menu,name:sale.menu_sale_quotations
+#: view:sale.order:0
+#: view:sale.report:0
 msgid "Quotations"
 msgstr "Tilbud"
 
 #. module: sale
 #: help:sale.order,pricelist_id:0
 msgid "Pricelist for current sales order."
-msgstr ""
+msgstr "Prisliste for aktuell salgsordre."
 
 #. module: sale
 #: report:sale.order:0
@@ -428,9 +470,11 @@ msgid "Fiscal Position"
 msgstr "Skattemessig posisjon"
 
 #. module: sale
-#: view:sale.order:0 view:sale.order.line:0 field:sale.report,product_uom:0
+#: view:sale.order:0
+#: view:sale.order.line:0
+#: field:sale.report,product_uom:0
 msgid "UoM"
-msgstr "Måleenhet"
+msgstr "Enhet"
 
 #. module: sale
 #: field:sale.order.line,number_packages:0
@@ -438,7 +482,7 @@ msgid "Number Packages"
 msgstr "Antall pakker"
 
 #. module: sale
-#: selection:sale.order,state:0 selection:sale.report,state:0
+#: selection:sale.report,state:0
 msgid "In Progress"
 msgstr "I arbeid"
 
@@ -448,24 +492,27 @@ msgid ""
 "The salesman confirms the quotation. The state of the sales order becomes "
 "'In progress' or 'Manual in progress'."
 msgstr ""
+"Selgeren bekrefter tilbudet. Status for salgsordren blir 'I arbeid' eller 'I "
+"manuelt arbeid'."
 
 #. module: sale
-#: code:addons/sale/sale.py:1074
+#: code:addons/sale/sale.py:822
 #, python-format
 msgid "You cannot cancel a sale order line that has already been invoiced!"
-msgstr ""
+msgstr "Du kan ikke kansellere en salgsordrelinje som allerede er fakturert!"
 
 #. module: sale
-#: code:addons/sale/sale.py:1079
+#: code:addons/sale/sale.py:974
 #, python-format
 msgid "You must first cancel stock moves attached to this sales order line."
 msgstr ""
+"Du må først slette lagerbevegelser knyttet til denne salsgordrelinjen."
 
 #. module: sale
-#: code:addons/sale/sale.py:1147
+#: code:addons/sale/sale.py:1047
 #, python-format
 msgid "(n/a)"
-msgstr ""
+msgstr "(n/a)"
 
 #. module: sale
 #: help:sale.advance.payment.inv,product_id:0
@@ -473,6 +520,8 @@ msgid ""
 "Select a product of type service which is called 'Advance Product'. You may "
 "have to create it and set it as a default value on this field."
 msgstr ""
+"Velg et produkt av typen tjeneste som kalles 'Forhånsfakturert produkt'. Du "
+"må kanskje opprette den og sette den som en standar verdi på dette feltet."
 
 #. module: sale
 #: report:sale.order:0
@@ -486,9 +535,13 @@ msgid ""
 "You cannot make an advance on a sales order                              "
 "that is defined as 'Automatic Invoice after delivery'."
 msgstr ""
+"Du kan ikke lage et forskudd på en salgsordre som er definert som "
+"'Automatisk faktura etter levering'."
 
 #. module: sale
-#: view:sale.order:0 field:sale.order,note:0 view:sale.order.line:0
+#: view:sale.order:0
+#: field:sale.order,note:0
+#: view:sale.order.line:0
 #: field:sale.order.line,notes:0
 msgid "Notes"
 msgstr "Notater"
@@ -496,37 +549,39 @@ msgstr "Notater"
 #. module: sale
 #: sql_constraint:res.company:0
 msgid "The company name must be unique !"
-msgstr ""
+msgstr "Firmanavn må være unikt !"
 
 #. module: sale
 #: help:sale.order,partner_invoice_id:0
 msgid "Invoice address for current sales order."
-msgstr ""
+msgstr "Fakturaadresse for gjeldende salgsordre."
 
 #. module: sale
 #: view:sale.report:0
 msgid "Month-1"
-msgstr ""
+msgstr "Forrige måned"
 
 #. module: sale
 #: view:sale.report:0
 msgid "Ordered month of the sales order"
-msgstr ""
+msgstr "Ordremåned for salgsordren"
 
 #. module: sale
-#: code:addons/sale/sale.py:504
+#: code:addons/sale/sale.py:510
 #, python-format
 msgid ""
 "You cannot group sales having different currencies for the same partner."
 msgstr ""
+"Du kan ikke gruppere salg som har forskjellig valuta for samme partner."
 
 #. module: sale
 #: selection:sale.order,picking_policy:0
 msgid "Deliver each product when available"
-msgstr ""
+msgstr "Lever hvert produkt produkt når tilgjengelig"
 
 #. module: sale
-#: field:sale.order,invoiced_rate:0 field:sale.order.line,invoiced:0
+#: field:sale.order,invoice_exists:0
+#: field:sale.order.line,invoiced:0
 msgid "Invoiced"
 msgstr "Fakturert"
 
@@ -553,17 +608,17 @@ msgstr "Delpartner"
 #. module: sale
 #: selection:sale.report,month:0
 msgid "March"
-msgstr ""
+msgstr "Mars"
 
 #. module: sale
 #: constraint:stock.move:0
 msgid "You can not move products from or to a location of the type view."
-msgstr ""
+msgstr "Kan ikke flytte produkter til eller fra en lokasjon av typen view."
 
 #. module: sale
 #: field:sale.config.picking_policy,sale_orders:0
 msgid "Based on Sales Orders"
-msgstr ""
+msgstr "Basert på salgsordre"
 
 #. module: sale
 #: help:sale.order,amount_total:0
@@ -583,7 +638,7 @@ msgstr "Fakturaadresse:"
 #. module: sale
 #: field:sale.order.line,sequence:0
 msgid "Line Sequence"
-msgstr ""
+msgstr "Linjesekvens"
 
 #. module: sale
 #: model:process.transition,note:sale.process_transition_saleorderprocurement0
@@ -591,6 +646,8 @@ msgid ""
 "For every sales order line, a procurement order is created to supply the "
 "sold product."
 msgstr ""
+"For hver salgsordrelinje dannes en bestilling for å anskaffe det solgte "
+"produktet."
 
 #. module: sale
 #: help:sale.order,incoterm:0
@@ -598,6 +655,8 @@ msgid ""
 "Incoterm which stands for 'International Commercial terms' implies its a "
 "series of sales terms which are used in the commercial transaction."
 msgstr ""
+"Incoterm, som står for 'International Commercial terms', er en rekke "
+"salgstermer som benyttes i komersielle transaksjoner."
 
 #. module: sale
 #: field:sale.order,partner_invoice_id:0
@@ -607,7 +666,7 @@ msgstr "Fakturaadresse"
 #. module: sale
 #: view:sale.order.line:0
 msgid "Search Uninvoiced Lines"
-msgstr ""
+msgstr "Søk ikkefakturerte linjer"
 
 #. module: sale
 #: model:ir.actions.report.xml,name:sale.report_sale_order
@@ -615,18 +674,18 @@ msgid "Quotation / Order"
 msgstr "Tilbud / ordre"
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,nbr:0
+#: view:sale.report:0
+#: field:sale.report,nbr:0
 msgid "# of Lines"
 msgstr "# linjer"
 
 #. module: sale
 #: model:ir.model,name:sale.model_sale_open_invoice
 msgid "Sales Open Invoice"
-msgstr ""
+msgstr "Salg åpen faktura"
 
 #. module: sale
 #: model:ir.model,name:sale.model_sale_order_line
-#: field:stock.move,sale_line_id:0
 msgid "Sales Order Line"
 msgstr "Salgsordrelinje"
 
@@ -641,6 +700,7 @@ msgid "Order N°"
 msgstr "Ordrenr."
 
 #. module: sale
+#: view:sale.order:0
 #: field:sale.order,order_line:0
 msgid "Order Lines"
 msgstr "Ordrelinjer"
@@ -659,7 +719,7 @@ msgstr "Ordrelinjer å fakturere"
 #. module: sale
 #: field:sale.order.line,product_uom_qty:0
 msgid "Quantity (UoM)"
-msgstr "Kvantum (måleenhet)"
+msgstr "Mengde (enhet)"
 
 #. module: sale
 #: field:sale.order,create_date:0
@@ -669,7 +729,7 @@ msgstr "Opprettet dato"
 #. module: sale
 #: model:ir.ui.menu,name:sale.menu_sales_configuration_misc
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diverse"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_order_line_tree3
@@ -687,8 +747,9 @@ msgid "My Sales"
 msgstr "Mine salg"
 
 #. module: sale
-#: code:addons/sale/sale.py:295 code:addons/sale/sale.py:1074
-#: code:addons/sale/sale.py:1303
+#: code:addons/sale/sale.py:293
+#: code:addons/sale/sale.py:969
+#: code:addons/sale/sale.py:1169
 #, python-format
 msgid "Invalid action !"
 msgstr "Ugyldig handling!"
@@ -699,21 +760,23 @@ msgid "Extra Info"
 msgstr "Ekstrainformasjon"
 
 #. module: sale
-#: field:sale.order,pricelist_id:0 field:sale.report,pricelist_id:0
+#: field:sale.order,pricelist_id:0
+#: field:sale.report,pricelist_id:0
 #: field:sale.shop,pricelist_id:0
 msgid "Pricelist"
 msgstr "Prisliste"
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,product_uom_qty:0
+#: view:sale.report:0
+#: field:sale.report,product_uom_qty:0
 msgid "# of Qty"
-msgstr ""
+msgstr "Mengde"
 
 #. module: sale
-#: code:addons/sale/sale.py:1327
+#: code:addons/sale/res_config.py:97
 #, python-format
 msgid "Hour"
-msgstr ""
+msgstr "Time"
 
 #. module: sale
 #: view:sale.order:0
@@ -721,10 +784,9 @@ msgid "Order Date"
 msgstr "Ordredato"
 
 #. module: sale
-#: view:sale.order.line:0 view:sale.report:0 field:sale.report,shipped:0
-#: field:sale.report,shipped_qty_1:0
+#: view:sale.order.line:0
 msgid "Shipped"
-msgstr ""
+msgstr "Sendt"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_order_tree5
@@ -734,7 +796,7 @@ msgstr "Alle tilbud"
 #. module: sale
 #: view:sale.config.picking_policy:0
 msgid "Options"
-msgstr ""
+msgstr "Alternativer"
 
 #. module: sale
 #: selection:sale.report,month:0
@@ -742,21 +804,24 @@ msgid "September"
 msgstr "September"
 
 #. module: sale
-#: code:addons/sale/sale.py:632
+#: code:addons/sale/sale.py:590
 #, python-format
 msgid "You cannot confirm a sale order which has no line."
-msgstr ""
+msgstr "Du kan ikke bekrefte en salgsordre uten linjer."
 
 #. module: sale
-#: code:addons/sale/sale.py:1259
+#: code:addons/sale/sale.py:942
 #, python-format
 msgid ""
 "You have to select a pricelist or a customer in the sales form !\n"
 "Please set one before choosing a product."
 msgstr ""
+"Du må velge en prisliste eller en kunde i salgsbildet!\n"
+"Vennligst gjør dette før du velger produkt."
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,categ_id:0
+#: view:sale.report:0
+#: field:sale.report,categ_id:0
 msgid "Category of Product"
 msgstr "Produktkategori"
 
@@ -771,22 +836,24 @@ msgid "Stock Moves"
 msgstr "Lagerbevegelser"
 
 #. module: sale
-#: field:sale.order,state:0 field:sale.report,state:0
+#: field:sale.order,state:0
+#: field:sale.report,state:0
 msgid "Order State"
 msgstr "Ordrestatus"
 
 #. module: sale
-#: view:sale.make.invoice:0 view:sale.order.line.make.invoice:0
+#: view:sale.make.invoice:0
+#: view:sale.order.line.make.invoice:0
 msgid "Do you really want to create the invoice(s) ?"
 msgstr "Vil du virkerlig opprette faktura(ene) ?"
 
 #. module: sale
 #: view:sale.report:0
 msgid "Sales By Month"
-msgstr "Salg pr. måned"
+msgstr "Salg pr.  måned"
 
 #. module: sale
-#: code:addons/sale/sale.py:1078
+#: code:addons/sale/sale.py:973
 #, python-format
 msgid "Could not cancel sales order line!"
 msgstr "Kunne ikke kansellere salgsordrelinje!"
@@ -794,12 +861,12 @@ msgstr "Kunne ikke kansellere salgsordrelinje!"
 #. module: sale
 #: field:res.company,security_lead:0
 msgid "Security Days"
-msgstr ""
+msgstr "Sikkerhetsdager"
 
 #. module: sale
 #: model:process.transition,name:sale.process_transition_saleorderprocurement0
 msgid "Procurement of sold material"
-msgstr ""
+msgstr "Anskaffelse av solgt produkt"
 
 #. module: sale
 #: view:sale.order:0
@@ -817,11 +884,13 @@ msgid ""
 "It indicates that the sales order has been delivered. This field is updated "
 "only after the scheduler(s) have been launched."
 msgstr ""
+"Den indikerer at salgsordren har blitt levert. Dette feltet blir oppdatert "
+"kun etter at planleggeren(e) har blitt lansert."
 
 #. module: sale
 #: field:sale.order,date_order:0
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #. module: sale
 #: view:sale.report:0
@@ -831,7 +900,7 @@ msgstr "Utvidede filter..."
 #. module: sale
 #: selection:sale.order.line,state:0
 msgid "Exception"
-msgstr "Unntak"
+msgstr "Avvik"
 
 #. module: sale
 #: model:ir.model,name:sale.model_res_company
@@ -848,12 +917,17 @@ msgid ""
 "The 'Waiting Schedule' state is set when the invoice is confirmed but "
 "waiting for the scheduler to run on the order date."
 msgstr ""
+"Viser status for forespørsel eller salgsordre.\n"
+"Statusen 'Unntak' settes automatisk når det skjer en avbrytelse ved "
+"fakturering (faktureringsunntak) eller plukking (forsendelsesunntak).\n"
+"Statusen 'Avventer planlegging' settes når faktura er bekreftet men ordren "
+"venter på kjøring av planleggeren."
 
 #. module: sale
-#: code:addons/sale/sale.py:1272
+#: code:addons/sale/sale.py:955
 #, python-format
 msgid "No valid pricelist line found ! :"
-msgstr ""
+msgstr "Inegn gyldig prisliste funnet!:"
 
 #. module: sale
 #: view:sale.order:0
@@ -863,7 +937,7 @@ msgstr "Forløp"
 #. module: sale
 #: selection:sale.order,order_policy:0
 msgid "Invoice on order after delivery"
-msgstr ""
+msgstr "Fakturer ordre etter levering"
 
 #. module: sale
 #: help:sale.order,invoice_ids:0
@@ -891,11 +965,12 @@ msgstr "Navn og adresse på kontakten som ba om ordre eller tilbud"
 msgid ""
 "This is the days added to what you promise to customers for security purpose"
 msgstr ""
+"Dette er antall dager som for sikkerhet legges til det som er lovet kunde"
 
 #. module: sale
 #: view:sale.order.line:0
 msgid "Qty"
-msgstr "Kvt"
+msgstr "Mengde"
 
 #. module: sale
 #: view:sale.order:0
@@ -905,39 +980,40 @@ msgstr "Referanse"
 #. module: sale
 #: view:sale.order.line:0
 msgid "My Sales Order Lines"
-msgstr ""
+msgstr "Mine salgsordrelinjer"
 
 #. module: sale
 #: model:process.transition.action,name:sale.process_transition_action_cancel0
-#: model:process.transition.action,name:sale.process_transition_action_cancel1
-#: model:process.transition.action,name:sale.process_transition_action_cancel2
-#: view:sale.advance.payment.inv:0 view:sale.make.invoice:0
-#: view:sale.order.line:0 view:sale.order.line.make.invoice:0
+#: view:sale.advance.payment.inv:0
+#: view:sale.make.invoice:0
+#: view:sale.order.line.make.invoice:0
 msgid "Cancel"
 msgstr "Kanseller"
 
 #. module: sale
 #: sql_constraint:sale.order:0
 msgid "Order Reference must be unique per Company!"
-msgstr ""
+msgstr "Ordrereferanse må være unik pr. firma!"
 
 #. module: sale
 #: model:process.transition,name:sale.process_transition_invoice0
-#: model:process.transition,name:sale.process_transition_invoiceafterdelivery0
 #: model:process.transition.action,name:sale.process_transition_action_createinvoice0
-#: view:sale.advance.payment.inv:0 view:sale.order.line:0
+#: view:sale.advance.payment.inv:0
+#: view:sale.order:0
+#: field:sale.order,order_policy:0
+#: view:sale.order.line:0
 msgid "Create Invoice"
 msgstr "Lag faktura"
 
 #. module: sale
 #: view:sale.order:0
 msgid "Total Tax Excluded"
-msgstr ""
+msgstr "Totalt eksl. avgift"
 
 #. module: sale
 #: view:sale.order.line:0
 msgid "Order reference"
-msgstr ""
+msgstr "Ordrereferanse"
 
 #. module: sale
 #: view:sale.open.invoice:0
@@ -958,18 +1034,19 @@ msgstr "Ordrekontakt"
 #: model:ir.actions.act_window,name:sale.action_view_sale_open_invoice
 #: view:sale.open.invoice:0
 msgid "Open Invoice"
-msgstr ""
+msgstr "Åpne faktura"
 
 #. module: sale
 #: model:ir.actions.server,name:sale.ir_actions_server_edi_sale
 msgid "Auto-email confirmed sale orders"
-msgstr ""
+msgstr "Auto e-post bekreftede salgsordre"
 
 #. module: sale
-#: code:addons/sale/sale.py:413
+#: code:addons/sale/sale.py:391
 #, python-format
 msgid "There is no sales journal defined for this company: \"%s\" (id:%d)"
 msgstr ""
+"Det er ikke definert noen salgsjournal for dette firmaet: \"%s\" (id:%d)"
 
 #. module: sale
 #: model:process.transition.action,name:sale.process_transition_action_forceassignation0
@@ -984,17 +1061,17 @@ msgstr "i ordre"
 #. module: sale
 #: model:process.node,note:sale.process_node_invoiceafterdelivery0
 msgid "Based on the shipped or on the ordered quantities."
-msgstr ""
+msgstr "Basert på sendt eller bestilt kvantum."
 
 #. module: sale
 #: selection:sale.order,picking_policy:0
 msgid "Deliver all products at once"
-msgstr ""
+msgstr "Utlever alle produkter på en gang"
 
 #. module: sale
 #: field:sale.order,picking_ids:0
 msgid "Related Picking"
-msgstr ""
+msgstr "Tilhørende plukking"
 
 #. module: sale
 #: field:sale.config.picking_policy,name:0
@@ -1015,7 +1092,7 @@ msgstr "Salg pr. kunde de siste 90 dager"
 #. module: sale
 #: model:process.node,note:sale.process_node_quotation0
 msgid "Draft state of sales order"
-msgstr ""
+msgstr "Utkast status  for salgordre"
 
 #. module: sale
 #: model:process.transition,name:sale.process_transition_deliver0
@@ -1026,17 +1103,17 @@ msgstr "Opprett leveringsordre"
 #: code:addons/sale/sale.py:1303
 #, python-format
 msgid "Cannot delete a sales order line which is in state '%s'!"
-msgstr ""
+msgstr "Kan ikke slette salgsordrelinjer med status '%s'!"
 
 #. module: sale
 #: view:sale.order:0
 msgid "Qty(UoS)"
-msgstr ""
+msgstr "Mengde (salgsenhet)"
 
 #. module: sale
 #: view:sale.order:0
 msgid "Total Tax Included"
-msgstr ""
+msgstr "Totalt inkl. avg."
 
 #. module: sale
 #: model:process.transition,name:sale.process_transition_packing0
@@ -1046,12 +1123,12 @@ msgstr "Opprett plukkliste"
 #. module: sale
 #: view:sale.report:0
 msgid "Ordered date of the sales order"
-msgstr ""
+msgstr "Ordredato for salgsordren"
 
 #. module: sale
 #: view:sale.report:0
 msgid "Sales by Product Category"
-msgstr ""
+msgstr "Salg pr. produktkategori"
 
 #. module: sale
 #: model:process.transition,name:sale.process_transition_confirmquotation0
@@ -1065,7 +1142,9 @@ msgid "Error"
 msgstr "Feil"
 
 #. module: sale
-#: view:sale.order:0 view:sale.order.line:0 view:sale.report:0
+#: view:sale.order:0
+#: view:sale.order.line:0
+#: view:sale.report:0
 msgid "Group By..."
 msgstr "Grupper etter..."
 
@@ -1078,12 +1157,13 @@ msgstr "Gjenskap faktura"
 #: model:ir.actions.act_window,name:sale.outgoing_picking_list_to_invoice
 #: model:ir.ui.menu,name:sale.menu_action_picking_list_to_invoice
 msgid "Deliveries to Invoice"
-msgstr ""
+msgstr "Leveringer klare til fakturering"
 
 #. module: sale
-#: selection:sale.order,state:0 selection:sale.report,state:0
+#: selection:sale.order,state:0
+#: selection:sale.report,state:0
 msgid "Waiting Schedule"
-msgstr "Ventetidsplan"
+msgstr "Avventer planlegging"
 
 #. module: sale
 #: field:sale.order.line,type:0
@@ -1103,10 +1183,10 @@ msgstr "Sett til forslag"
 #. module: sale
 #: model:process.node,note:sale.process_node_packinglist0
 msgid "Document of the move to the output or to the customer."
-msgstr ""
+msgstr "Dokumentering av bevegelse til utgående lokasjon eller kunde."
 
 #. module: sale
-#: model:email.template,body_text:sale.email_template_edi_sale
+#: model:email.template,body:sale.email_template_edi_sale
 msgid ""
 "\n"
 "Hello${object.partner_order_id.name and ' ' or "
@@ -1183,6 +1263,80 @@ msgid ""
 "% endif\n"
 "            "
 msgstr ""
+"\n"
+"Hei${object.partner_order_id.name and ' ' or "
+"''}${object.partner_order_id.name or ''},\n"
+"\n"
+"Her er ordrebekreftelsen for ${object.partner_id.name}:\n"
+"       | Ordrenummer: *${object.name}*\n"
+"       | Totalt beløp: *${object.amount_total} "
+"${object.pricelist_id.currency_id.name}*\n"
+"       | Ordredato: ${object.date_order}\n"
+"       % if object.origin:\n"
+"       | Ordrereferanse: ${object.origin}\n"
+"       % endif\n"
+"       % if object.client_order_ref:\n"
+"       | Deres referanse: ${object.client_order_ref}<br />\n"
+"       % endif\n"
+"       | Deres kontakt: ${object.user_id.name} ${object.user_id.user_email "
+"and '<%s>'%(object.user_id.user_email) or ''}\n"
+"\n"
+"Du kan vise og laste den ned ordrebekreftelsen. Du kan også betale online "
+"ved hjelp av følgende snarvei:\n"
+"    ${ctx.get('edi_web_url_view') or 'n/a'}\n"
+"\n"
+"% if object.order_policy in ('prepaid','manual') and "
+"object.company_id.paypal_account:\n"
+"<% \n"
+"comp_name = quote(object.company_id.name)\n"
+"order_name = quote(object.name)\n"
+"paypal_account = quote(object.company_id.paypal_account)\n"
+"order_amount = quote(str(object.amount_total))\n"
+"cur_name = quote(object.pricelist_id.currency_id.name)\n"
+"paypal_url = \"https://www.paypal.com/cgi-"
+"bin/webscr?cmd=_xclick&business=%s&item_name=%s%%20Order%%20%s&invoice=%s&amo"
+"unt=%s\" \\\n"
+"             "
+"\"&currency_code=%s&button_subtype=services&no_note=1&bn=OpenERP_Order_PayNow"
+"_%s\" % \\\n"
+"             "
+"(paypal_account,comp_name,order_name,order_name,order_amount,cur_name,cur_nam"
+"e)\n"
+"%>\n"
+"Det er også mulig å betale direkte via PayPal:\n"
+"    ${paypal_url}\n"
+"% endif\n"
+"\n"
+"Ta gjerne kontakt om du har spørsmål.\n"
+"\n"
+"\n"
+"Takk for at du har valgt ${object.company_id.name}!\n"
+"\n"
+"\n"
+"--\n"
+"${object.user_id.name} ${object.user_id.user_email and "
+"'<%s>'%(object.user_id.user_email) or ''}\n"
+"${object.company_id.name}\n"
+"% if object.company_id.street:\n"
+"${object.company_id.street or ''}\n"
+"% endif\n"
+"% if object.company_id.street2:\n"
+"${object.company_id.street2}\n"
+"% endif\n"
+"% if object.company_id.city or object.company_id.zip:\n"
+"${object.company_id.zip or ''} ${object.company_id.city or ''}\n"
+"% endif\n"
+"% if object.company_id.country_id:\n"
+"${object.company_id.state_id and ('%s, ' % object.company_id.state_id.name) "
+"or ''} ${object.company_id.country_id.name or ''}\n"
+"% endif\n"
+"% if object.company_id.phone:\n"
+"Tlf: ${object.company_id.phone}\n"
+"% endif\n"
+"% if object.company_id.website:\n"
+"${object.company_id.website or ''}\n"
+"% endif\n"
+"            "
 
 #. module: sale
 #: model:process.transition.action,name:sale.process_transition_action_validate0
@@ -1200,7 +1354,7 @@ msgid "Create Procurement Order"
 msgstr "Opprett innkjøpsordre"
 
 #. module: sale
-#: view:sale.order:0 field:sale.order,amount_tax:0
+#: field:sale.order,amount_tax:0
 #: field:sale.order.line,tax_id:0
 msgid "Taxes"
 msgstr "Avgifter"
@@ -1208,7 +1362,7 @@ msgstr "Avgifter"
 #. module: sale
 #: view:sale.order:0
 msgid "Sales Order ready to be invoiced"
-msgstr ""
+msgstr "Salgsordre klare til fakturering"
 
 #. module: sale
 #: help:sale.order,create_date:0
@@ -1221,14 +1375,15 @@ msgid "Stock Move"
 msgstr "Lagerbevegelse"
 
 #. module: sale
-#: view:sale.make.invoice:0 view:sale.order.line.make.invoice:0
+#: view:sale.make.invoice:0
+#: view:sale.order.line.make.invoice:0
 msgid "Create Invoices"
 msgstr "Lag faktura"
 
 #. module: sale
 #: view:sale.report:0
 msgid "Sales order created in current month"
-msgstr ""
+msgstr "Salgsordre laget i inneværende måned"
 
 #. module: sale
 #: report:sale.order:0
@@ -1242,16 +1397,19 @@ msgid ""
 "create a task, purchase order or manufacturing order linked to this sale "
 "order line."
 msgstr ""
+"Hvis 'Produsere på bestilling' initieres en anskaffelse når salgsordren "
+"bekreftes, slik at det opprettes en oppgave, bestilling eller "
+"produksjonsordre koblet til denne salgsordrelinjen."
 
 #. module: sale
 #: field:sale.advance.payment.inv,amount:0
 msgid "Advance Amount"
-msgstr ""
+msgstr "Forskuddsbeløp"
 
 #. module: sale
 #: field:sale.config.picking_policy,charge_delivery:0
 msgid "Do you charge the delivery?"
-msgstr ""
+msgstr "Faktureres utleveringene?"
 
 #. module: sale
 #: selection:sale.order,invoice_quantity:0
@@ -1264,12 +1422,14 @@ msgid "Invoice Based on Sales Orders"
 msgstr "Faktura basert på salgsordre"
 
 #. module: sale
-#: code:addons/sale/sale.py:331
+#: code:addons/sale/sale.py:309
 #, python-format
 msgid ""
 "If you change the pricelist of this order (and eventually the currency), "
 "prices of existing order lines will not be updated."
 msgstr ""
+"Hvis du endrer prisliste for denne ordren (og evt. valutaen) vil prisene på "
+"eksisterende ordrelinjer ikke bli oppdatert."
 
 #. module: sale
 #: model:ir.model,name:sale.model_stock_picking
@@ -1277,15 +1437,15 @@ msgid "Picking List"
 msgstr "Plukkliste"
 
 #. module: sale
-#: code:addons/sale/sale.py:412 code:addons/sale/sale.py:503
-#: code:addons/sale/sale.py:632 code:addons/sale/sale.py:1016
-#: code:addons/sale/sale.py:1033
+#: code:addons/sale/sale.py:390
+#: code:addons/sale/sale.py:923
+#: code:addons/sale/sale.py:941
 #, python-format
 msgid "Error !"
 msgstr "Feil!"
 
 #. module: sale
-#: code:addons/sale/sale.py:603
+#: code:addons/sale/sale.py:573
 #, python-format
 msgid "Could not cancel sales order !"
 msgstr "Kunne ikke kansellere salgsordre!"
@@ -1293,12 +1453,12 @@ msgstr "Kunne ikke kansellere salgsordre!"
 #. module: sale
 #: view:sale.order:0
 msgid "Qty(UoM)"
-msgstr ""
+msgstr "Mengde (enhet)"
 
 #. module: sale
 #: view:sale.report:0
 msgid "Ordered Year of the sales order"
-msgstr ""
+msgstr "Ordreår for salgsordren"
 
 #. module: sale
 #: selection:sale.report,month:0
@@ -1311,15 +1471,16 @@ msgid "Procurement"
 msgstr "Innkjøp"
 
 #. module: sale
-#: selection:sale.order,state:0 selection:sale.report,state:0
+#: selection:sale.order,state:0
+#: selection:sale.report,state:0
 msgid "Shipping Exception"
-msgstr "Forendelsesunntak"
+msgstr "Forsendelsesavvik"
 
 #. module: sale
 #: code:addons/sale/sale.py:1156
 #, python-format
 msgid "Picking Information ! : "
-msgstr ""
+msgstr "Plukking informasjon "
 
 #. module: sale
 #: field:sale.make.invoice,grouped:0
@@ -1329,23 +1490,24 @@ msgstr "Gruppering av fakturaer"
 #. module: sale
 #: field:sale.order,order_policy:0
 msgid "Invoice Policy"
-msgstr ""
+msgstr "Faktureringsregler"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_config_picking_policy
 #: view:sale.config.picking_policy:0
 msgid "Setup your Invoicing Method"
-msgstr ""
+msgstr "Sett opp faktureringsmetode"
 
 #. module: sale
 #: model:process.node,note:sale.process_node_invoice0
 msgid "To be reviewed by the accountant."
-msgstr ""
+msgstr "For gjennomgang av regnskap."
 
 #. module: sale
 #: view:sale.report:0
+#: field:sale.report,uom_name:0
 msgid "Reference UoM"
-msgstr ""
+msgstr "Referanseenhet"
 
 #. module: sale
 #: view:sale.config.picking_policy:0
@@ -1353,21 +1515,24 @@ msgid ""
 "This tool will help you to install the right module and configure the system "
 "according to the method you use to invoice your customers."
 msgstr ""
+"Dette verktøyet vil hjelpe deg å installere riktig modul og konfigurere "
+"systemet i henhold til hvordan du fakturerer kundene."
 
 #. module: sale
 #: model:ir.model,name:sale.model_sale_order_line_make_invoice
 msgid "Sale OrderLine Make_invoice"
-msgstr ""
+msgstr "Sale OrderLine Make_invoice"
 
 #. module: sale
-#: selection:sale.order,state:0 selection:sale.report,state:0
+#: selection:sale.order,state:0
+#: selection:sale.report,state:0
 msgid "Invoice Exception"
-msgstr "Fakturaunntak"
+msgstr "Fakturaavvik"
 
 #. module: sale
 #: model:process.node,note:sale.process_node_saleorder0
 msgid "Drives procurement and invoicing"
-msgstr ""
+msgstr "Styrer anskaffelse og fakturering"
 
 #. module: sale
 #: field:sale.order,invoiced:0
@@ -1376,9 +1541,10 @@ msgstr "Betalt"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_order_report_all
-#: model:ir.ui.menu,name:sale.menu_report_product_all view:sale.report:0
+#: model:ir.ui.menu,name:sale.menu_report_product_all
+#: view:sale.report:0
 msgid "Sales Analysis"
-msgstr ""
+msgstr "Salgsanalyse"
 
 #. module: sale
 #: code:addons/sale/sale.py:1151
@@ -1389,20 +1555,25 @@ msgid ""
 "Here is a proposition of quantities according to the packaging:\n"
 "EAN: %s Quantity: %s Type of ul: %s"
 msgstr ""
+"Du valgte en mengde på %d enheter.\n"
+"Dette passer ikke overens med valgt forpakning.\n"
+"Foreslår følgende mengde i henhold til forpakning:\n"
+"EAN: %s Mengde: %s Forpakningstype: %s"
 
 #. module: sale
 #: view:sale.order:0
 msgid "Recreate Packing"
-msgstr ""
+msgstr "Gjenskap pakking"
 
 #. module: sale
-#: view:sale.order:0 field:sale.order.line,property_ids:0
+#: field:sale.order.line,property_ids:0
 msgid "Properties"
 msgstr "Egenskaper"
 
 #. module: sale
 #: model:process.node,name:sale.process_node_quotation0
-#: selection:sale.order,state:0 selection:sale.report,state:0
+#: view:sale.order:0
+#: selection:sale.report,state:0
 msgid "Quotation"
 msgstr "Tilbud"
 
@@ -1413,54 +1584,69 @@ msgid ""
 "is 'Shipping and Manual in Progress'. The invoice is created automatically "
 "if the shipping policy is 'Payment before Delivery'."
 msgstr ""
+"Selger oppretter faktura manuelt dersom faktureringsregel er 'Manuell "
+"utlevering og fakturering'. Faktura dannes automatisk dersom "
+"faktureringsregel er 'Forskuddsbetaling'."
 
 #. module: sale
 #: help:sale.config.picking_policy,order_policy:0
 msgid ""
 "You can generate invoices based on sales orders or based on shippings."
-msgstr ""
+msgstr "Du kan lage fakturaer basert enten på salgsordre eller leveranser."
 
 #. module: sale
 #: view:sale.order.line:0
 msgid "Confirmed sale order lines, not yet delivered"
-msgstr ""
+msgstr "Bekreftede salgsordrelinjer, ennå ikke levert"
 
 #. module: sale
-#: code:addons/sale/sale.py:473
+#: code:addons/sale/sale.py:449
 #, python-format
 msgid "Customer Invoices"
-msgstr ""
+msgstr "Kundefaktura"
 
 #. module: sale
+#: model:ir.actions.act_window,name:sale.open_board_sales
+#: model:ir.ui.menu,name:sale.menu_dashboard_sales
 #: model:process.process,name:sale.process_process_salesprocess0
-#: view:sale.order:0 view:sale.report:0
+#: view:res.partner:0
+#: view:sale.order:0
+#: view:sale.report:0
 msgid "Sales"
 msgstr "Salg"
 
 #. module: sale
-#: report:sale.order:0 field:sale.order.line,price_unit:0
+#: report:sale.order:0
+#: field:sale.order.line,price_unit:0
 msgid "Unit Price"
 msgstr "Enhetspris"
 
 #. module: sale
-#: selection:sale.order,state:0 view:sale.order.line:0
-#: selection:sale.order.line,state:0 selection:sale.report,state:0
+#: view:sale.order:0
+#: selection:sale.order,state:0
+#: view:sale.order.line:0
+#: selection:sale.order.line,state:0
+#: selection:sale.report,state:0
 msgid "Done"
 msgstr "Fullført"
 
 #. module: sale
+#: code:addons/sale/wizard/sale_line_invoice.py:124
 #: model:process.node,name:sale.process_node_invoice0
-#: model:process.node,name:sale.process_node_invoiceafterdelivery0
+#: view:sale.order:0
+#, python-format
 msgid "Invoice"
 msgstr "Faktura"
 
 #. module: sale
-#: code:addons/sale/sale.py:1171
+#: code:addons/sale/sale.py:1017
 #, python-format
 msgid ""
 "You have to select a customer in the sales form !\n"
 "Please set one customer before choosing a product."
 msgstr ""
+"Du må velge en kunde i salgsbildet!\n"
+"Vennligst velg kunde før du velger produkt."
 
 #. module: sale
 #: field:sale.order,origin:0
@@ -1470,47 +1656,51 @@ msgstr "Kildedokument"
 #. module: sale
 #: view:sale.order.line:0
 msgid "To Do"
-msgstr ""
+msgstr "Gjøremål"
 
 #. module: sale
 #: field:sale.order,picking_policy:0
 msgid "Picking Policy"
-msgstr ""
+msgstr "Regler for plukking"
 
 #. module: sale
 #: model:process.node,note:sale.process_node_deliveryorder0
 msgid "Document of the move to the customer."
-msgstr ""
+msgstr "Dokument av forsendelsen til kunden."
 
 #. module: sale
 #: help:sale.order,amount_untaxed:0
 msgid "The amount without tax."
-msgstr ""
+msgstr "Beløp uten avgift"
 
 #. module: sale
-#: code:addons/sale/sale.py:604
+#: code:addons/sale/sale.py:574
 #, python-format
 msgid "You must first cancel all picking attached to this sales order."
 msgstr ""
+"Du må først kansellere alle plukkinger knyttet til denne salgsordren."
 
 #. module: sale
 #: model:ir.model,name:sale.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Forskuddsfaktura"
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,month:0
+#: view:sale.report:0
+#: field:sale.report,month:0
 msgid "Month"
 msgstr "Måned"
 
 #. module: sale
 #: model:email.template,subject:sale.email_template_edi_sale
 msgid "${object.company_id.name} Order (Ref ${object.name or 'n/a' })"
-msgstr ""
+msgstr "${object.company_id.name} Order (Ref ${object.name or 'n/a' })"
 
 #. module: sale
-#: view:sale.order.line:0 field:sale.order.line,product_id:0
-#: view:sale.report:0 field:sale.report,product_id:0
+#: view:sale.order.line:0
+#: field:sale.order.line,product_id:0
+#: view:sale.report:0
+#: field:sale.report,product_id:0
 msgid "Product"
 msgstr "Produkt"
 
@@ -1525,10 +1715,11 @@ msgid "sale.config.picking_policy"
 msgstr "sale.config.picking_policy"
 
 #. module: sale
-#: view:account.invoice.report:0 view:board.board:0
+#: view:account.invoice.report:0
+#: view:board.board:0
 #: model:ir.actions.act_window,name:sale.action_turnover_by_month
 msgid "Monthly Turnover"
-msgstr ""
+msgstr "Månedlig omsetning"
 
 #. module: sale
 #: field:sale.order,invoice_quantity:0
@@ -1553,12 +1744,12 @@ msgstr "Manuell i arbeid"
 #. module: sale
 #: field:sale.order.line,product_uom:0
 msgid "Product UoM"
-msgstr "Produkt måleenhet"
+msgstr "Produktenhet"
 
 #. module: sale
 #: view:sale.order:0
 msgid "Logistic"
-msgstr ""
+msgstr "Logistisk"
 
 #. module: sale
 #: view:sale.order.line:0
@@ -1566,8 +1757,7 @@ msgid "Order"
 msgstr "Ordre"
 
 #. module: sale
-#: code:addons/sale/sale.py:1017
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:71
+#: code:addons/sale/sale.py:924
 #, python-format
 msgid "There is no income account defined for this product: \"%s\" (id:%d)"
 msgstr ""
@@ -1576,7 +1766,7 @@ msgstr ""
 #. module: sale
 #: view:sale.order:0
 msgid "Ignore Exception"
-msgstr "Ignorer unntak"
+msgstr "Ignorer avvik"
 
 #. module: sale
 #: model:process.transition,note:sale.process_transition_saleinvoice0
@@ -1586,14 +1776,19 @@ msgid ""
 "generates an invoice or a delivery order as soon as it is confirmed by the "
 "salesman."
 msgstr ""
+"Avhengig av faktureringsregelen på salgsordren kan faktura baseres på "
+"bestilt eller levert mengde. Slik kan en salgsordre danne faktura eller "
+"plikkordre når den bekreftes av selger."
 
 #. module: sale
-#: code:addons/sale/sale.py:1251
+#: code:addons/sale/sale.py:1116
 #, python-format
 msgid ""
 "You plan to sell %.2f %s but you only have %.2f %s available !\n"
 "The real stock is %.2f %s. (without reservations)"
 msgstr ""
+"Du planlegger å selge %.2f %s men du har bare %.2f %s tilgjengelig!\n"
+"Virkelig lagerbeholdning er %.2f %s (uten reservasjoner)."
 
 #. module: sale
 #: view:sale.order:0
@@ -1603,7 +1798,7 @@ msgstr "Bekrefter"
 #. module: sale
 #: view:sale.config.picking_policy:0
 msgid "res_config_contents"
-msgstr ""
+msgstr "res_config_contents"
 
 #. module: sale
 #: field:sale.order,client_order_ref:0
@@ -1611,12 +1806,13 @@ msgid "Customer Reference"
 msgstr "Kundereferanse"
 
 #. module: sale
-#: field:sale.order,amount_total:0 view:sale.order.line:0
+#: field:sale.order,amount_total:0
+#: view:sale.order.line:0
 msgid "Total"
 msgstr "Total"
 
 #. module: sale
-#: report:sale.order:0 view:sale.order.line:0
+#: report:sale.order:0
 msgid "Price"
 msgstr "Pris"
 
@@ -1627,45 +1823,49 @@ msgid ""
 "output area and the customer is done through the Delivery Order manually or "
 "automatically."
 msgstr ""
+"Avhengig av oppsettet av utgående lokasjon vil varebevegelsen fra utgående "
+"logistikk til kunde gjort gjennom en leveringsordre eller automatisk."
 
 #. module: sale
 #: selection:sale.order,order_policy:0
 msgid "Pay before delivery"
-msgstr ""
+msgstr "Forskuddsbetaling"
 
 #. module: sale
-#: view:board.board:0 model:ir.actions.act_window,name:sale.open_board_sales
+#: view:board.board:0
 msgid "Sales Dashboard"
-msgstr ""
+msgstr "Salgskonsoll"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_sale_order_make_invoice
 #: model:ir.actions.act_window,name:sale.action_view_sale_order_line_make_invoice
-#: view:sale.order:0
 msgid "Make Invoices"
 msgstr "Lag fakturaer"
 
 #. module: sale
-#: view:sale.order:0 selection:sale.order,state:0 view:sale.order.line:0
+#: view:sale.order:0
+#: view:sale.order.line:0
 msgid "To Invoice"
 msgstr "Å fakturere"
 
 #. module: sale
 #: help:sale.order,date_confirm:0
 msgid "Date on which sales order is confirmed."
-msgstr ""
+msgstr "Dato hvor salgsordre er bekreftet."
 
 #. module: sale
 #: field:sale.order,project_id:0
 msgid "Contract/Analytic Account"
-msgstr ""
+msgstr "Kontrakt/analytisk konto"
 
 #. module: sale
-#: field:sale.order,company_id:0 field:sale.order.line,company_id:0
-#: view:sale.report:0 field:sale.report,company_id:0
+#: field:sale.order,company_id:0
+#: field:sale.order.line,company_id:0
+#: view:sale.report:0
+#: field:sale.report,company_id:0
 #: field:sale.shop,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Bedrift"
 
 #. module: sale
 #: field:sale.make.invoice,invoice_date:0
@@ -1675,15 +1875,17 @@ msgstr "Fakturadato"
 #. module: sale
 #: help:sale.advance.payment.inv,amount:0
 msgid "The amount to be invoiced in advance."
-msgstr ""
+msgstr "Beløp som skal forhåndsfaktureres."
 
 #. module: sale
-#: code:addons/sale/sale.py:1269
+#: code:addons/sale/sale.py:1134
 #, python-format
 msgid ""
 "Couldn't find a pricelist line matching this product and quantity.\n"
 "You have to change either the product, the quantity or the pricelist."
 msgstr ""
+"Kan ikke finne en oppføring i prisliste som stemmer med produkt og mengde.\n"
+"Du må endre enten produkt, prisliste eller mengde."
 
 #. module: sale
 #: help:sale.order,picking_ids:0
@@ -1692,7 +1894,8 @@ msgid ""
 msgstr "Dette er plukklisten som har blitt laget for denne salgsordren."
 
 #. module: sale
-#: view:sale.make.invoice:0 view:sale.order.line.make.invoice:0
+#: view:sale.make.invoice:0
+#: view:sale.order.line.make.invoice:0
 msgid "Create invoices"
 msgstr "Lag faktura"
 
@@ -1702,7 +1905,8 @@ msgid "Net Total :"
 msgstr "Netto total:"
 
 #. module: sale
-#: selection:sale.order,state:0 selection:sale.order.line,state:0
+#: selection:sale.order,state:0
+#: selection:sale.order.line,state:0
 #: selection:sale.report,state:0
 msgid "Cancelled"
 msgstr "Kansellert"
@@ -1710,22 +1914,23 @@ msgstr "Kansellert"
 #. module: sale
 #: view:sale.order.line:0
 msgid "Sales Order Lines related to a Sales Order of mine"
-msgstr ""
+msgstr "Salgsordrelinjer knyttet til en av mine salgsordre"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_shop_form
-#: model:ir.ui.menu,name:sale.menu_action_shop_form field:sale.order,shop_id:0
-#: view:sale.report:0 field:sale.report,shop_id:0
+#: field:sale.order,shop_id:0
+#: view:sale.report:0
+#: field:sale.report,shop_id:0
 msgid "Shop"
-msgstr "Handle"
+msgstr "Butikk"
 
 #. module: sale
 #: field:sale.report,date_confirm:0
 msgid "Date Confirm"
-msgstr ""
+msgstr "Dato bekreftet"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_line_invoice.py:113
+#: code:addons/sale/wizard/sale_line_invoice.py:111
 #, python-format
 msgid "Warning"
 msgstr "Varsel"
@@ -1737,11 +1942,16 @@ msgid "Sales by Month"
 msgstr "Salg pr. måned"
 
 #. module: sale
+#: code:addons/sale/sale.py:288
+#: code:addons/sale/sale.py:586
 #: model:ir.model,name:sale.model_sale_order
 #: model:process.node,name:sale.process_node_order0
 #: model:process.node,name:sale.process_node_saleorder0
-#: model:res.request.link,name:sale.req_link_sale_order view:sale.order:0
-#: field:stock.picking,sale_id:0
+#: field:res.partner,sale_order_ids:0
+#: model:res.request.link,name:sale.req_link_sale_order
+#: view:sale.order:0
+#: selection:sale.order,state:0
+#, python-format
 msgid "Sales Order"
 msgstr "Salgsordre"
 
@@ -1753,7 +1963,7 @@ msgstr "Kvantum (salgsenhet)"
 #. module: sale
 #: view:sale.order.line:0
 msgid "Sale Order Lines that are in 'done' state"
-msgstr ""
+msgstr "Salgsordrelinjer som er i utført status"
 
 #. module: sale
 #: model:process.transition,note:sale.process_transition_packing0
@@ -1763,6 +1973,9 @@ msgid ""
 "parts to the sales order. There is 1 pick list by sales order line which "
 "evolves with the availability of parts."
 msgstr ""
+"Plukklisten dannes umiddelbart når en salgsordre bekreftes, samtidig med "
+"anskaffelsesordren. Den tilordner varer til salgsordren. Det dannes en "
+"plukkliste til salgsordren som utvides løpende med tilgjengelige produkter."
 
 #. module: sale
 #: selection:sale.order.line,state:0
@@ -1772,7 +1985,7 @@ msgstr "Bekreftet"
 #. module: sale
 #: field:sale.config.picking_policy,order_policy:0
 msgid "Main Method Based On"
-msgstr ""
+msgstr "Hovedregel basert på"
 
 #. module: sale
 #: model:process.transition.action,name:sale.process_transition_action_confirm0
@@ -1782,22 +1995,23 @@ msgstr "Bekreft"
 #. module: sale
 #: constraint:res.company:0
 msgid "Error! You can not create recursive companies."
-msgstr ""
+msgstr "Feil ! Du kan ikke lage rekursive firmaer."
 
 #. module: sale
 #: view:board.board:0
 #: model:ir.actions.act_window,name:sale.action_sales_product_total_price
 msgid "Sales by Product's Category in last 90 days"
-msgstr ""
+msgstr "Salg pr. produktgruppe siste 90 dager"
 
 #. module: sale
-#: view:sale.order:0 field:sale.order.line,invoice_lines:0
+#: field:sale.order.line,invoice_lines:0
 msgid "Invoice Lines"
 msgstr "Fakturalinjer"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_order_line_product_tree
-#: view:sale.order:0 view:sale.order.line:0
+#: view:sale.order:0
+#: view:sale.order.line:0
 msgid "Sales Order Lines"
 msgstr "Salgsordrelinjer"
 
@@ -1812,23 +2026,23 @@ msgid "Configuration"
 msgstr "Konfigurasjon"
 
 #. module: sale
-#: code:addons/sale/edi/sale_order.py:146
+#: code:addons/sale/edi/sale_order.py:140
 #, python-format
 msgid "EDI Pricelist (%s)"
-msgstr ""
+msgstr "EDI prisliste (%s)"
 
 #. module: sale
 #: view:sale.order:0
 msgid "Print Order"
-msgstr ""
+msgstr "Utskrift av ordre"
 
 #. module: sale
 #: view:sale.report:0
 msgid "Sales order created in current year"
-msgstr ""
+msgstr "Salgsordre laget i inneværende år"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_line_invoice.py:113
+#: code:addons/sale/wizard/sale_line_invoice.py:110
 #, python-format
 msgid ""
 "Invoice cannot be created for this Sales Order Line due to one of the "
@@ -1836,11 +2050,13 @@ msgid ""
 "1.The state of this sales order line is either \"draft\" or \"cancel\"!\n"
 "2.The Sales Order Line is Invoiced!"
 msgstr ""
+"Faktura for denne salgsordrelinjen kan ikke dannes da ordrelinjen enten "
+"allerede er fakturert eller har status \"Utkast\" eller \"Kansellert\"."
 
 #. module: sale
 #: view:sale.order.line:0
 msgid "Sale order lines done"
-msgstr ""
+msgstr "Salgsordrelinjer ferdig"
 
 #. module: sale
 #: field:sale.order.line,th_weight:0
@@ -1848,7 +2064,7 @@ msgid "Weight"
 msgstr "Vekt"
 
 #. module: sale
-#: view:sale.open.invoice:0 view:sale.order:0 field:sale.order,invoice_ids:0
+#: field:sale.order,invoice_ids:0
 msgid "Invoices"
 msgstr "Fakturaer"
 
@@ -1859,8 +2075,9 @@ msgstr "Desember"
 
 #. module: sale
 #: field:sale.config.picking_policy,config_logo:0
+#: field:sale.installer,config_logo:0
 msgid "Image"
-msgstr ""
+msgstr "Bilde"
 
 #. module: sale
 #: model:process.transition,note:sale.process_transition_saleprocurement0
@@ -1870,6 +2087,9 @@ msgid ""
 "production of products regarding to the rules and to the sales order's "
 "parameters. "
 msgstr ""
+"En anskaffelsesordre dannes automatisk når en salgsordre bekreftes eller "
+"faktura er betalt. Denne driver innkjøp og/eller produksjon av produktet i "
+"henhold til anskaffelsesregler og parametere på salgsordren. "
 
 #. module: sale
 #: view:sale.order.line:0
@@ -1877,11 +2097,15 @@ msgid "Uninvoiced"
 msgstr "Ikke fakturert"
 
 #. module: sale
-#: report:sale.order:0 view:sale.order:0 field:sale.order,user_id:0
-#: view:sale.order.line:0 field:sale.order.line,salesman_id:0
-#: view:sale.report:0 field:sale.report,user_id:0
+#: report:sale.order:0
+#: view:sale.order:0
+#: field:sale.order,user_id:0
+#: view:sale.order.line:0
+#: field:sale.order.line,salesman_id:0
+#: view:sale.report:0
+#: field:sale.report,user_id:0
 msgid "Salesman"
-msgstr "Salgsperson"
+msgstr "Selger"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_order_tree
@@ -1894,18 +2118,16 @@ msgid "Untaxed Amount"
 msgstr "Ikke avgiftsberegnet beløp"
 
 #. module: sale
-#: code:addons/sale/wizard/sale_make_invoice_advance.py:170
-#: model:ir.actions.act_window,name:sale.action_view_sale_advance_payment_inv
-#: view:sale.advance.payment.inv:0 view:sale.order:0
+#: code:addons/sale/wizard/sale_make_invoice_advance.py:202
 #, python-format
 msgid "Advance Invoice"
 msgstr "Forskuddsfaktura"
 
 #. module: sale
-#: code:addons/sale/sale.py:624
+#: code:addons/sale/sale.py:594
 #, python-format
 msgid "The sales order '%s' has been cancelled."
-msgstr ""
+msgstr "Salgsordren '%s' har blitt kansellert."
 
 #. module: sale
 #: selection:sale.order.line,state:0
@@ -1925,6 +2147,11 @@ msgid ""
 "            \n"
 "* The 'Cancelled' state is set when a user cancel the sales order related."
 msgstr ""
+"* Status 'Utkast' settes når tilhørende salgsordre har status 'Utkast'.\n"
+"* Status 'Bekreftet' settes når tilhørende salgsordre blir bekreftet.\n"
+"* Status 'Avvik' settes når tilhørende salgsordre har avvik.\n"
+"* Status 'Utført' settes når salgsordrelinjen er plukket.\n"
+"* Status 'Kansellert' settes når tilhørende salgsordre blir kansellert."
 
 #. module: sale
 #: help:sale.order,amount_tax:0
@@ -1934,34 +2161,35 @@ msgstr "MVA beløp."
 #. module: sale
 #: view:sale.order:0
 msgid "Packings"
-msgstr ""
+msgstr "Pakkinger"
 
 #. module: sale
 #: view:sale.order.line:0
 msgid "Sale Order Lines ready to be invoiced"
-msgstr ""
+msgstr "Salgsordrelinjer klare for fakturering"
 
 #. module: sale
 #: view:sale.report:0
 msgid "Sales order created in last month"
-msgstr ""
+msgstr "Salgsordre laget forrige måned"
 
 #. module: sale
 #: model:ir.actions.act_window,name:sale.action_email_templates
-#: model:ir.ui.menu,name:sale.menu_email_templates
 msgid "Email Templates"
-msgstr ""
+msgstr "E-post maler"
 
 #. module: sale
-#: model:ir.actions.act_window,name:sale.action_order_form
-#: model:ir.ui.menu,name:sale.menu_sale_order view:sale.order:0
+#: model:ir.actions.act_window,name:sale.action_orders
+#: model:ir.ui.menu,name:sale.menu_sale_order
+#: view:sale.order:0
 msgid "Sales Orders"
 msgstr "Salgsordre"
 
 #. module: sale
-#: model:ir.model,name:sale.model_sale_shop view:sale.shop:0
+#: model:ir.model,name:sale.model_sale_shop
+#: view:sale.shop:0
 msgid "Sales Shop"
-msgstr ""
+msgstr "Butikk"
 
 #. module: sale
 #: selection:sale.report,month:0
@@ -1971,7 +2199,7 @@ msgstr "November"
 #. module: sale
 #: field:sale.advance.payment.inv,product_id:0
 msgid "Advance Product"
-msgstr ""
+msgstr "Forhåndsfakturert produkt"
 
 #. module: sale
 #: view:sale.order:0
@@ -1979,7 +2207,7 @@ msgid "Compute"
 msgstr "Beregn"
 
 #. module: sale
-#: code:addons/sale/sale.py:618
+#: code:addons/sale/sale.py:588
 #, python-format
 msgid "You must first cancel all invoices attached to this sales order."
 msgstr ""
@@ -1991,7 +2219,7 @@ msgid "January"
 msgstr "Januar"
 
 #. module: sale
-#: model:ir.actions.act_window,name:sale.action_order_tree4
+#: model:ir.actions.act_window,name:sale.action_orders_in_progress
 msgid "Sales Order in Progress"
 msgstr "Salgsordre i arbeid"
 
@@ -1999,16 +2227,18 @@ msgstr "Salgsordre i arbeid"
 #: help:sale.order,origin:0
 msgid "Reference of the document that generated this sales order request."
 msgstr ""
+"Referanse til dokumentet som genererte denne salgsordreforespørselen."
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,delay:0
+#: view:sale.report:0
+#: field:sale.report,delay:0
 msgid "Commitment Delay"
-msgstr ""
+msgstr "Bekreftelsesforsinkelse"
 
 #. module: sale
 #: selection:sale.order,order_policy:0
 msgid "Deliver & invoice on demand"
-msgstr ""
+msgstr "Lever og fakturer på etterspørsel"
 
 #. module: sale
 #: model:process.node,note:sale.process_node_saleprocurement0
@@ -2016,6 +2246,7 @@ msgid ""
 "One Procurement order for each sales order line and for each of the "
 "components."
 msgstr ""
+"En anskaffelsesordre for hver salgsordrelinje og for hver av komponentene."
 
 #. module: sale
 #: model:process.transition.action,name:sale.process_transition_action_assign0
@@ -2035,13 +2266,13 @@ msgstr "Bekrefte salgsordre som skal faktureres"
 #. module: sale
 #: view:sale.order:0
 msgid "Sales Order that haven't yet been confirmed"
-msgstr ""
+msgstr "Salgsordre som ennå ikke er bekreftet"
 
 #. module: sale
-#: code:addons/sale/sale.py:322
+#: code:addons/sale/sale.py:319
 #, python-format
 msgid "The sales order '%s' has been set in draft state."
-msgstr ""
+msgstr "Status for salgsordre '%s' er satt til 'Utkast'."
 
 #. module: sale
 #: selection:sale.order.line,type:0
@@ -2054,10 +2285,10 @@ msgid "Close"
 msgstr "Lukke"
 
 #. module: sale
-#: code:addons/sale/sale.py:1261
+#: code:addons/sale/sale.py:944
 #, python-format
 msgid "No Pricelist ! : "
-msgstr ""
+msgstr "Ingen prisliste!: "
 
 #. module: sale
 #: field:sale.order,shipped:0
@@ -2067,7 +2298,7 @@ msgstr "Levert"
 #. module: sale
 #: constraint:stock.move:0
 msgid "You must assign a production lot for this product"
-msgstr ""
+msgstr "Du må velge en produksjonslot/batch for dette produktet"
 
 #. module: sale
 #: model:ir.actions.act_window,help:sale.action_shop_form
@@ -2078,14 +2309,19 @@ msgid ""
 "warehouse from which the products will be delivered for each particular "
 "sales."
 msgstr ""
+"Hvis du har mer enn en butikk som selger selskapet ditt sine produkter, kan "
+"du opprette og administrere det herfra. Når du vil lage et nytt tilbud eller "
+"en ny salgsordre, må den bli knyttet til en butikk. Butikken definerer også "
+"lageret fra hvilke produkter som vil bli levert for hvert eneste salg."
 
 #. module: sale
 #: help:sale.order,invoiced:0
 msgid "It indicates that an invoice has been paid."
-msgstr ""
+msgstr "dette indikerer at en faktura har blitt betalt."
 
 #. module: sale
-#: report:sale.order:0 field:sale.order.line,name:0
+#: report:sale.order:0
+#: field:sale.order.line,name:0
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -2095,7 +2331,8 @@ msgid "May"
 msgstr "Mai"
 
 #. module: sale
-#: view:sale.order:0 field:sale.order,partner_id:0
+#: view:sale.order:0
+#: field:sale.order,partner_id:0
 #: field:sale.order.line,order_partner_id:0
 msgid "Customer"
 msgstr "Kunde"
@@ -2103,7 +2340,7 @@ msgstr "Kunde"
 #. module: sale
 #: model:product.template,name:sale.advance_product_0_product_template
 msgid "Advance"
-msgstr ""
+msgstr "Forskudd"
 
 #. module: sale
 #: selection:sale.report,month:0
@@ -2121,23 +2358,25 @@ msgid "Accounting"
 msgstr "Bokføring"
 
 #. module: sale
-#: view:sale.order:0 view:sale.order.line:0
+#: view:sale.order:0
+#: view:sale.order.line:0
 msgid "Search Sales Order"
-msgstr ""
+msgstr "Søk salgsordre"
 
 #. module: sale
 #: model:process.node,name:sale.process_node_saleorderprocurement0
 msgid "Sales Order Requisition"
-msgstr ""
+msgstr "Salgsordre rekvisisjon"
 
 #. module: sale
 #: code:addons/sale/sale.py:1255
 #, python-format
 msgid "Not enough stock ! : "
-msgstr ""
+msgstr "Ikke nok lager!: "
 
 #. module: sale
-#: report:sale.order:0 field:sale.order,payment_term:0
+#: report:sale.order:0
+#: field:sale.order,payment_term:0
 msgid "Payment Term"
 msgstr "Betalingsbetingelse"
 
@@ -2150,6 +2389,11 @@ msgid ""
 "having invoiced yet. If you want to analyse your turnover, you should use "
 "the Invoice Analysis report in the Accounting application."
 msgstr ""
+"Denne rapporten analyserer dine sitater og salgsordrer. Analysen sjekker "
+"salgsinntekter og sorterer de ved annen gruppe kriterier (selger, partner, "
+"produkt, etc.) Bruk denne rapporten til å utføre analyser på salg du ikke "
+"har fakturert enda. Hvis du ønsker å analysere din omsetning, bør du bruke "
+"fakturaen analyserapporten i Regnskap søknaden."
 
 #. module: sale
 #: report:sale.order:0
@@ -2157,12 +2401,13 @@ msgid "Quotation N°"
 msgstr "Tilbudsnr."
 
 #. module: sale
-#: field:sale.order,picked_rate:0 view:sale.report:0
+#: view:sale.report:0
 msgid "Picked"
 msgstr "Plukket"
 
 #. module: sale
-#: view:sale.report:0 field:sale.report,year:0
+#: view:sale.report:0
+#: field:sale.report,year:0
 msgid "Year"
 msgstr "År"
 

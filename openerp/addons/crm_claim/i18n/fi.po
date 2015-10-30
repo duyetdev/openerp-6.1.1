@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Pekka Pylvänäinen <Unknown>\n"
+"PO-Revision-Date: 2012-03-29 07:08+0000\n"
+"Last-Translator: Juha Kotamäki <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:30+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 06:55+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: crm_claim
 #: field:crm.claim.report,nbr:0
@@ -85,12 +85,12 @@ msgstr ""
 #: code:addons/crm_claim/crm_claim.py:132
 #, python-format
 msgid "The claim '%s' has been opened."
-msgstr ""
+msgstr "Reklamaatio '%s' on avattu."
 
 #. module: crm_claim
 #: view:crm.claim:0
 msgid "Date Closed"
-msgstr ""
+msgstr "Sulkemispäivä"
 
 #. module: crm_claim
 #: view:crm.claim.report:0
@@ -130,6 +130,7 @@ msgstr "Tosiasiallisest vaateet"
 #. module: crm_claim
 #: selection:crm.claim,state:0
 #: selection:crm.claim.report,state:0
+#: selection:crm.claim.stage,state:0
 msgid "Cancelled"
 msgstr "Peruttu"
 
@@ -151,12 +152,12 @@ msgstr "Viite"
 #. module: crm_claim
 #: view:crm.claim.report:0
 msgid "Date of claim"
-msgstr ""
+msgstr "Reklamaation päivämäärä"
 
 #. module: crm_claim
 #: view:crm.claim:0
 msgid "All pending Claims"
-msgstr ""
+msgstr "Kaikki odottavat reklamaatiot"
 
 #. module: crm_claim
 #: view:crm.claim.report:0
@@ -187,7 +188,7 @@ msgstr "Kumppani"
 #. module: crm_claim
 #: view:crm.claim.report:0
 msgid "Month of claim"
-msgstr ""
+msgstr "Reklamaation kuukausi"
 
 #. module: crm_claim
 #: selection:crm.claim,type_action:0
@@ -226,8 +227,10 @@ msgstr "Lähetä uusi sähköposti"
 #: view:crm.claim:0
 #: selection:crm.claim,state:0
 #: view:crm.claim.report:0
+#: model:crm.claim.stage,name:crm_claim.stage_claim1
+#: selection:crm.claim.stage,state:0
 msgid "New"
-msgstr ""
+msgstr "Uusi"
 
 #. module: crm_claim
 #: view:crm.claim:0
@@ -254,7 +257,7 @@ msgstr "Seuraava Toimenpide"
 #. module: crm_claim
 #: view:crm.claim.report:0
 msgid "My Sales Team(s)"
-msgstr ""
+msgstr "Oma myyntitiimi"
 
 #. module: crm_claim
 #: model:crm.case.stage,name:crm_claim.stage_claim3
@@ -286,6 +289,7 @@ msgid "July"
 msgstr "Heinäkuu"
 
 #. module: crm_claim
+#: view:crm.claim.stage:0
 #: model:ir.actions.act_window,name:crm_claim.crm_claim_stage_act
 msgid "Claim Stages"
 msgstr "Reklamaation vaiheet"
@@ -321,7 +325,7 @@ msgstr "Yhteyshenkilö"
 #. module: crm_claim
 #: view:crm.claim.report:0
 msgid "Month-1"
-msgstr ""
+msgstr "Edellinen kuukausi"
 
 #. module: crm_claim
 #: model:ir.actions.act_window,name:crm_claim.action_report_crm_claim
@@ -380,7 +384,7 @@ msgstr "Päivityksen päiväys"
 #. module: crm_claim
 #: view:crm.claim.report:0
 msgid "Year of claim"
-msgstr ""
+msgstr "Reklamaation kuukausi"
 
 #. module: crm_claim
 #: view:crm.claim.report:0
@@ -402,7 +406,7 @@ msgstr "Arvoreklamaatio"
 #. module: crm_claim
 #: view:crm.claim:0
 msgid "Responsible User"
-msgstr ""
+msgstr "Vastuukäyttäjä"
 
 #. module: crm_claim
 #: help:crm.claim,email_cc:0
@@ -430,6 +434,7 @@ msgstr "Matala"
 #: field:crm.claim,date_closed:0
 #: selection:crm.claim,state:0
 #: selection:crm.claim.report,state:0
+#: selection:crm.claim.stage,state:0
 msgid "Closed"
 msgstr "Suljettu"
 
@@ -443,6 +448,7 @@ msgstr "Vastaa"
 #: selection:crm.claim,state:0
 #: view:crm.claim.report:0
 #: selection:crm.claim.report,state:0
+#: selection:crm.claim.stage,state:0
 msgid "Pending"
 msgstr "Odottava"
 
@@ -475,7 +481,7 @@ msgstr "Kesäkuu"
 #. module: crm_claim
 #: view:res.partner:0
 msgid "Partners Claim"
-msgstr ""
+msgstr "Kumppanin reklamaatio"
 
 #. module: crm_claim
 #: field:crm.claim,partner_phone:0
@@ -490,7 +496,7 @@ msgstr "Käyttäjä"
 #. module: crm_claim
 #: field:crm.claim,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktiivinen"
 
 #. module: crm_claim
 #: selection:crm.claim.report,month:0
@@ -542,9 +548,9 @@ msgstr "Reklamaatiokategoriat"
 #: view:crm.claim:0
 #: view:crm.claim.report:0
 #: model:ir.actions.act_window,name:crm_claim.act_claim_partner
-#: model:ir.actions.act_window,name:crm_claim.act_claim_partner_address
 #: model:ir.actions.act_window,name:crm_claim.crm_case_categ_claim0
 #: model:ir.ui.menu,name:crm_claim.menu_crm_case_claims
+#: view:res.partner:0
 #: field:res.partner,claims_ids:0
 msgid "Claims"
 msgstr "Reklamaatiot"
@@ -566,6 +572,7 @@ msgid "History"
 msgstr "Historia"
 
 #. module: crm_claim
+#: view:crm.claim:0
 #: model:ir.model,name:crm_claim.model_crm_claim
 #: model:ir.ui.menu,name:crm_claim.menu_config_claim
 msgid "Claim"
@@ -591,7 +598,6 @@ msgid "State"
 msgstr "Tila"
 
 #. module: crm_claim
-#: view:crm.claim:0
 #: view:crm.claim.report:0
 msgid "Done"
 msgstr "Valmis"
@@ -602,7 +608,6 @@ msgid "Claim Reporter"
 msgstr "Reklamaation ilmoittaja"
 
 #. module: crm_claim
-#: view:crm.claim:0
 #: view:crm.claim.report:0
 msgid "Cancel"
 msgstr "Peruuta"
@@ -613,7 +618,6 @@ msgid "Close"
 msgstr "Sulje"
 
 #. module: crm_claim
-#: view:crm.claim:0
 #: view:crm.claim.report:0
 #: selection:crm.claim.report,state:0
 msgid "Open"
@@ -622,11 +626,13 @@ msgstr "Avoin"
 #. module: crm_claim
 #: view:crm.claim:0
 msgid "New Claims"
-msgstr ""
+msgstr "Uudet reklamaatiot"
 
 #. module: crm_claim
 #: view:crm.claim:0
 #: selection:crm.claim,state:0
+#: model:crm.claim.stage,name:crm_claim.stage_claim5
+#: selection:crm.claim.stage,state:0
 msgid "In Progress"
 msgstr "Käynnissä"
 
@@ -639,17 +645,17 @@ msgstr "Vastuuhenkilö"
 #. module: crm_claim
 #: view:crm.claim.report:0
 msgid "Claims created in current year"
-msgstr ""
+msgstr "Reklamaatiot jotka on luotu kuluvana vuonna"
 
 #. module: crm_claim
 #: view:crm.claim:0
 msgid "Unassigned Claims"
-msgstr ""
+msgstr "Reklamaatiot joilla ei hoitajaa"
 
 #. module: crm_claim
 #: view:crm.claim.report:0
 msgid "Claims created in current month"
-msgstr ""
+msgstr "Reklamaatiot jotka on luotu kuluvan kuukauden aikana"
 
 #. module: crm_claim
 #: field:crm.claim.report,delay_expected:0
@@ -714,7 +720,7 @@ msgstr "Tehdyt toimenpiteet"
 #. module: crm_claim
 #: view:crm.claim.report:0
 msgid "Claims created in last month"
-msgstr ""
+msgstr "Reklamaatiot jotka on luotu edellisen kuukauden aikana"
 
 #. module: crm_claim
 #: model:crm.case.stage,name:crm_claim.stage_claim5
@@ -752,7 +758,7 @@ msgstr "Vuosi"
 #. module: crm_claim
 #: view:crm.claim.report:0
 msgid "My company"
-msgstr ""
+msgstr "Oma yritys"
 
 #. module: crm_claim
 #: selection:crm.claim.report,month:0
@@ -772,7 +778,7 @@ msgstr "Tunniste (ID)"
 #. module: crm_claim
 #: constraint:res.partner:0
 msgid "Error ! You cannot create recursive associated members."
-msgstr ""
+msgstr "Virhe! Rekursiivisen kumppanin luonti ei ole sallittu."
 
 #. module: crm_claim
 #: view:crm.claim:0
@@ -802,4 +808,4 @@ msgstr "Luontipäivä"
 #. module: crm_claim
 #: view:crm.claim:0
 msgid "In Progress Claims"
-msgstr ""
+msgstr "Käsittelyssä olevat reklamaatiot"

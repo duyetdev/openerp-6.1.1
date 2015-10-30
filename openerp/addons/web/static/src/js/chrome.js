@@ -141,6 +141,10 @@ openerp.web.Dialog = openerp.web.OldWidget.extend(/** @lends openerp.web.Dialog#
     },
     on_resized: function() {
         //openerp.log("Dialog resized to %d x %d", this.$element.width(), this.$element.height());
+        var $dialog = this.$element.parent(".ui-dialog");
+        var btnpane_height = $dialog.find(".ui-dialog-buttonpane").height();
+        var content_height = ($dialog.height() - btnpane_height - 62) + "px";
+        this.$element.css({ 'max-height': content_height, 'height': content_height});
     },
     stop: function () {
         // Destroy widget
@@ -345,44 +349,6 @@ openerp.web.Database = openerp.web.OldWidget.extend(/** @lends openerp.web.Datab
         return result;
     },
     /**
-     * Waits until the new database is done creating, then unblocks the UI and
-     * logs the user in as admin
-     *
-     * @param {Number} db_creation_id identifier for the db-creation operation, used to fetch the current installation progress
-     * @param {Object} info info fields for this database creation
-     * @param {String} info.db name of the database being created
-     * @param {String} info.password super-admin password for the database
-     */
-    wait_for_newdb: function (db_creation_id, info) {
-        var self = this;
-        self.rpc('/web/database/progress', {
-            id: db_creation_id,
-            password: info.password
-        }, function (result) {
-            var progress = result[0];
-            // I'd display a progress bar, but turns out the progress status
-            // the server report kind-of blows goats: it's at 0 for ~75% of
-            // the installation, then jumps to 75%, then jumps down to either
-            // 0 or ~40%, then back up to 75%, then terminates. Let's keep that
-            // mess hidden behind a not-very-useful but not overly weird
-            // message instead.
-            if (progress < 1) {
-                setTimeout(function () {
-                    self.wait_for_newdb(db_creation_id, info);
-                }, 500);
-                return;
-            }
-
-            var admin = result[1][0];
-            setTimeout(function () {
-                self.widget_parent.do_login(
-                        info.db, admin.login, admin.password);
-                self.stop();
-                self.unblockUI();
-            });
-        });
-    },
-    /**
      * Blocks UI and replaces $.unblockUI by a noop to prevent third parties
      * from unblocking the UI
      */
@@ -421,23 +387,29 @@ openerp.web.Database = openerp.web.OldWidget.extend(/** @lends openerp.web.Datab
         self.$option_id.find("form[name=create_db_form]").validate({
             submitHandler: function (form) {
                 var fields = $(form).serializeArray();
-                self.blockUI();
+                var form_obj = self.to_object(fields);
+                if(_(self.db_list).contains(form_obj['db_name'])) {
+                    self.display_error({
+                        title: _t("Create database"),
+                        error: _.str.sprintf(
+                            _t("Database \"%s\" already exist"),
+                            form_obj['db_name'])
+                    });
+                    return;
+                }
+
                 self.rpc("/web/database/create", {'fields': fields}, function(result) {
-                    if (result.error) {
-                        self.unblockUI();
-                        self.display_error(result);
-                        return;
-                    }
                     if (self.db_list) {
-                        self.db_list.push(self.to_object(fields)['db_name']);
+                        self.db_list.push(form_obj['db_name']);
                         self.db_list.sort();
                         self.widget_parent.set_db_list(self.db_list);
                     }
-                    var form_obj = self.to_object(fields);
-                    self.wait_for_newdb(result, {
-                        password: form_obj['super_admin_pwd'],
-                        db: form_obj['db_name']
-                    });
+
+                    self.widget_parent.do_login(
+                            form_obj['db_name'],
+                            'admin',
+                            form_obj['create_admin_pwd']);
+                    self.stop();
                 });
             }
         });
@@ -449,10 +421,10 @@ openerp.web.Database = openerp.web.OldWidget.extend(/** @lends openerp.web.Datab
             submitHandler: function (form) {
                 var $form = $(form),
                     fields = $form.serializeArray(),
-                    $db_list = $form.find('select[name=drop_db]'),
+                    $db_list = $form.find('[name=drop_db]'),
                     db = $db_list.val();
 
-                if (!confirm("Do you really want to delete the database: " + db + " ?")) {
+                if (!db || !confirm("Do you really want to delete the database: " + db + " ?")) {
                     return;
                 }
                 self.rpc("/web/database/drop", {'fields': fields}, function(result) {
@@ -1073,6 +1045,18 @@ openerp.web.WebClient = openerp.web.OldWidget.extend(/** @lends openerp.web.WebC
 
         this._current_state = null;
     },
+    _get_version_label: function() {
+        if (this.session.openerp_entreprise) {
+            return 'OpenERP';
+        } else {
+            return _t("OpenERP - Unsupported/Community Version");
+        }
+    },
+    set_title: function(title) {
+        title = _.str.clean(title);
+        var sep = _.isEmpty(title) ? '' : ' - ';
+        document.title = title + sep + 'OpenERP';
+    },
     start: function() {
         var self = this;
         this.$element = $(document.body);
@@ -1097,11 +1081,11 @@ openerp.web.WebClient = openerp.web.OldWidget.extend(/** @lends openerp.web.WebC
             self.action_manager = new openerp.web.ActionManager(self);
             self.action_manager.appendTo($("#oe_app"));
             self.bind_hashchange();
-            var version_label = _t("OpenERP - Unsupported/Community Version");
             if (!self.session.openerp_entreprise) {
+                var version_label = self._get_version_label();
                 self.$element.find('.oe_footer_powered').append(_.str.sprintf('<span> - <a href="http://www.openerp.com/support-or-publisher-warranty-contract" target="_blank">%s</a></span>', version_label));
-                document.title = version_label;
             }
+            self.set_title();
         });
     },
     show_login: function() {
@@ -1175,13 +1159,31 @@ openerp.web.WebClient = openerp.web.OldWidget.extend(/** @lends openerp.web.WebC
         });
     },
     bind_hashchange: function() {
+        var self = this;
         $(window).bind('hashchange', this.on_hashchange);
-
         var state = $.bbq.getState(true);
         if (! _.isEmpty(state)) {
             $(window).trigger('hashchange');
         } else {
-            this.action_manager.do_action({type: 'ir.actions.client', tag: 'default_home'});
+            var ds = new openerp.web.DataSetSearch(this, 'res.users');
+            ds.read_ids([this.session.uid], ['action_id']).then(function (users) {
+                var default_home = {type: 'ir.actions.client', tag: 'default_home'};
+                var home_action = users[0].action_id;
+                if (!home_action) {
+                    self.action_manager.do_action(default_home);
+                } else {
+                    // FIXME Dirty hack to avoid -u board, dont merge in 7
+                    var domain = [['model','=','ir.actions.act_window'],['res_id','=',home_action[0]]];
+                    var imd = new openerp.web.DataSetSearch(this, 'ir.model.data', {}, domain);
+                    imd.read_slice(['name']).then(function (r) {
+                        if(r.length && r[0].name === "board_homepage_action") {
+                            self.action_manager.do_action(default_home);
+                        } else {
+                            self.action_manager.do_action(home_action[0]);
+                        }
+                    })
+                }
+            });
         }
     },
     on_hashchange: function(event) {
@@ -1192,6 +1194,7 @@ openerp.web.WebClient = openerp.web.OldWidget.extend(/** @lends openerp.web.WebC
         this._current_state = state;
     },
     do_push_state: function(state) {
+        this.set_title(state.title);
         var url = '#' + $.param(state);
         this._current_state = _.clone(state);
         $.bbq.pushState(url);
@@ -1220,8 +1223,14 @@ openerp.web.EmbeddedClient = openerp.web.OldWidget.extend({
         this.am = new openerp.web.ActionManager(this);
     },
 
+    makeCrashManager: function () {
+        return new openerp.web.CrashManager();
+    },
+
     start: function() {
         var self = this;
+        this.crashmanager = this.makeCrashManager();
+        openerp.connection.on_rpc_error.add(this.crashmanager.on_rpc_error);
         this.am.appendTo(this.$element.addClass('openerp'));
         return this.rpc("/web/action/load", { action_id: this.action_id }, function(result) {
             var action = result.result;

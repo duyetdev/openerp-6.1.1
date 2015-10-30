@@ -236,8 +236,6 @@ openerp.web_kanban.KanbanView = openerp.web.View.extend({
                 record.do_reload();
                 new_group.do_save_sequences();
             }).fail(function(error, evt) {
-                evt.preventDefault();
-                alert("An error has occured while moving the record to this group.");
                 self.do_reload(); // TODO: use draggable + sortable in order to cancel the dragging when the rcp fails
             });
         }
@@ -276,14 +274,15 @@ openerp.web_kanban.KanbanGroup = openerp.web.OldWidget.extend({
         if (this.group) {
             this.value = group.value;
             this.title = group.value;
+            if (this.value instanceof Array) {
+                this.title = this.value[1];
+                this.value = this.value[0];
+            }
             var field = this.view.fields_view.fields[this.view.group_by];
             if (field) {
                 try {
-                    this.title = openerp.web.format_value(this.value, field, false);
+                    this.title = openerp.web.format_value(group.value, field, false);
                 } catch(e) {}
-            } else if (this.value instanceof Array) {
-                this.title = this.value[1];
-                this.value = this.value[0];
             }
             _.each(this.view.aggregates, function(value, key) {
                 self.aggregates[value] = group.aggregates[key];
@@ -388,6 +387,9 @@ openerp.web_kanban.KanbanRecord = openerp.web.OldWidget.extend({
     },
     set_record: function(record) {
         this.id = record.id;
+        if(!_(this.view.dataset.ids).contains(this.id)) {
+            this.view.dataset.ids.push(this.id)
+        }
         this.record = this.transform_record(record);
     },
     start: function() {

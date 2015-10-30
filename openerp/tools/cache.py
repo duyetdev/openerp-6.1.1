@@ -43,7 +43,7 @@ class ormcache(object):
            return r
         except KeyError:
            self.stat_miss += 1
-           value = d[args] = self.method(self2, cr, *args)
+           value = d[key] = self.method(self2, cr, *args)
            return value
         except TypeError:
            self.stat_err += 1
@@ -57,10 +57,12 @@ class ormcache(object):
             try:
                 key = args[self.skiparg-2:]
                 del d[key]
+                self2.pool._any_cache_cleared = True
             except KeyError:
                 pass
         else:
             d.clear()
+            self2.pool._any_cache_cleared = True
 
 class ormcache_multi(ormcache):
     def __init__(self, skiparg=2, size=8192, multi=3):

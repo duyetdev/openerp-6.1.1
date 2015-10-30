@@ -98,6 +98,9 @@ class CompanyLDAP(osv.osv):
         filter = filter_format(conf['ldap_filter'], (login,))
         try:
             results = self.query(conf, filter)
+
+            # Get rid of (None, attrs) for searchResultReference replies
+            results = [i for i in results if i[0]]
             if results and len(results) == 1:
                 dn = results[0][0]
                 conn = self.connect(conf)
@@ -256,8 +259,10 @@ class users(osv.osv):
                 user_id = ldap_obj.get_or_create_user(
                     cr, SUPERUSER_ID, conf, login, entry)
                 if user_id:
-                    cr.execute('UPDATE res_users SET date=now() WHERE '
-                               'login=%s', (tools.ustr(login),))
+                    cr.execute("""UPDATE res_users
+                                    SET date=now() AT TIME ZONE 'UTC'
+                                    WHERE login=%s""",
+                               (tools.ustr(login),))
                     cr.commit()
                     break
         cr.close()

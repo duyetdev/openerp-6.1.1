@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2012-02-08 00:35+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Erwin <Unknown>\n"
+"POT-Creation-Date: 2012-10-08 12:28+0000\n"
+"PO-Revision-Date: 2012-10-08 18:24+0000\n"
+"Last-Translator: Erwin van der Ploeg (Endian Solutions) <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:13+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 06:43+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: account_budget
 #: field:crossovered.budget,creating_user_id:0
@@ -91,7 +91,7 @@ msgstr "Valuta:"
 #. module: account_budget
 #: model:ir.model,name:account_budget.model_account_budget_crossvered_report
 msgid "Account Budget crossvered report"
-msgstr ""
+msgstr "Budget kruisanalyse"
 
 #. module: account_budget
 #: selection:crossovered.budget,state:0
@@ -132,8 +132,8 @@ msgstr ""
 "kan verdelen over de verschillende categorieën. Door bij te houden waar uw "
 "geld heen gaat, heeft u minder kans op overschrijding en meer kans om uw "
 "financiële doelstellingen te behalen. Raam een begroting middels het "
-"invoeren van de verwachte inkomsten en uitgaven per analytische account en "
-"houd toezicht op de evolutie ervan op basis van de werkelijke gerealiseerd "
+"invoeren van de verwachte inkomsten en uitgaven per kostenplaats en houd "
+"toezicht op de evolutie ervan op basis van de werkelijke gerealiseerd "
 "resultaten tijdens die periode."
 
 #. module: account_budget
@@ -238,6 +238,11 @@ msgid "Name"
 msgstr "Naam"
 
 #. module: account_budget
+#: report:account.analytic.account.budget:0
+msgid "Total:"
+msgstr "Totaal:"
+
+#. module: account_budget
 #: model:ir.model,name:account_budget.model_crossovered_budget_lines
 msgid "Budget Line"
 msgstr "Budgetregel"
@@ -283,7 +288,6 @@ msgstr "Deze assistent wordt gebruikt om budgetten af te drukken"
 
 #. module: account_budget
 #: model:ir.actions.act_window,name:account_budget.act_crossovered_budget_view
-#: model:ir.actions.act_window,name:account_budget.action_account_budget_post_tree
 #: model:ir.actions.act_window,name:account_budget.action_account_budget_report
 #: model:ir.actions.report.xml,name:account_budget.report_crossovered_budget
 #: model:ir.ui.menu,name:account_budget.menu_act_crossovered_budget_view
@@ -302,6 +306,12 @@ msgstr "Deze assistent wordt gebruikt om budgetsamenvattingen af te drukken"
 #: selection:crossovered.budget,state:0
 msgid "Cancelled"
 msgstr "Geannuleerd"
+
+#. module: account_budget
+#: report:account.analytic.account.budget:0
+#: model:ir.actions.report.xml,name:account_budget.account_budget_analytic
+msgid "Analytic Budget"
+msgstr "Kostenplaats budget"
 
 #. module: account_budget
 #: view:crossovered.budget:0
@@ -332,7 +342,7 @@ msgstr "Begin periode"
 #. module: account_budget
 #: model:ir.model,name:account_budget.model_account_budget_crossvered_summary_report
 msgid "Account Budget  crossvered summary report"
-msgstr ""
+msgstr "Budget kruisanalyse"
 
 #. module: account_budget
 #: report:account.budget:0
@@ -405,7 +415,6 @@ msgstr "Budgetregels"
 #: view:account.budget.crossvered.report:0
 #: view:account.budget.crossvered.summary.report:0
 #: view:account.budget.report:0
-#: view:crossovered.budget:0
 msgid "Cancel"
 msgstr "Annuleren"
 

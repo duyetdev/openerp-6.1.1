@@ -66,6 +66,8 @@ openerp.web_calendar.CalendarView = openerp.web.View.extend({
 
         this.day_length = this.fields_view.arch.attrs.day_length || 8;
         this.color_field = this.fields_view.arch.attrs.color;
+        this.color_string = this.fields_view.fields[this.color_field] ?
+            this.fields_view.fields[this.color_field].string : _t("Filter");
 
         if (this.color_field && this.selected_filters.length === 0) {
             var default_filter;
@@ -123,7 +125,7 @@ openerp.web_calendar.CalendarView = openerp.web.View.extend({
         }
         scheduler.config.api_date = "%Y-%m-%d %H:%i";
         scheduler.config.multi_day = true; //Multi day events are not rendered in daily and weekly views
-        scheduler.config.start_on_monday = true;
+        scheduler.config.start_on_monday = Date.CultureInfo.firstDayOfWeek !== 0; //Sunday = Sunday, Others = Monday
         scheduler.config.time_step = 30;
         scheduler.config.scroll_hour = 8;
         scheduler.config.drag_resize = true;
@@ -131,6 +133,48 @@ openerp.web_calendar.CalendarView = openerp.web.View.extend({
         scheduler.config.mark_now = true;
         scheduler.config.day_date = '%l %j';
 
+        scheduler.locale = {
+            date:{
+                month_full: Date.CultureInfo.monthNames,
+                month_short: Date.CultureInfo.abbreviatedMonthNames,
+                day_full: Date.CultureInfo.dayNames,
+                day_short: Date.CultureInfo.abbreviatedDayNames
+            },
+            labels:{
+                dhx_cal_today_button: _t("Today"),
+                day_tab: _t("Day"),
+                week_tab: _t("Week"),
+                month_tab: _t("Month"),
+                new_event: _t("New event"),
+                icon_save: _t("Save"),
+                icon_cancel: _t("Cancel"),
+                icon_details: _t("Details"),
+                icon_edit: _t("Edit"),
+                icon_delete: _t("Delete"),
+                confirm_closing: "",//Your changes will be lost, are your sure ?
+                confirm_deleting: _t("Event will be deleted permanently, are you sure?"),
+                section_description: _t("Description"),
+                section_time: _t("Time period"),
+                full_day: _t("Full day"),
+
+                /*recurring events*/
+                confirm_recurring: _t("Do you want to edit the whole set of repeated events?"),
+                section_recurring: _t("Repeat event"),
+                button_recurring: _t("Disabled"),
+                button_recurring_open: _t("Enabled"),
+
+                /*agenda view extension*/
+                agenda_tab: _t("Agenda"),
+                date: _t("Date"),
+                description: _t("Description"),
+
+                /*year view extension*/
+                year_tab: _t("Year"),
+
+                /* week agenda extension */
+                week_agenda_tab: _t("Agenda")
+            }
+        };
         scheduler.init('openerp_scheduler', null, this.mode || 'month');
 
         // Remove hard coded style attributes from dhtmlx scheduler
@@ -237,25 +281,16 @@ openerp.web_calendar.CalendarView = openerp.web.View.extend({
         }
     },
     convert_event: function(evt) {
+        var self = this;
         var date_start = openerp.web.str_to_datetime(evt[this.date_start]),
             date_stop = this.date_stop ? openerp.web.str_to_datetime(evt[this.date_stop]) : null,
             date_delay = evt[this.date_delay] || 1.0,
-            res_text = '',
-            res_description = [];
+            res_text = '';
 
         if (this.info_fields) {
-            var fld = evt[this.info_fields[0]];
-            res_text = (typeof fld == 'object') ? fld[fld.length -1] : res_text = fld;
-
-            var sliced_info_fields = this.info_fields.slice(1);
-            for (var sl_fld in sliced_info_fields) {
-                var slc_fld = evt[sliced_info_fields[sl_fld]];
-                if (typeof slc_fld == 'object') {
-                    res_description.push(slc_fld[slc_fld.length - 1]);
-                } else if (slc_fld) {
-                    res_description.push(slc_fld);
-                }
-            }
+            res_text = _(this.info_fields).chain()
+                .filter(function(fld) { return self.fields[fld].type == 'boolean' ? fld : !_.isBoolean(evt[fld]) && fld; })
+                .map(function(fld) { return (evt[fld] instanceof Array) ? evt[fld][1] : evt[fld]; }).value();
         }
         if (!date_stop && date_delay) {
             date_stop = date_start.clone().addHours(date_delay);
@@ -263,9 +298,8 @@ openerp.web_calendar.CalendarView = openerp.web.View.extend({
         var r = {
             'start_date': date_start.toString('yyyy-MM-dd HH:mm:ss'),
             'end_date': date_stop.toString('yyyy-MM-dd HH:mm:ss'),
-            'text': res_text,
-            'id': evt.id,
-            'title': res_description.join()
+            'text': res_text.join(', '),
+            'id': evt.id
         };
         if (evt.color) {
             r.color = evt.color;
@@ -319,11 +353,15 @@ openerp.web_calendar.CalendarView = openerp.web.View.extend({
         var self = this,
             data = this.get_event_data(event_obj),
             index = this.dataset.get_id_index(event_id);
+        delete(data.name)
         if (index != null) {
             event_id = this.dataset.ids[index];
-            this.dataset.write(event_id, data, {}, function() {
-                self.refresh_minical();
-            });
+            this.dataset.write(event_id, data, {})
+                .then(function() {
+                    self.refresh_minical();
+                }, function() {
+                    self.reload_event(event_id);
+                });
         }
     },
     do_delete_event: function(event_id, event_obj) {
@@ -337,7 +375,7 @@ openerp.web_calendar.CalendarView = openerp.web.View.extend({
             });
         }
     },
-    do_edit_event: function(event_id) {
+    do_edit_event: function(event_id, evt) {
         var self = this;
         var index = this.dataset.get_id_index(event_id);
         if (index !== null) {
@@ -361,6 +399,8 @@ openerp.web_calendar.CalendarView = openerp.web.View.extend({
             // I tried scheduler.editStop(event_id); but doesn't work either
             // After losing one hour on this, here's a quick and very dirty fix :
             $(".dhx_cancel_btn").click();
+        } else {
+            scheduler.editStop($(evt.target).hasClass('icon_save'));
         }
     },
     get_event_data: function(event_obj) {
@@ -463,8 +503,9 @@ openerp.web_calendar.CalendarFormDialog = openerp.web.Dialog.extend({
 });
 
 openerp.web_calendar.SidebarResponsible = openerp.web.OldWidget.extend({
+    // TODO: fme: in trunk, rename this class to SidebarFilter
     init: function(parent, view) {
-        var $section = parent.add_section(_t('Responsible'), 'responsible');
+        var $section = parent.add_section(view.color_string, 'responsible');
         this.$div = $('<div></div>');
         $section.append(this.$div);
         this._super(parent, $section.attr('id'));

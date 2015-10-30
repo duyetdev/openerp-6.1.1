@@ -135,8 +135,9 @@ class ir_values(osv.osv):
     def onchange_action_id(self, cr, uid, ids, action_id, context=None):
         if not action_id: return {}
         act = self.pool.get('ir.actions.actions').browse(cr, uid, action_id, context=context)
+        model = act.type if act.type != 'ir.actions.act_url' else 'ir.actions.url'
         return {
-                'value': {'value_unpickle': act.type+','+str(act.id)}
+                'value': {'value_unpickle': "%s,%d" % (model, act.id)}
         }
 
     _columns = {
@@ -404,7 +405,7 @@ class ir_values(osv.osv):
                 results[action['name']] = (action['id'], action['name'], action_def)
             except except_orm, e:
                 continue
-        return results.values()
+        return sorted(results.values())
 
     def _map_legacy_model_list(self, model_list, map_fn, merge_results=False):
         """Apply map_fn to the various models passed, according to

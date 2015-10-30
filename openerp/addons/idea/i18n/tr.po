@@ -7,29 +7,29 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: OpenERP Administrators <Unknown>\n"
+"PO-Revision-Date: 2012-11-10 15:13+0000\n"
+"Last-Translator: Ayhan KIZILTAN <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:43+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:05+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: idea
 #: help:idea.category,visibility:0
 msgid "If True creator of the idea will be visible to others"
-msgstr ""
+msgstr "Doğru ise fikiri oluşturan diğerlerine görünecektir"
 
 #. module: idea
 #: view:idea.idea:0
 msgid "By States"
-msgstr ""
+msgstr "Duruma Göre"
 
 #. module: idea
 #: model:ir.actions.act_window,name:idea.action_idea_select
 msgid "Idea select"
-msgstr ""
+msgstr "Fikir seç"
 
 #. module: idea
 #: view:idea.idea:0
@@ -47,53 +47,50 @@ msgstr "Yorumlar"
 #. module: idea
 #: view:idea.idea:0
 msgid "Submit Vote"
-msgstr ""
+msgstr "Oyu Gönder"
 
 #. module: idea
 #: model:ir.actions.act_window,name:idea.action_report_vote_all
 #: model:ir.ui.menu,name:idea.menu_report_vote_all
 msgid "Ideas Analysis"
-msgstr ""
+msgstr "Fikirlerin İncelemesi"
 
 #. module: idea
-#: view:idea.category:0
 #: view:idea.idea:0
-#: view:idea.vote:0
-#: view:report.vote:0
 msgid "Group By..."
-msgstr ""
+msgstr "Gruplandır..."
 
 #. module: idea
 #: selection:report.vote,month:0
 msgid "March"
-msgstr ""
+msgstr "Mart"
 
 #. module: idea
 #: view:idea.idea:0
 msgid "Accepted Ideas"
-msgstr ""
+msgstr "Kabul edilen Fikirler"
 
 #. module: idea
 #: code:addons/idea/wizard/idea_post_vote.py:94
 #, python-format
 msgid "Idea must be in 'Open' state before vote for that idea."
-msgstr ""
+msgstr "O fikir için oylanmadan önce fikir 'Açık' durumda olmalıdırç"
 
 #. module: idea
 #: view:report.vote:0
 msgid "Open Date"
-msgstr ""
+msgstr "Açılış Tarihi"
 
 #. module: idea
 #: view:report.vote:0
 #: field:report.vote,day:0
 msgid "Day"
-msgstr ""
+msgstr "Gün"
 
 #. module: idea
 #: view:idea.idea:0
 msgid "Refuse"
-msgstr ""
+msgstr "Reddet"
 
 #. module: idea
 #: field:idea.idea,count_votes:0
@@ -103,7 +100,7 @@ msgstr "Oy Sayımı"
 #. module: idea
 #: model:ir.model,name:idea.model_report_vote
 msgid "Idea Vote Statistics"
-msgstr ""
+msgstr "Fikir Oylama İstatistikleri"
 
 #. module: idea
 #: selection:idea.idea,my_vote:0
@@ -116,7 +113,7 @@ msgstr "Kötü"
 #. module: idea
 #: selection:report.vote,idea_state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Vazgeçildi"
 
 #. module: idea
 #: view:idea.category:0
@@ -129,7 +126,7 @@ msgstr "Fikir Kategorileri"
 #: code:addons/idea/wizard/idea_post_vote.py:94
 #, python-format
 msgid "Warning !"
-msgstr ""
+msgstr "Uyarı!"
 
 #. module: idea
 #: view:idea.idea:0
@@ -139,7 +136,7 @@ msgstr "Açıklamanız"
 #. module: idea
 #: model:ir.model,name:idea.model_idea_vote
 msgid "Idea Vote"
-msgstr ""
+msgstr "Fikir Oyla"
 
 #. module: idea
 #: field:idea.category,parent_id:0
@@ -157,24 +154,24 @@ msgstr "Çok Kötü"
 #. module: idea
 #: view:idea.vote:0
 msgid "Ideas vote"
-msgstr ""
+msgstr "Fikirleri Oyla"
 
 #. module: idea
 #: view:report.vote:0
 #: field:report.vote,nbr:0
 msgid "# of Lines"
-msgstr ""
+msgstr "Satır sayısı"
 
 #. module: idea
 #: code:addons/idea/wizard/idea_post_vote.py:91
 #, python-format
 msgid "You can not give Vote for this idea more than %s times"
-msgstr ""
+msgstr "Bu fikiri %s seferden fazla Oylayabilirsiniz"
 
 #. module: idea
 #: view:idea.category:0
 msgid "Ideas Categories"
-msgstr ""
+msgstr "Fikir Kategorileri"
 
 #. module: idea
 #: help:idea.idea,description:0
@@ -184,7 +181,7 @@ msgstr "Fikrin içeriği"
 #. module: idea
 #: model:ir.model,name:idea.model_idea_category
 msgid "Idea Category"
-msgstr ""
+msgstr "Fikir Kategorisi"
 
 #. module: idea
 #: view:idea.idea:0
@@ -203,17 +200,17 @@ msgstr "Oylanmamış"
 #. module: idea
 #: sql_constraint:idea.category:0
 msgid "The name of the category must be unique"
-msgstr ""
+msgstr "Kategori adı benzersiz olmalı"
 
 #. module: idea
 #: model:ir.model,name:idea.model_idea_select
 msgid "select idea"
-msgstr ""
+msgstr "fikir seç"
 
 #. module: idea
 #: view:idea.stat:0
 msgid "stat"
-msgstr ""
+msgstr "istat"
 
 #. module: idea
 #: field:idea.category,child_ids:0
@@ -223,7 +220,7 @@ msgstr "Alt Kategoriler"
 #. module: idea
 #: view:idea.select:0
 msgid "Next"
-msgstr ""
+msgstr "Sonraki"
 
 #. module: idea
 #: view:idea.idea:0
@@ -231,13 +228,13 @@ msgstr ""
 #: view:report.vote:0
 #: field:report.vote,idea_state:0
 msgid "State"
-msgstr ""
+msgstr "Durum"
 
 #. module: idea
 #: view:idea.idea:0
 #: selection:idea.idea,state:0
 msgid "New"
-msgstr ""
+msgstr "Yeni"
 
 #. module: idea
 #: selection:idea.idea,my_vote:0
@@ -250,12 +247,12 @@ msgstr "İyi"
 #. module: idea
 #: help:idea.idea,open_date:0
 msgid "Date when an idea opened"
-msgstr ""
+msgstr "Fikirin Açıldığı Tarih"
 
 #. module: idea
 #: view:idea.idea:0
 msgid "Idea Detail"
-msgstr ""
+msgstr "Fikir Ayrıntısı"
 
 #. module: idea
 #: help:idea.idea,state:0
@@ -264,40 +261,41 @@ msgid ""
 " It is             opened by the user, the state is 'Opened'.            \n"
 "If the idea is accepted, the state is 'Accepted'."
 msgstr ""
+"Fikir 'Taslak' durumunda oluşturulduğunda.\n"
+" Kullanıcı tarafından açılmıştır, durumu 'Açık'tır.            \n"
+"Fikir kabul edilmişse, durumu 'Kabuledildi'dir."
 
 #. module: idea
 #: view:idea.idea:0
 msgid "New Ideas"
-msgstr ""
+msgstr "Yeni Fikirler"
 
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote created last month"
-msgstr ""
+msgstr "Son ayda oluşturulan Fikir Oyları"
 
 #. module: idea
 #: field:idea.category,visibility:0
 #: field:idea.idea,visibility:0
 msgid "Open Idea?"
-msgstr ""
+msgstr "Fikir Açılsın mı?"
 
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote created in current month"
-msgstr ""
+msgstr "Geçerli ayda oluşturulan fikir Oyları"
 
 #. module: idea
 #: selection:report.vote,month:0
 msgid "July"
-msgstr ""
+msgstr "Temmuz"
 
 #. module: idea
 #: view:idea.idea:0
 #: selection:idea.idea,state:0
-#: view:report.vote:0
-#: selection:report.vote,idea_state:0
 msgid "Accepted"
-msgstr ""
+msgstr "Kabul edildi"
 
 #. module: idea
 #: model:ir.actions.act_window,name:idea.action_idea_category
@@ -308,12 +306,12 @@ msgstr "Kategoriler"
 #. module: idea
 #: view:idea.category:0
 msgid "Parent Category"
-msgstr ""
+msgstr "Ana Kategori"
 
 #. module: idea
 #: field:idea.idea,open_date:0
 msgid "Open date"
-msgstr ""
+msgstr "Açılış tarihi"
 
 #. module: idea
 #: field:idea.idea,vote_ids:0
@@ -330,7 +328,7 @@ msgstr "Oy İstatistikleri"
 #. module: idea
 #: field:idea.idea,vote_limit:0
 msgid "Maximum Vote per User"
-msgstr ""
+msgstr "Kullanıcı başına Ençok Oy"
 
 #. module: idea
 #: view:idea.vote.stat:0
@@ -349,33 +347,27 @@ msgstr "Yorum"
 #. module: idea
 #: selection:report.vote,month:0
 msgid "September"
-msgstr ""
+msgstr "Eylül"
 
 #. module: idea
 #: selection:report.vote,month:0
 msgid "December"
-msgstr ""
+msgstr "Aralık"
 
 #. module: idea
 #: view:report.vote:0
 #: field:report.vote,month:0
 msgid "Month"
-msgstr ""
+msgstr "Ay"
 
 #. module: idea
 #: view:idea.idea:0
-#: model:ir.actions.act_window,name:idea.action_idea_idea_categ_open
-#: model:ir.actions.act_window,name:idea.action_idea_idea_open
 msgid "Open Ideas"
 msgstr "Açık Fikirler"
 
 #. module: idea
 #: view:idea.category:0
-#: field:idea.category,name:0
 #: view:idea.idea:0
-#: field:idea.idea,category_id:0
-#: view:report.vote:0
-#: field:report.vote,category_id:0
 msgid "Category"
 msgstr "Kategori"
 
@@ -396,12 +388,12 @@ msgstr "Açık"
 #. module: idea
 #: model:ir.actions.act_window,name:idea.action_idea_vote
 msgid "Idea's Votes"
-msgstr ""
+msgstr "Fikirlerin Oyları"
 
 #. module: idea
 #: view:idea.idea:0
 msgid "By Idea Category"
-msgstr ""
+msgstr "Fikir Kategorisine Göre"
 
 #. module: idea
 #: view:idea.idea:0
@@ -422,7 +414,7 @@ msgstr "Taslak"
 #. module: idea
 #: selection:report.vote,month:0
 msgid "August"
-msgstr ""
+msgstr "Ağustos"
 
 #. module: idea
 #: selection:idea.idea,my_vote:0
@@ -435,13 +427,13 @@ msgstr "Normal"
 #. module: idea
 #: selection:report.vote,month:0
 msgid "June"
-msgstr ""
+msgstr "Haziran"
 
 #. module: idea
 #: field:report.vote,creater_id:0
 #: field:report.vote,user_id:0
 msgid "User Name"
-msgstr ""
+msgstr "Kullanıcı Adı"
 
 #. module: idea
 #: model:ir.model,name:idea.model_idea_vote_stat
@@ -459,12 +451,12 @@ msgstr "Kullanıcı"
 #. module: idea
 #: field:idea.vote,date:0
 msgid "Date"
-msgstr ""
+msgstr "Tarih"
 
 #. module: idea
 #: selection:report.vote,month:0
 msgid "November"
-msgstr ""
+msgstr "Kasım"
 
 #. module: idea
 #: field:idea.idea,my_vote:0
@@ -474,7 +466,7 @@ msgstr "Oyum"
 #. module: idea
 #: selection:report.vote,month:0
 msgid "October"
-msgstr ""
+msgstr "Ekim"
 
 #. module: idea
 #: field:idea.comment,create_date:0
@@ -485,7 +477,7 @@ msgstr "Oluşturulma tarihi"
 #. module: idea
 #: selection:report.vote,month:0
 msgid "January"
-msgstr ""
+msgstr "Ocak"
 
 #. module: idea
 #: model:ir.model,name:idea.model_idea_idea
@@ -493,7 +485,7 @@ msgid "idea.idea"
 msgstr "idea.idea"
 
 #. module: idea
-#: field:idea.category,summary:0
+#: field:idea.idea,message_summary:0
 msgid "Summary"
 msgstr "Özet"
 
@@ -505,22 +497,21 @@ msgstr "Fikir Özeti"
 #. module: idea
 #: view:idea.post.vote:0
 msgid "Post"
-msgstr ""
+msgstr "İşle"
 
 #. module: idea
 #: view:idea.idea:0
 msgid "History"
-msgstr ""
+msgstr "Geçmiş"
 
 #. module: idea
 #: field:report.vote,date:0
 msgid "Date Order"
-msgstr ""
+msgstr "Sipariş Tarihi"
 
 #. module: idea
 #: view:idea.idea:0
-#: field:idea.idea,user_id:0
-#: view:report.vote:0
+#: field:idea.idea,create_uid:0
 msgid "Creator"
 msgstr "Oluşturan"
 
@@ -528,17 +519,17 @@ msgstr "Oluşturan"
 #: view:idea.post.vote:0
 #: model:ir.ui.menu,name:idea.menu_give_vote
 msgid "Give Vote"
-msgstr ""
+msgstr "Oy Ver"
 
 #. module: idea
 #: help:idea.idea,vote_limit:0
 msgid "Set to one if  you require only one Vote per user"
-msgstr ""
+msgstr "Her kullanıcı için bir oy istiyorsanız bire ayarlayın"
 
 #. module: idea
 #: view:idea.idea:0
 msgid "By Creators"
-msgstr ""
+msgstr "Oluşturanlara Göre"
 
 #. module: idea
 #: view:idea.post.vote:0
@@ -557,28 +548,26 @@ msgstr "Aç"
 
 #. module: idea
 #: view:idea.idea:0
-#: view:report.vote:0
 msgid "In Progress"
-msgstr ""
+msgstr "Sürüyor"
 
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote Analysis"
-msgstr ""
+msgstr "Fikir Oyu İmcelemesi"
 
 #. module: idea
 #: view:idea.idea:0
 #: model:ir.actions.act_window,name:idea.action_idea_idea
 #: model:ir.ui.menu,name:idea.menu_idea_idea
 #: model:ir.ui.menu,name:idea.menu_ideas
-#: model:ir.ui.menu,name:idea.menu_ideas1
 msgid "Ideas"
 msgstr "Fikirler"
 
 #. module: idea
 #: model:ir.model,name:idea.model_idea_post_vote
 msgid "Post vote"
-msgstr ""
+msgstr "Oyu işle"
 
 #. module: idea
 #: field:idea.vote.stat,score:0
@@ -589,45 +578,42 @@ msgstr "Puan"
 #. module: idea
 #: view:idea.idea:0
 msgid "Votes Statistics"
-msgstr ""
+msgstr "Oy İstatistikleri"
 
 #. module: idea
 #: view:idea.vote:0
 msgid "Comments:"
-msgstr ""
+msgstr "Yorumlar:"
 
 #. module: idea
-#: view:idea.category:0
 #: field:idea.idea,description:0
-#: field:idea.post.vote,note:0
 msgid "Description"
 msgstr "Açıklama"
 
 #. module: idea
 #: selection:report.vote,month:0
 msgid "May"
-msgstr ""
+msgstr "Mayıs"
 
 #. module: idea
 #: selection:idea.idea,state:0
-#: view:report.vote:0
 msgid "Refused"
-msgstr ""
+msgstr "Reddedildi"
 
 #. module: idea
 #: view:idea.vote:0
 msgid "Vote date"
-msgstr ""
+msgstr "Oy tarihi"
 
 #. module: idea
 #: selection:report.vote,month:0
 msgid "February"
-msgstr ""
+msgstr "Şubat"
 
 #. module: idea
 #: field:idea.category,complete_name:0
 msgid "Name"
-msgstr ""
+msgstr "Adı"
 
 #. module: idea
 #: field:idea.vote.stat,nbr:0
@@ -637,12 +623,12 @@ msgstr "Oyların Sayıları"
 #. module: idea
 #: view:report.vote:0
 msgid "Month-1"
-msgstr ""
+msgstr "Ay-1"
 
 #. module: idea
 #: selection:report.vote,month:0
 msgid "April"
-msgstr ""
+msgstr "Nisan"
 
 #. module: idea
 #: field:idea.idea,count_comments:0
@@ -652,12 +638,12 @@ msgstr "Yorum sayısı"
 #. module: idea
 #: field:idea.vote,score:0
 msgid "Vote Status"
-msgstr ""
+msgstr "Oy Durumu"
 
 #. module: idea
 #: view:report.vote:0
 msgid "Idea Vote created in current year"
-msgstr ""
+msgstr "Fikir Oyu geçerli yılda oluşturuldu"
 
 #. module: idea
 #: field:idea.idea,vote_avg:0
@@ -667,43 +653,36 @@ msgstr "Ortalama Puan"
 #. module: idea
 #: constraint:idea.category:0
 msgid "Error ! You cannot create recursive categories."
-msgstr ""
+msgstr "Yinelenen kategoriler oluşturamazsınız."
 
 #. module: idea
-#: field:idea.comment,idea_id:0
-#: field:idea.select,idea_id:0
-#: view:idea.vote:0
-#: field:idea.vote,idea_id:0
-#: field:idea.vote.stat,idea_id:0
-#: model:ir.ui.menu,name:idea.menu_idea_reporting
-#: view:report.vote:0
-#: field:report.vote,idea_id:0
+#: view:idea.idea:0
 msgid "Idea"
 msgstr "Fikir"
 
 #. module: idea
 #: view:idea.idea:0
 msgid "Accept"
-msgstr ""
+msgstr "Kabul et"
 
 #. module: idea
 #: field:idea.post.vote,vote:0
 msgid "Post Vote"
-msgstr ""
+msgstr "Oyu İşle"
 
 #. module: idea
 #: view:report.vote:0
 #: field:report.vote,year:0
 msgid "Year"
-msgstr ""
+msgstr "Yıl"
 
 #. module: idea
 #: code:addons/idea/idea.py:274
 #, python-format
 msgid "You can not vote on a Draft/Accepted/Cancelled ideas."
-msgstr ""
+msgstr "Taslak/Kabuledildi/İptaledildi durumundaki fikirleri oylayamazsınız."
 
 #. module: idea
 #: view:idea.select:0
 msgid "Select Idea for Vote"
-msgstr ""
+msgstr "Oylama için Fikir Seç"

@@ -180,6 +180,8 @@ openerp_mailgate.py -u %(uid)d -p PASSWORD -o %(model)s -d %(dbname)s --host=HOS
             logger.info('start checking for new emails on %s server %s', server.type, server.name)
             context.update({'fetchmail_server_id': server.id, 'server_type': server.type})
             count = 0
+            imap_server = False
+            pop_server = False
             if server.type == 'imap':
                 try:
                     imap_server = server.connect()
@@ -187,14 +189,15 @@ openerp_mailgate.py -u %(uid)d -p PASSWORD -o %(model)s -d %(dbname)s --host=HOS
                     result, data = imap_server.search(None, '(UNSEEN)')
                     for num in data[0].split():
                         result, data = imap_server.fetch(num, '(RFC822)')
+                        imap_server.store(num, '-FLAGS', '\\Seen')
                         res_id = mail_thread.message_process(cr, uid, server.object_id.model, data[0][1],
                                                              save_original=server.original,
                                                              strip_attachments=(not server.attach),
                                                              context=context)
                         if res_id and server.action_id:
-                            action_pool.run(cr, uid, [server.action_id.id], {'active_id': res_id, 'active_ids':[res_id]})
-                            imap_server.store(num, '+FLAGS', '\\Seen')
-                            cr.commit()
+                            action_pool.run(cr, uid, [server.action_id.id], {'active_id': res_id, 'active_ids': [res_id], 'active_model': server.object_id.model})
+                        imap_server.store(num, '+FLAGS', '\\Seen')
+                        cr.commit()
                         count += 1
                     logger.info("fetched/processed %s email(s) on %s server %s", count, server.type, server.name)
                 except Exception, e:
@@ -217,7 +220,7 @@ openerp_mailgate.py -u %(uid)d -p PASSWORD -o %(model)s -d %(dbname)s --host=HOS
                                                              strip_attachments=(not server.attach),
                                                              context=context)
                         if res_id and server.action_id:
-                            action_pool.run(cr, uid, [server.action_id.id], {'active_id': res_id, 'active_ids':[res_id]})
+                            action_pool.run(cr, uid, [server.action_id.id], {'active_id': res_id, 'active_ids': [res_id], 'active_model': server.object_id.model})
                         pop_server.dele(num)
                         cr.commit()
                     logger.info("fetched/processed %s email(s) on %s server %s", numMsgs, server.type, server.name)

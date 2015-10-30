@@ -7,25 +7,24 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.4\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 00:37+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: Maxime Chambreuil (http://www.savoirfairelinux.com) "
-"<maxime.chambreuil@savoirfairelinux.com>\n"
+"PO-Revision-Date: 2012-04-10 21:39+0000\n"
+"Last-Translator: t.o <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:59+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:17+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: project_mrp
 #: sql_constraint:sale.order:0
 msgid "Order Reference must be unique per Company!"
-msgstr ""
+msgstr "La référence de commande doit être unique par société !"
 
 #. module: project_mrp
 #: model:process.node,note:project_mrp.process_node_procuretasktask0
 msgid "For each product, on type service and on order"
-msgstr "Pour chaque produit, de type service et sur commande"
+msgstr "Pour chaque article, de type service et sur commande"
 
 #. module: project_mrp
 #: model:process.transition,name:project_mrp.process_transition_procuretask0
@@ -35,22 +34,22 @@ msgstr "Tâche d'approvisionnement"
 #. module: project_mrp
 #: model:ir.model,name:project_mrp.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Commande client"
 
 #. module: project_mrp
 #: field:procurement.order,sale_line_id:0
 msgid "Sale order line"
-msgstr ""
+msgstr "Ligne de commande client"
 
 #. module: project_mrp
 #: model:process.transition,note:project_mrp.process_transition_createtask0
 msgid "Product type is service, then its creates the task."
-msgstr "Si le type de produit est 'service', alors cela crée une tâche."
+msgstr "Si le type d'article est\"service\", alors cela crée une tâche."
 
 #. module: project_mrp
 #: model:process.transition,note:project_mrp.process_transition_procuretask0
 msgid "if product type is 'service' then it creates the task."
-msgstr "Si le produit est de type 'service' alors il crée la tâche."
+msgstr "Si l'article est de type 'service' alors cela crée la tâche."
 
 #. module: project_mrp
 #: constraint:project.task:0
@@ -67,12 +66,12 @@ msgstr "Tâche sur les commandes de ventes"
 #. module: project_mrp
 #: model:ir.model,name:project_mrp.model_product_product
 msgid "Product"
-msgstr "Produit"
+msgstr "Article"
 
 #. module: project_mrp
 #: constraint:product.product:0
 msgid "Error: Invalid ean code"
-msgstr "Erreur : Code ean incorrect"
+msgstr "Erreur : code EAN incorrect"
 
 #. module: project_mrp
 #: field:product.product,project_id:0
@@ -128,4 +127,4 @@ msgstr "Dans ce cas vous vendez le service sur les commandes de ventes"
 #. module: project_mrp
 #: field:project.task,sale_line_id:0
 msgid "Sale Order Line"
-msgstr ""
+msgstr "Ligne de commande client"

@@ -50,7 +50,7 @@
             <field name="model">hr.holidays</field>
             <field name="type">calendar</field>
             <field name="arch" type="xml">
-                <calendar string="Leave Request" color="name" date_start="date_from" date_stop="date_to">
+                <calendar string="Leave Request" color="user_id" date_start="date_from" date_stop="date_to">
                     <field name="holiday_status_id"/>
                 </calendar>
             </field>
@@ -161,6 +161,7 @@
                     <field name="user_id" invisible="1"/>
                     <!--field name="type"/-->
                     <field name="state"/>
+                    <field name="date_from" invisible="1"/>
                     <button string="Approve" name="validate" states="confirm" type="workflow" icon="gtk-apply" groups="base.group_hr_user,base.group_hr_manager"/>
                     <button string="Approved" name="second_validate" states="validate1" type="workflow" icon="gtk-apply" groups="base.group_hr_user,base.group_hr_manager"/>
                 </tree>

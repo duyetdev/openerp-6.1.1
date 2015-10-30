@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2012-09-08 18:10+0000\n"
+"Last-Translator: almodhesh <Unknown>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:47+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:07+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: marketing_campaign
 #: view:marketing.campaign:0
 msgid "Manual Mode"
-msgstr ""
+msgstr "النمط اليدوي"
 
 #. module: marketing_campaign
 #: field:marketing.campaign.transition,activity_from_id:0
@@ -28,15 +28,15 @@ msgid "Previous Activity"
 msgstr "النشاط السابق"
 
 #. module: marketing_campaign
-#: code:addons/marketing_campaign/marketing_campaign.py:818
+#: code:addons/marketing_campaign/marketing_campaign.py:819
 #, python-format
 msgid "The current step for this item has no email or report to preview."
-msgstr ""
+msgstr "الخطوة الحالية لهذا الصنف لا تملك بريد إلكتروني أو تقرير للمعاينة"
 
 #. module: marketing_campaign
 #: constraint:marketing.campaign.transition:0
 msgid "The To/From Activity of transition must be of the same Campaign "
-msgstr ""
+msgstr "الإنتقال من / إلى النشاط يجب أن يكون من نفس الحملة "
 
 #. module: marketing_campaign
 #: selection:marketing.campaign.transition,trigger:0
@@ -46,7 +46,7 @@ msgstr "الوقت"
 #. module: marketing_campaign
 #: selection:marketing.campaign.activity,type:0
 msgid "Custom Action"
-msgstr ""
+msgstr "تخصيص إجراء"
 
 #. module: marketing_campaign
 #: view:campaign.analysis:0
@@ -63,11 +63,13 @@ msgid ""
 "reached this point has generated a certain revenue. You can get revenue "
 "statistics in the Reporting section"
 msgstr ""
+"تعيين الإيرادات المتوقعة إذا كنت ترى أن كل بند من بنود الحملة وصلت الى تلك "
+"النقطة وولدت عائد معين. يمكنك الحصول على إحصاءات الإيرادات في قسم التقارير"
 
 #. module: marketing_campaign
 #: field:marketing.campaign.transition,trigger:0
 msgid "Trigger"
-msgstr ""
+msgstr "زر"
 
 #. module: marketing_campaign
 #: field:campaign.analysis,count:0
@@ -77,7 +79,7 @@ msgstr ""
 #. module: marketing_campaign
 #: view:marketing.campaign:0
 msgid "Campaign Editor"
-msgstr ""
+msgstr "محرر الحملة"
 
 #. module: marketing_campaign
 #: view:campaign.analysis:0
@@ -106,13 +108,13 @@ msgstr "كائن"
 #. module: marketing_campaign
 #: view:marketing.campaign.segment:0
 msgid "Sync mode: only records created after last sync"
-msgstr ""
+msgstr "نمط المزامنة: السجلات فقط التي تم إنشاؤها بعد آخر المزامنة"
 
 #. module: marketing_campaign
 #: model:email.template,body_text:marketing_campaign.email_template_2
 msgid ""
 "Hello, We are happy to announce that you now become our Silver Partner."
-msgstr ""
+msgstr "مرحبا، ونحن سعداء أن نعلن أنك أصبحت الآن شريكاً فضياً لدينا."
 
 #. module: marketing_campaign
 #: view:marketing.campaign:0
@@ -121,9 +123,10 @@ msgid "Set to Draft"
 msgstr "حفظ كمسودة"
 
 #. module: marketing_campaign
+#: view:marketing.campaign.activity:0
 #: field:marketing.campaign.activity,to_ids:0
 msgid "Next Activities"
-msgstr ""
+msgstr "النشاطات التالية"
 
 #. module: marketing_campaign
 #: view:marketing.campaign.segment:0
@@ -133,10 +136,10 @@ msgstr "مزامنة"
 #. module: marketing_campaign
 #: sql_constraint:marketing.campaign.transition:0
 msgid "The interval must be positive or zero"
-msgstr ""
+msgstr "الفترة يجب أن تكون إيجابية أو صفر"
 
 #. module: marketing_campaign
-#: code:addons/marketing_campaign/marketing_campaign.py:818
+#: code:addons/marketing_campaign/marketing_campaign.py:819
 #, python-format
 msgid "No preview"
 msgstr "لا معاينة"
@@ -145,7 +148,7 @@ msgstr "لا معاينة"
 #: view:marketing.campaign.segment:0
 #: field:marketing.campaign.segment,date_run:0
 msgid "Launch Date"
-msgstr ""
+msgstr "تاريخ الإنشاء"
 
 #. module: marketing_campaign
 #: view:campaign.analysis:0
@@ -156,7 +159,7 @@ msgstr "يوم"
 #. module: marketing_campaign
 #: view:marketing.campaign.activity:0
 msgid "Outgoing Transitions"
-msgstr ""
+msgstr "التنقلات الصادرة"
 
 #. module: marketing_campaign
 #: view:marketing.campaign.workitem:0
@@ -166,18 +169,18 @@ msgstr "إستعادة"
 #. module: marketing_campaign
 #: help:marketing.campaign,object_id:0
 msgid "Choose the resource on which you want this campaign to be run"
-msgstr ""
+msgstr "اختيار المورد الذي تريده ليتم تشغيله لهذه الحملة"
 
 #. module: marketing_campaign
 #: field:marketing.campaign.segment,sync_last_date:0
 msgid "Last Synchronization"
-msgstr ""
+msgstr "التزامن الأخير"
 
 #. module: marketing_campaign
 #: code:addons/marketing_campaign/marketing_campaign.py:214
 #, python-format
 msgid "You can not duplicate a campaign, it's not supported yet."
-msgstr ""
+msgstr "لا يمكنك تكرار الحملة، انها غير مدعومة حتى الآن."
 
 #. module: marketing_campaign
 #: selection:marketing.campaign.transition,interval_type:0
@@ -189,7 +192,7 @@ msgstr "سنة/سنين"
 msgid ""
 "Date on which this segment was synchronized last time (automatically or "
 "manually)"
-msgstr ""
+msgstr "التاريخ الذي تزامن هذا القطاع آخر مرة (آليا أو يدويا)"
 
 #. module: marketing_campaign
 #: selection:campaign.analysis,state:0
@@ -216,11 +219,19 @@ msgid ""
 "Normal - the campaign runs normally and automatically sends all emails and "
 "reports (be very careful with this mode, you're live!)"
 msgstr ""
+"اختبار - وهو يخلق ويعالج كافة الأنشطة مباشرة (دون انتظار تأخير على التحولات) "
+"ولكن لا يرسل رسائل البريد الإلكتروني أو يعد التقارير.\n"
+" اختبار في الوقت الحقيقي - وهو يخلق ويعالج جميع الأنشطة بشكل مباشر ولكن لا "
+"يرسل رسائل البريد الإلكتروني أو يعد التقارير.\n"
+" مع التأكيد اليدوي - يعمل الحملات عادة، ولكن المستخدم لديه للتحقق من صحة كل "
+"بنود العمل يدويا.\n"
+" طبيعي - يعمل الحملة بشكل طبيعي يرسل تلقائيا جميع رسائل البريد الإلكتروني "
+"والتقارير (نكون حذرين للغاية مع هذا الوضع، أنت على الهواء!)"
 
 #. module: marketing_campaign
 #: help:marketing.campaign.segment,date_run:0
 msgid "Initial start date of this segment."
-msgstr ""
+msgstr "تاريخ بدء الأولي لهذا القطاع."
 
 #. module: marketing_campaign
 #: view:campaign.analysis:0
@@ -237,7 +248,7 @@ msgstr "حملة"
 #. module: marketing_campaign
 #: model:email.template,subject:marketing_campaign.email_template_3
 msgid "Congratulation! You become our Gold Partner."
-msgstr ""
+msgstr "تهنئة! لقد أصبحت شريكاً ذهبياً الآن."
 
 #. module: marketing_campaign
 #: view:campaign.analysis:0
@@ -251,7 +262,7 @@ msgstr "قطعة"
 #. module: marketing_campaign
 #: view:marketing.campaign.activity:0
 msgid "Cost / Revenue"
-msgstr ""
+msgstr "التكلفة/العائد"
 
 #. module: marketing_campaign
 #: help:marketing.campaign.activity,type:0
@@ -313,7 +324,7 @@ msgstr ""
 #. module: marketing_campaign
 #: view:campaign.analysis:0
 msgid "Marketing Reports"
-msgstr ""
+msgstr "تقارير التسويق"
 
 #. module: marketing_campaign
 #: selection:marketing.campaign,state:0
@@ -342,7 +353,7 @@ msgstr ""
 #. module: marketing_campaign
 #: field:marketing.campaign.segment,sync_mode:0
 msgid "Synchronization mode"
-msgstr ""
+msgstr "نمط التزامن"
 
 #. module: marketing_campaign
 #: view:marketing.campaign:0
@@ -351,9 +362,10 @@ msgid "Run"
 msgstr ""
 
 #. module: marketing_campaign
+#: view:marketing.campaign.activity:0
 #: field:marketing.campaign.activity,from_ids:0
 msgid "Previous Activities"
-msgstr ""
+msgstr "النشاطات السابقة"
 
 #. module: marketing_campaign
 #: help:marketing.campaign.segment,date_done:0
@@ -363,7 +375,7 @@ msgstr ""
 #. module: marketing_campaign
 #: view:marketing.campaign.workitem:0
 msgid "Marketing Campaign Activities"
-msgstr ""
+msgstr "نشاطات حملة التسويق"
 
 #. module: marketing_campaign
 #: view:marketing.campaign.workitem:0
@@ -376,6 +388,7 @@ msgstr ""
 #: model:ir.ui.menu,name:marketing_campaign.menu_marketing_campaign
 #: model:ir.ui.menu,name:marketing_campaign.menu_marketing_campaign_form
 #: view:marketing.campaign:0
+#: view:res.partner:0
 msgid "Campaigns"
 msgstr ""
 
@@ -385,7 +398,7 @@ msgid "Interval Unit"
 msgstr ""
 
 #. module: marketing_campaign
-#: code:addons/marketing_campaign/marketing_campaign.py:792
+#: code:addons/marketing_campaign/marketing_campaign.py:793
 #, python-format
 msgid "Email Preview"
 msgstr ""
@@ -427,11 +440,9 @@ msgstr ""
 #. module: marketing_campaign
 #: model:ir.model,name:marketing_campaign.model_marketing_campaign_segment
 msgid "Campaign Segment"
-msgstr ""
+msgstr "حملة القطاع"
 
 #. module: marketing_campaign
-#: view:marketing.campaign:0
-#: view:marketing.campaign.segment:0
 #: view:marketing.campaign.workitem:0
 msgid "Cancel"
 msgstr ""
@@ -449,6 +460,7 @@ msgid "Exceptions"
 msgstr ""
 
 #. module: marketing_campaign
+#: model:ir.actions.act_window,name:marketing_campaign.act_marketing_campaing_followup
 #: field:res.partner,workitem_ids:0
 msgid "Workitems"
 msgstr ""
@@ -456,7 +468,7 @@ msgstr ""
 #. module: marketing_campaign
 #: field:marketing.campaign,fixed_cost:0
 msgid "Fixed Cost"
-msgstr ""
+msgstr "التكلفة الثابتة"
 
 #. module: marketing_campaign
 #: model:email.template,subject:marketing_campaign.email_template_2
@@ -466,12 +478,12 @@ msgstr ""
 #. module: marketing_campaign
 #: view:marketing.campaign.segment:0
 msgid "Newly Modified"
-msgstr ""
+msgstr "تم التعديل حديثاً"
 
 #. module: marketing_campaign
 #: field:marketing.campaign.transition,interval_nbr:0
 msgid "Interval Value"
-msgstr ""
+msgstr "قيمة الفترة"
 
 #. module: marketing_campaign
 #: field:campaign.analysis,revenue:0
@@ -510,24 +522,26 @@ msgid "Next Activity"
 msgstr ""
 
 #. module: marketing_campaign
-#: model:ir.actions.act_window,name:marketing_campaign.act_marketing_campaing_followup
+#: model:ir.actions.act_window,name:marketing_campaign.act_marketing_campaing_stat
+#: model:ir.actions.act_window,name:marketing_campaign.action_marketing_campaign_workitem
+#: model:ir.ui.menu,name:marketing_campaign.menu_action_marketing_campaign_workitem
 msgid "Campaign Follow-up"
-msgstr ""
+msgstr "متابعة الحملة"
 
 #. module: marketing_campaign
 #: help:marketing.campaign.activity,email_template_id:0
 msgid "The e-mail to send when this activity is activated"
-msgstr ""
+msgstr "بريد إلكتروني للإرسال عندما يتم تنشيط المنشط"
 
 #. module: marketing_campaign
 #: view:marketing.campaign:0
 msgid "Test Mode"
-msgstr ""
+msgstr "نمط الإختبار"
 
 #. module: marketing_campaign
 #: selection:marketing.campaign.segment,sync_mode:0
 msgid "Only records modified after last sync (no duplicates)"
-msgstr ""
+msgstr "فقط السجلات المعدلة بعد آخر مزامنة (بدون تكرار)"
 
 #. module: marketing_campaign
 #: model:ir.model,name:marketing_campaign.model_ir_actions_report_xml
@@ -535,7 +549,7 @@ msgid "ir.actions.report.xml"
 msgstr ""
 
 #. module: marketing_campaign
-#: model:ir.actions.act_window,name:marketing_campaign.act_marketing_campaing_stat
+#: view:marketing.campaign:0
 msgid "Campaign Statistics"
 msgstr ""
 
@@ -648,7 +662,6 @@ msgstr ""
 
 #. module: marketing_campaign
 #: field:campaign.analysis,date:0
-#: view:marketing.campaign.workitem:0
 msgid "Date"
 msgstr ""
 
@@ -658,7 +671,6 @@ msgid "November"
 msgstr ""
 
 #. module: marketing_campaign
-#: view:marketing.campaign.activity:0
 #: field:marketing.campaign.activity,condition:0
 msgid "Condition"
 msgstr ""
@@ -733,7 +745,6 @@ msgid "Error"
 msgstr ""
 
 #. module: marketing_campaign
-#: view:marketing.campaign.activity:0
 #: field:marketing.campaign.activity,server_action_id:0
 msgid "Action"
 msgstr ""
@@ -862,8 +873,10 @@ msgid "Campaign Step"
 msgstr ""
 
 #. module: marketing_campaign
+#: model:ir.actions.act_window,name:marketing_campaign.act_marketing_campaing_segment_opened
 #: model:ir.actions.act_window,name:marketing_campaign.action_marketing_campaign_segment_form
 #: model:ir.ui.menu,name:marketing_campaign.menu_marketing_campaign_segment_form
+#: view:marketing.campaign:0
 #: view:marketing.campaign.segment:0
 msgid "Segments"
 msgstr ""
@@ -889,6 +902,7 @@ msgid "Day(s)"
 msgstr ""
 
 #. module: marketing_campaign
+#: view:marketing.campaign:0
 #: field:marketing.campaign,activity_ids:0
 #: view:marketing.campaign.activity:0
 msgid "Activities"
@@ -925,6 +939,7 @@ msgstr ""
 
 #. module: marketing_campaign
 #: model:ir.model,name:marketing_campaign.model_marketing_campaign
+#: view:marketing.campaign:0
 msgid "Marketing Campaign"
 msgstr ""
 
@@ -997,7 +1012,6 @@ msgstr ""
 #. module: marketing_campaign
 #: view:campaign.analysis:0
 #: field:campaign.analysis,activity_id:0
-#: view:marketing.campaign.activity:0
 #: view:marketing.campaign.workitem:0
 #: field:marketing.campaign.workitem,activity_id:0
 msgid "Activity"
@@ -1024,7 +1038,6 @@ msgid "Next Synchronization"
 msgstr ""
 
 #. module: marketing_campaign
-#: view:marketing.campaign.segment:0
 #: field:marketing.campaign.segment,ir_filter_id:0
 msgid "Filter"
 msgstr ""
@@ -1057,7 +1070,6 @@ msgstr ""
 #. module: marketing_campaign
 #: view:campaign.analysis:0
 #: field:campaign.analysis,total_cost:0
-#: view:marketing.campaign:0
 msgid "Cost"
 msgstr ""
 

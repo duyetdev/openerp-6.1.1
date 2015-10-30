@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+    <record model="shipment.config.settings">
+        <field name="default_us_custom_id">1</field>
+        <!--<field name="default_invoice_account_id"></field>
+        <field name="default_invoice_journal_id"></field>
+        <field name="default_invoice_line_account_id"></field>
+        <field name="default_invoice_line_product_id"></field>-->
+    </record>
+
+    </data>
+</openerp>

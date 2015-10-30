@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <!--frame id="first" x1="57.0" y1="57.0" width="481" height="728"/-->
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+     <blockTableStyle id="Table2">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <blockBackground colorName="#EDEDED" start="0,0" stop="0,-1"/>
+      <blockBackground colorName="#EDEDED" start="1,0" stop="1,-1"/>
+      <blockBackground colorName="#EDEDED" start="2,0" stop="2,-1"/>
+      <blockBackground colorName="#EDEDED" start="3,0" stop="3,-1"/>
+      <blockBackground colorName="#EDEDED" start="4,0" stop="4,-1"/>
+      <blockBackground colorName="#EDEDED" start="5,0" stop="5,-1"/>
+      <blockBackground colorName="#EDEDED" start="6,0" stop="6,-1"/>
+      <blockBackground colorName="#EDEDED" start="7,0" stop="7,-1"/>
+      <blockBackground colorName="#EDEDED" start="8,0" stop="8,-1"/>
+      <blockBackground colorName="#EDEDED" start="9,0" stop="9,-1"/>
+      <blockBackground colorName="#EDEDED" start="10,0" stop="10,-1"/>
+      <blockBackground colorName="#EDEDED" start="0,1" stop="0,-1"/>
+      <blockBackground colorName="#EDEDED" start="1,1" stop="1,-1"/>
+      <blockBackground colorName="#EDEDED" start="2,1" stop="2,-1"/>
+      <blockBackground colorName="#EDEDED" start="3,1" stop="3,-1"/>
+      <blockBackground colorName="#EDEDED" start="4,1" stop="4,-1"/>
+      <blockBackground colorName="#EDEDED" start="5,1" stop="5,-1"/>
+      <blockBackground colorName="#EDEDED" start="6,1" stop="6,-1"/>
+      <blockBackground colorName="#EDEDED" start="7,1" stop="7,-1"/>
+      <blockBackground colorName="#EDEDED" start="8,1" stop="8,-1"/>
+      <blockBackground colorName="#EDEDED" start="9,1" stop="9,-1"/>
+      <blockBackground colorName="#EDEDED" start="10,1" stop="10,-1"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" fontSize="10.0" leading="13"/>
+    <paraStyle name="P2" fontName="Helvetica" fontSize="6.0" leading="8.0" alignment="CENTER"/>
+    <paraStyle name="P2_bold" fontName="Helvetica-Bold" fontSize="6.0" alignment="CENTER"/>
+    <paraStyle name="P3" fontName="Helvetica-Bold" fontSize="8.0" leading="13" spaceAfter="15.0"/>
+    <paraStyle name="P4" fontName="Helvetica-Bold" fontSize="6.0" leading="0" spaceAfter="20.0"/>
+    <paraStyle name="P5" fontName="Helvetica-Bold" fontSize="6.0" leading="0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="Table Contents" fontName="Helvetica"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER"/>
+    <images/>
+  </stylesheet>
+  <story>
+    <para style="Standard">[[repeatIn(objects,'o')]]</para>
+    <para style="Standard">[[ setLang(o.partner_id.lang) ]]</para>
+    <para style="P3"><u>Statement# [[ o.name ]] - [[ o.type ]]:</u></para>
+    <blockTable colWidths="300.0,200.0" style="Table2">
+    <tr>
+      <td>
+        <para style="P5">Port: [[ o.port ]]</para>
+      </td>
+      <td>
+        <para style="P5">Broker: [[ o.broker ]]</para>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <para style="P5"><font color="white"> </font>
+        </para>
+      </td>
+      <td>
+        <para style="P5"><font color="white"> </font>
+        </para>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <para style="P5">Payment Due Date: [[ o.date ]]</para>
+      </td>
+    </tr>
+    </blockTable>
+    <para style="Standard">
+        <font color="white"> </font>
+    </para>
+    <para style="Standard">
+        <font color="white"> </font>
+    </para>
+
+    <blockTable colWidths="55.0,45.0,45.0,55.0,55.0,55.0,55.0,55.0,55.0,55.0" repeatRows="1" style="Table3">
+        <tr>
+          <td>
+            <para style="P2_bold">Entry#</para>
+          </td>
+          <td>
+            <para style="P2_bold">TP#</para>
+          </td>
+          <td>
+            <para style="P2_bold">ST#</para>
+          </td>
+          <td>
+            <para style="P2_bold">Est.Duty#</para>
+          </td>
+          <td>
+            <para style="P2_bold">Est.Tax#</para>
+          </td>
+          <td>
+            <para style="P2_bold">Est.CVD#</para>
+          </td>
+          <td>
+            <para style="P2_bold">Est.ADA#</para>
+          </td>
+          <td>
+            <para style="P2_bold">User Fee</para>
+          </td>
+          <td>
+            <para style="P2_bold">Total#</para>
+          </td>
+          <td>
+            <para style="P2_bold">Dty.St</para>
+          </td>
+        </tr>
+      </blockTable>
+    <section>
+      <para style="Standard">[[ repeatIn(o.entry_ids,'entry_ids') ]]</para>
+      <blockTable colWidths="0.0,55.0,45.0,45.0,55.0,55.0,55.0,55.0,55.0,55.0,55.0" style="Table1">
+        <tr>
+          <td>
+            <para style="P2"></para>
+            <image file="shipment/images/strike.png" x="0" y="0" width="520" height="8"/>
+            [[ (entry_ids.exclude==True) or removeParentNode('image') ]]
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.entry_num ]]</para>
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.tp ]]</para>
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.st ]]</para>
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.est_duty ]]</para>
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.est_tax ]]</para>
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.est_cvd ]]</para>
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.est_ada ]]</para>
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.usr_fee ]]</para>
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.tot_amt ]]</para>
+          </td>
+          <td>
+            <para style="P2">[[ entry_ids.dty_st ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+    </section>
+
+    <blockTable colWidths="55.0,45.0,45.0,55.0,55.0,55.0,55.0,55.0,55.0,55.0" style="Table3">
+        <tr>
+          <td>
+            <para style="P2_bold"></para>
+          </td>
+          <td>
+            <para style="P2_bold"></para>
+          </td>
+          <td>
+            <para style="P2_bold"></para>
+          </td>
+          <td>
+            <para style="P2_bold">[[ o.tot_est_duty ]]</para>
+          </td>
+          <td>
+            <para style="P2_bold">0.00</para>
+          </td>
+          <td>
+            <para style="P2_bold"></para>
+          </td>
+          <td>
+            <para style="P2_bold">0.00</para>
+          </td>
+          <td>
+            <para style="P2_bold">[[ o.tot_usr_fee ]]</para>
+          </td>
+          <td>
+            <para style="P2_bold">[[ o.revised_total ]]</para>
+          </td>
+          <td>
+            <para style="P2_bold"></para>
+          </td>
+        </tr>
+      </blockTable>
+
+      <para style="P3"><u>Totals:</u></para>
+      <blockTable colWidths="300.0,200.0" style="Table2">
+      <tr>
+        <td>
+          <para style="P5">Estimated Duty: [[ o.tot_est_duty ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5">Merchandise Fee: [[ o.merc_fee ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5">Merch. Surcharge Fee: [[ o.merc_sur_fee ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5">Waterways Fee: [[ o.ww_fee ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5">Total Amount Due: [[ o.tot_amt_due ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5">Revised Total Due: [[ o.revised_total ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+        [[ o.check_number or removeParentNode('tr') ]]
+      </tr>
+      <tr>
+        <td>
+          <para style="P5">Check Number: [[ o.check_number or removeParentNode('tr') ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P5"><font color="white"> </font>
+          </para>
+        </td>
+        [[ o.check_number or removeParentNode('tr') ]]
+      </tr>
+      <tr>
+        <td>
+          <para style="P5">Payment Date: [[ o.check_date==True or removeParentNode('tr') ]]</para>
+        </td>
+      </tr>
+      </blockTable>
+  </story>
+</document>

@@ -741,18 +741,25 @@ openerp.web.BufferedDataSet = openerp.web.DataSetStatic.extend({
                              : (v1 > v2) ? 1
                              : 0;
                     };
-            records.sort(function (a, b) {
-                return _.reduce(sort_fields, function (acc, field) {
-                    if (acc) { return acc; }
-
-                    var sign = 1;
-                    if (field[0] === '-') {
-                        sign = -1;
-                        field = field.slice(1);
-                    }
-                    return sign * compare(a[field], b[field]);
-                }, 0);
-            });
+            // Array.sort is not necessarily stable. We must be careful with this because
+            // sorting an array where all items are considered equal is a worst-case that
+            // will randomize the array with an unstable sort! Therefore we must avoid
+            // sorting if there are no sort_fields (i.e. all items are considered equal)
+            // See also: http://ecma262-5.com/ELS5_Section_15.htm#Section_15.4.4.11 
+            //           http://code.google.com/p/v8/issues/detail?id=90
+            if (sort_fields.length) {
+                records.sort(function (a, b) {
+                    return _.reduce(sort_fields, function (acc, field) {
+                        if (acc) { return acc; }
+                        var sign = 1;
+                        if (field[0] === '-') {
+                            sign = -1;
+                            field = field.slice(1);
+                        }
+                        return sign * compare(a[field], b[field]);
+                    }, 0);
+                });
+            }
             completion.resolve(records);
         };
         if(to_get.length > 0) {
@@ -775,17 +782,27 @@ openerp.web.BufferedDataSet = openerp.web.DataSetStatic.extend({
         }
         return completion.promise();
     },
-    call_button: function (method, args, callback, error_callback) {
-        var id = args[0][0], index;
-        for(var i=0, len=this.cache.length; i<len; ++i) {
+    evict_from_cache: function (id) {
+        // Don't evict records which haven't yet been saved: there is no more
+        // recent data on the server (and there potentially isn't any data),
+        // and this breaks the assumptions of other methods (that the data
+        // for new and altered records is both in the cache and in the to_write
+        // or to_create collection)
+        if (_(this.to_create.concat(this.to_write)).find(function (record) {
+                return record.id === id; })) {
+            return;
+        }
+
+        for (var i = 0, len = this.cache.length; i < len; ++i) {
             var record = this.cache[i];
-            // if record we call the button upon is in the cache
             if (record.id === id) {
-                // evict it so it gets reloaded from server
                 this.cache.splice(i, 1);
                 break;
             }
         }
+    },
+    call_button: function (method, args, callback, error_callback) {
+        this.evict_from_cache(args[0][0]);
         return this._super(method, args, callback, error_callback);
     },
     alter_ids: function(n_ids) {
@@ -824,7 +841,8 @@ openerp.web.ProxyDataSet = openerp.web.DataSetSearch.extend({
     },
     on_create: function(data) {},
     write: function (id, data, options, callback) {
-        this.on_write(id, data);
+        options = options || {};
+        this.on_write(id, data, options);
         if (this.write_function) {
             return this.write_function(id, data, options, callback);
         } else {

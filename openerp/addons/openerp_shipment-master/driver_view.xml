@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!--******************************** Driver Form View ********************************-->
+        <record model="ir.ui.view" id="view_shipment_driver_form">
+            <field name="name">shipment.driver.form</field>
+            <field name="model">shipment.driver</field>
+            <field name="arch" type="xml">
+                <form string="shipment.driver" version="7.0">
+                    <sheet string="driver">
+                        <h1>
+                            <label string="Add Driver "/>
+                        </h1>
+                    <group>
+                        <group>
+                            <field name="tags_ids" widget="many2many_tags" />
+                            <field name="name" />
+                            <field name="license_number" />
+                            <field name="license_exp_date" />
+                            <field name="insurance_exp_date" />
+                            <field name="hazardous" />
+                            <field name="truck_id"/>
+                        </group>
+                        <group>
+                            <field name="drug_test_program" />
+                            <field name="last_drug_test_date" />
+                            <field name="truck_permit" />
+                            <field name="broker_id" />
+                            <field name="insurance_exp_date" />
+                            <field name="active" />
+                        </group>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--******************************** Driver tree View **************************************-->
+        <record model="ir.ui.view" id="view_shipment_driver_tree">
+            <field name="name">shipment.driver.tree</field>
+            <field name="model">shipment.driver</field>
+            <field name="arch" type="xml">
+                <tree string="shipment_driver">
+
+                    <field name="name"/>
+                    <field name="license_number"/>
+                    <field name="hazardous"/>
+                    <field name="active"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <!--******************************** Search View  ************************************** -->
+        <record model="ir.ui.view" id="view_shipment_driver_filter">
+            <field name="name">shipment.driver.select</field>
+            <field name="model">shipment.driver</field>
+
+           <!--<field name="insurance_exp_date" />
+            <field name="drug_test_program" />
+            <field name="license_exp_date" />
+            <field name="insurance_exp_date" />
+            <field name="last_drug_test_date" /> -->
+
+            <field name="arch" type="xml">
+                <search string="Search Driver">
+                    <field name="name" filter_domain="[('name','=',self)]"/>
+                    <field name="license_number" filter_domain="[('license_number','ilike',self)]"/>
+                    <field name="truck_permit" filter_domain="[('truck_permit','ilike',self)]"/>
+                    <field name="license_number" filter_domain="[('license_number','ilike',self)]"/>
+                    <separator/>
+                    <field name="tags_ids" widget="selection" context="{'tags_ids':self}"/>
+                    <field name="broker_id" widget="selection" context="{'broker_id':self}"/>
+                    <field name="truck_id" widget="selection" context="{'truck_id':self}"/>
+                    <separator/>
+                    <filter string="Not Active" name="active" domain="[('active','=',0)]" help="Not active driver"/>
+                    <filter string="Hazardous" name="hazardous" domain="[('hazardous','=',1)]" help="hazardous"/>
+                    <filter string="Not Hazardous" name="hazardous" domain="[('hazardous','=',0)]" help="Not hazardous"/>
+
+                    <group expand="0" string="Group By...">
+                        <filter string="Broker" icon="terp-partner" domain="[]" context="{'group_by':'broker_id'}"/>
+                        <filter string="Truck" icon="terp-partner" domain="[]" context="{'group_by':'truck_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <!--******************************** Driver Action View ********************************-->
+        <record model="ir.actions.act_window" id="action_shipment_driver">
+
+            <field name="name">Driver</field>
+            <field name="res_model">shipment.driver</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_active':True}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to define a new Driver.
+                </p><p>
+                    Description goes Here.
+                </p>
+            </field>
+        </record>
+
+
+
+        <menuitem id="menu_item_driver" parent="menu_section_trucking" name="Driver" action="action_shipment_driver"
+                icon="terp-product"/>
+    </data>
+</openerp>

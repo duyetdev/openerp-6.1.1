@@ -74,7 +74,8 @@ class account_statement_from_invoice_lines(osv.osv_memory):
                 amount = currency_obj.compute(cr, uid, line.invoice.currency_id.id,
                     statement.currency.id, amount, context=ctx)
 
-            context.update({'move_line_ids': [line.id]})
+            context.update({'move_line_ids': [line.id],
+                            'invoice_id': line.invoice.id})
             result = voucher_obj.onchange_partner_id(cr, uid, [], partner_id=line.partner_id.id, journal_id=statement.journal_id.id, amount=abs(amount), currency_id= statement.currency.id, ttype=(amount < 0 and 'payment' or 'receipt'), date=line_date, context=context)
             voucher_res = { 'type':(amount < 0 and 'payment' or 'receipt'),
                             'name': line.name,
@@ -85,6 +86,8 @@ class account_statement_from_invoice_lines(osv.osv_memory):
                             'currency_id':statement.currency.id,
                             'date':line.date,
                             'amount':abs(amount),
+                            'payment_rate': result['value']['payment_rate'],
+                            'payment_rate_currency_id': result['value']['payment_rate_currency_id'],
                             'period_id':statement.period_id.id}
             voucher_id = voucher_obj.create(cr, uid, voucher_res, context=context)
 
@@ -97,6 +100,11 @@ class account_statement_from_invoice_lines(osv.osv_memory):
             if voucher_line_dict:
                 voucher_line_dict.update({'voucher_id': voucher_id})
                 voucher_line_obj.create(cr, uid, voucher_line_dict, context=context)
+
+            #Updated the amount of voucher in case of partially paid invoice
+            amount_res = voucher_line_dict.get('amount_unreconciled',amount)
+            voucher_obj.write(cr, uid, voucher_id, {'amount':amount_res}, context=context)
+
             if line.journal_id.type == 'sale':
                 type = 'customer'
             elif line.journal_id.type == 'purchase':
@@ -105,14 +113,14 @@ class account_statement_from_invoice_lines(osv.osv_memory):
                 type = 'general'
             statement_line_obj.create(cr, uid, {
                 'name': line.name or '?',
-                'amount': amount,
+                'amount': amount_res if amount >= 0 else -amount_res,
                 'type': type,
                 'partner_id': line.partner_id.id,
                 'account_id': line.account_id.id,
                 'statement_id': statement_id,
                 'ref': line.ref,
                 'voucher_id': voucher_id,
-                'date': time.strftime('%Y-%m-%d'), #time.strftime('%Y-%m-%d'), #line.date_maturity or,
+                'date': statement.date,
             }, context=context)
         return {'type': 'ir.actions.act_window_close'}
 

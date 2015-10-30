@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Top menu item shipment -->
+        <!--<menuitem name="Shipment" id="menu_finance" sequence="50"/>-->
+        <menuitem id="menu_base_shipment" name="Shipment"/>
+        <menuitem id="menu_section_shipment" parent="menu_base_shipment" name="Shipment" />
+        <menuitem id="menu_section_port" parent="menu_base_shipment" name="Port" />
+        <menuitem id="menu_section_ramport" parent="menu_base_shipment" name="Ramport" />
+        <menuitem id="menu_section_config" parent="menu_base_shipment" name="Configuration" />
+
+        <!-- Top menu item for trucking -->
+        <menuitem id="menu_base_trucking" name="Trucking"/>
+        <menuitem id="menu_section_trucking" parent="menu_base_trucking" name="Trucking" />
+
+    </data>
+</openerp>
+

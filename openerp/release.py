@@ -51,3 +51,7 @@ author_email = 'info@openerp.com'
 license = 'AGPL-3'
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+version = "6.1-20140804-233536"
+# server bzr version:  on lp:~openerp/openobject-server/6.1
+# addons bzr version:  on lp:~openerp/openobject-addons/6.1
+# web bzr version:  on lp:~openerp/openerp-web/6.1

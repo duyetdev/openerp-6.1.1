@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0dev\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-02-08 00:36+0000\n"
-"PO-Revision-Date: 2012-02-17 09:10+0000\n"
-"Last-Translator: OpenERP Administrators <Unknown>\n"
+"PO-Revision-Date: 2012-05-21 12:14+0000\n"
+"Last-Translator: ThinkOpen Solutions <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-18 06:43+0000\n"
-"X-Generator: Launchpad (build 14814)\n"
+"X-Launchpad-Export-Date: 2013-05-29 07:05+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 
 #. module: idea
 #: help:idea.category,visibility:0
@@ -24,7 +24,7 @@ msgstr ""
 #. module: idea
 #: view:idea.idea:0
 msgid "By States"
-msgstr ""
+msgstr "Por estados"
 
 #. module: idea
 #: model:ir.actions.act_window,name:idea.action_idea_select
@@ -56,10 +56,7 @@ msgid "Ideas Analysis"
 msgstr "Análise de ideias"
 
 #. module: idea
-#: view:idea.category:0
 #: view:idea.idea:0
-#: view:idea.vote:0
-#: view:report.vote:0
 msgid "Group By..."
 msgstr "Agrupar por..."
 
@@ -71,7 +68,7 @@ msgstr "Março"
 #. module: idea
 #: view:idea.idea:0
 msgid "Accepted Ideas"
-msgstr ""
+msgstr "Ideias Aceites"
 
 #. module: idea
 #: code:addons/idea/wizard/idea_post_vote.py:94
@@ -82,7 +79,7 @@ msgstr "A Ideia tem de estar como \"aberta\" para ser possível votar nela"
 #. module: idea
 #: view:report.vote:0
 msgid "Open Date"
-msgstr ""
+msgstr "Data Abertura"
 
 #. module: idea
 #: view:report.vote:0
@@ -116,7 +113,7 @@ msgstr "Mau"
 #. module: idea
 #: selection:report.vote,idea_state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: idea
 #: view:idea.category:0
@@ -129,7 +126,7 @@ msgstr "Categoria de ideias"
 #: code:addons/idea/wizard/idea_post_vote.py:94
 #, python-format
 msgid "Warning !"
-msgstr "Atenção!"
+msgstr "Aviso !"
 
 #. module: idea
 #: view:idea.idea:0
@@ -144,7 +141,7 @@ msgstr ""
 #. module: idea
 #: field:idea.category,parent_id:0
 msgid "Parent Categories"
-msgstr "Directorias Ascendentes"
+msgstr "Diretorias Ascendentes"
 
 #. module: idea
 #: selection:idea.idea,my_vote:0
@@ -163,7 +160,7 @@ msgstr "Votação em ideias"
 #: view:report.vote:0
 #: field:report.vote,nbr:0
 msgid "# of Lines"
-msgstr "Número de linhas"
+msgstr "# de Linhas"
 
 #. module: idea
 #: code:addons/idea/wizard/idea_post_vote.py:91
@@ -208,7 +205,7 @@ msgstr "O nome da categoria deve ser único"
 #. module: idea
 #: model:ir.model,name:idea.model_idea_select
 msgid "select idea"
-msgstr "Selecionar ideia"
+msgstr "Selecionar Ideia"
 
 #. module: idea
 #: view:idea.stat:0
@@ -223,7 +220,7 @@ msgstr "Categorias Descendentes"
 #. module: idea
 #: view:idea.select:0
 msgid "Next"
-msgstr ""
+msgstr "Próximo"
 
 #. module: idea
 #: view:idea.idea:0
@@ -237,7 +234,7 @@ msgstr "Estado"
 #: view:idea.idea:0
 #: selection:idea.idea,state:0
 msgid "New"
-msgstr ""
+msgstr "Novo"
 
 #. module: idea
 #: selection:idea.idea,my_vote:0
@@ -272,7 +269,7 @@ msgstr ""
 #. module: idea
 #: view:idea.idea:0
 msgid "New Ideas"
-msgstr ""
+msgstr "Novas Ideias"
 
 #. module: idea
 #: view:report.vote:0
@@ -298,8 +295,6 @@ msgstr "Julho"
 #. module: idea
 #: view:idea.idea:0
 #: selection:idea.idea,state:0
-#: view:report.vote:0
-#: selection:report.vote,idea_state:0
 msgid "Accepted"
 msgstr "Aceite"
 
@@ -312,12 +307,12 @@ msgstr "Categorias"
 #. module: idea
 #: view:idea.category:0
 msgid "Parent Category"
-msgstr ""
+msgstr "Categoria Ascendente"
 
 #. module: idea
 #: field:idea.idea,open_date:0
 msgid "Open date"
-msgstr "Data de abertura"
+msgstr "Data de Abertura"
 
 #. module: idea
 #: field:idea.idea,vote_ids:0
@@ -368,18 +363,12 @@ msgstr "Mês"
 
 #. module: idea
 #: view:idea.idea:0
-#: model:ir.actions.act_window,name:idea.action_idea_idea_categ_open
-#: model:ir.actions.act_window,name:idea.action_idea_idea_open
 msgid "Open Ideas"
 msgstr "Abrir Ideias"
 
 #. module: idea
 #: view:idea.category:0
-#: field:idea.category,name:0
 #: view:idea.idea:0
-#: field:idea.idea,category_id:0
-#: view:report.vote:0
-#: field:report.vote,category_id:0
 msgid "Category"
 msgstr "Categoria"
 
@@ -405,7 +394,7 @@ msgstr ""
 #. module: idea
 #: view:idea.idea:0
 msgid "By Idea Category"
-msgstr ""
+msgstr "Por categoria de ideias"
 
 #. module: idea
 #: view:idea.idea:0
@@ -445,7 +434,7 @@ msgstr "Junho"
 #: field:report.vote,creater_id:0
 #: field:report.vote,user_id:0
 msgid "User Name"
-msgstr "Nome de utilizador"
+msgstr "Nome do Utilizador"
 
 #. module: idea
 #: model:ir.model,name:idea.model_idea_vote_stat
@@ -484,7 +473,7 @@ msgstr "Outubro"
 #: field:idea.comment,create_date:0
 #: field:idea.idea,created_date:0
 msgid "Creation date"
-msgstr "Data de criação"
+msgstr "Data da Criação"
 
 #. module: idea
 #: selection:report.vote,month:0
@@ -497,7 +486,7 @@ msgid "idea.idea"
 msgstr "idea.idea"
 
 #. module: idea
-#: field:idea.category,summary:0
+#: field:idea.idea,message_summary:0
 msgid "Summary"
 msgstr "Resumo"
 
@@ -514,19 +503,18 @@ msgstr "Publicar"
 #. module: idea
 #: view:idea.idea:0
 msgid "History"
-msgstr "Historial"
+msgstr "Histórico"
 
 #. module: idea
 #: field:report.vote,date:0
 msgid "Date Order"
-msgstr ""
+msgstr "Data da ordem"
 
 #. module: idea
 #: view:idea.idea:0
-#: field:idea.idea,user_id:0
-#: view:report.vote:0
+#: field:idea.idea,create_uid:0
 msgid "Creator"
-msgstr "Autor"
+msgstr "Criador"
 
 #. module: idea
 #: view:idea.post.vote:0
@@ -542,7 +530,7 @@ msgstr ""
 #. module: idea
 #: view:idea.idea:0
 msgid "By Creators"
-msgstr ""
+msgstr "Por criadores"
 
 #. module: idea
 #: view:idea.post.vote:0
@@ -561,9 +549,8 @@ msgstr "Abrir"
 
 #. module: idea
 #: view:idea.idea:0
-#: view:report.vote:0
 msgid "In Progress"
-msgstr ""
+msgstr "Em Progresso"
 
 #. module: idea
 #: view:report.vote:0
@@ -575,7 +562,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:idea.action_idea_idea
 #: model:ir.ui.menu,name:idea.menu_idea_idea
 #: model:ir.ui.menu,name:idea.menu_ideas
-#: model:ir.ui.menu,name:idea.menu_ideas1
 msgid "Ideas"
 msgstr "Ideias"
 
@@ -601,9 +587,7 @@ msgid "Comments:"
 msgstr "Comentários:"
 
 #. module: idea
-#: view:idea.category:0
 #: field:idea.idea,description:0
-#: field:idea.post.vote,note:0
 msgid "Description"
 msgstr "Descrição"
 
@@ -614,9 +598,8 @@ msgstr "Maio"
 
 #. module: idea
 #: selection:idea.idea,state:0
-#: view:report.vote:0
 msgid "Refused"
-msgstr ""
+msgstr "Recusado"
 
 #. module: idea
 #: view:idea.vote:0
@@ -631,7 +614,7 @@ msgstr "Fevereiro"
 #. module: idea
 #: field:idea.category,complete_name:0
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: idea
 #: field:idea.vote.stat,nbr:0
@@ -641,7 +624,7 @@ msgstr "Número de votos"
 #. module: idea
 #: view:report.vote:0
 msgid "Month-1"
-msgstr ""
+msgstr "Mês-1"
 
 #. module: idea
 #: selection:report.vote,month:0
@@ -651,7 +634,7 @@ msgstr "Abril"
 #. module: idea
 #: field:idea.idea,count_comments:0
 msgid "Count of comments"
-msgstr "Contagem de comentarios"
+msgstr "Contagem de comentários"
 
 #. module: idea
 #: field:idea.vote,score:0
@@ -671,24 +654,17 @@ msgstr "Pontuação Média"
 #. module: idea
 #: constraint:idea.category:0
 msgid "Error ! You cannot create recursive categories."
-msgstr ""
+msgstr "Erro! Não pode criar categorias recursivas."
 
 #. module: idea
-#: field:idea.comment,idea_id:0
-#: field:idea.select,idea_id:0
-#: view:idea.vote:0
-#: field:idea.vote,idea_id:0
-#: field:idea.vote.stat,idea_id:0
-#: model:ir.ui.menu,name:idea.menu_idea_reporting
-#: view:report.vote:0
-#: field:report.vote,idea_id:0
+#: view:idea.idea:0
 msgid "Idea"
 msgstr "Ideia"
 
 #. module: idea
 #: view:idea.idea:0
 msgid "Accept"
-msgstr ""
+msgstr "Aceitar"
 
 #. module: idea
 #: field:idea.post.vote,vote:0
